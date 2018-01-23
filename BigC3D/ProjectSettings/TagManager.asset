@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - ProjectileRemover
   - EnemyDestroyer
+  - EarlyDestroyer
   layers:
   - Default
   - TransparentFX

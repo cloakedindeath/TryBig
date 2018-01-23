@@ -8,14 +8,14 @@ public class MenuUIManager : MonoBehaviour
 	public GameObject socialMediaPanel;
 	public GameObject optionsPanel;
 	public GameObject startButton;
-	public AudioClip click;
-	AudioSource audioSource;
+	//public AudioClip click;
+	//AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () 
 	{
 		Invoke ("OptionsButtonPulse", 1f);
-		audioSource = GetComponent<AudioSource>();
+		//audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame

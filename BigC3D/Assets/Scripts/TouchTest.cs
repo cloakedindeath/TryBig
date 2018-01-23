@@ -9,6 +9,9 @@ public class TouchTest : MonoBehaviour
 	public float speed = 0.1F;
 	public GameObject player; 
 
+	public Rigidbody projectile;
+	public float bulletSpeed = 20;
+
 	void Update() 
 	{
 		if(UIManager.instance.gameOver == false)
@@ -34,6 +37,16 @@ public class TouchTest : MonoBehaviour
 			}
 		}
 
+	}
+
+	public void Shoot2()
+	{
+		Debug.Log ("Shooting");
+		Rigidbody instantiatedProjectile = Instantiate (projectile,
+			player.transform.position, 
+			Quaternion.identity)
+			as Rigidbody;
+		instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
 	}
 
 	void OnTriggerEnter(Collider col)

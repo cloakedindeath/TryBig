@@ -35,6 +35,7 @@ public class ScoreManager : MonoBehaviour
 			//Time.timeScale = 0;
 			//GameObject.Find("EnemyTest").GetComponent<EnemyController>().StopEnemyMovement();
 			GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
+			//GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().enabled = false;
 			GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 			shootButton.GetComponent<Button> ().interactable = false;
 			PlayerPrefs.SetInt ("Score", score);

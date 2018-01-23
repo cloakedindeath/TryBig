@@ -4,42 +4,53 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour 
 {
+	public static EnemySpawner instance;
+
 	public float maxXpos, spawnTime;
 	public GameObject enemy;
 	public GameObject[] enemies;
 	public float timeCnt;
 
-
 	void Awake()
 	{
+		if(instance == null)
+		{
+			instance = this;
+		}
+
 		spawnTime = 0.8f;
-		timeCnt = 1;
 	}
+		
 	// Use this for initialization
-	void Start () 
+	public void Start () 
 	{
+
+		InvokeRepeating ("PickEnemyType", 0.2f, spawnTime);
 		//SpawnEnemy ();
 		//InvokeRepeating ("SpawnEnemy", 0.2f, spawnTime);
-		InvokeRepeating ("PickEnemyType", 0.2f, spawnTime);
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		timeCnt = timeCnt +1;
-		PickSpawnRate ();
-	}
-
-	void SpawnEnemy()
-	{
-		Instantiate (enemy, new Vector3 (Random.Range (-maxXpos, maxXpos),
-			transform.position.y, transform.position.z), Quaternion.identity);
+		//timeCnt = timeCnt +1;
+		//PickSpawnRate ();
+		if(UIManager.instance.startWaveCountdown == true && UIManager.instance.gameOver == false)
+		{
+			spawnTime = 0.8f;
+		}
 	}
 
 	public void StopSpawning()
 	{
 		CancelInvoke ("SpawnEnemy");
 		CancelInvoke ("PickEnemyType");
+	}
+
+	public void StartWave()
+	{
+		InvokeRepeating ("PickEnemyType", 0.2f, spawnTime);
 	}
 
 	public void PickEnemyType()
@@ -63,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-	public void PickSpawnRate()
+	/*public void PickSpawnRate()
 	{
 		if(timeCnt > 1000f)
 		{
@@ -73,5 +84,5 @@ public class EnemySpawner : MonoBehaviour
 		{
 			spawnTime = 0.2f;
 		}
-	}
+	}*/
 }

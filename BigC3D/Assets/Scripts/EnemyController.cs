@@ -18,6 +18,11 @@ public class EnemyController : MonoBehaviour
 	void Update () 
 	{
 		MoveEnemyToPlayer ();
+
+		/*if(UIManager.instance.gameOver == true)
+		{
+			StopEnemyMovement ();
+		}*/
 	}
 
 	void MoveEnemyToPlayer()
@@ -27,12 +32,17 @@ public class EnemyController : MonoBehaviour
 
 	public void StopEnemyMovement()
 	{
-		rb.velocity = new Vector3 (0,0,0);
+		rb.velocity = new Vector3 (0,0,speed) * 0;
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "EnemyDestroyer")
+		if (col.gameObject.tag == "EarlyDestroyer")
+		{
+			Destroy (gameObject);
+			//ScoreManager.instance.LoseLife ();
+		}
+		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
 			Destroy (gameObject);
 			ScoreManager.instance.LoseLife ();
