@@ -40,11 +40,13 @@ public class EnemyController : MonoBehaviour
 		if (col.gameObject.tag == "EarlyDestroyer")
 		{
 			Destroy (gameObject);
+			EnemySpawner.instance.count--;
 			//ScoreManager.instance.LoseLife ();
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
 			Destroy (gameObject);
+			EnemySpawner.instance.count--;
 			ScoreManager.instance.LoseLife ();
 		}
 	}

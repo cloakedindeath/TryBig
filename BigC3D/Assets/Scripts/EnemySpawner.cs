@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
 	public GameObject enemy;
 	public GameObject[] enemies;
 	public float timeCnt;
+	public int count;
 
 	void Awake()
 	{
@@ -34,8 +35,14 @@ public class EnemySpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		Debug.Log (count);
 		//timeCnt = timeCnt +1;
 		//PickSpawnRate ();
+		if(count > 10)
+		{
+			CancelInvoke ();
+		}
+
 		if(UIManager.instance.startWaveCountdown == true && UIManager.instance.gameOver == false)
 		{
 			spawnTime = 0.8f;
@@ -72,6 +79,8 @@ public class EnemySpawner : MonoBehaviour
 			Instantiate (enemies[2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 				transform.position.y, transform.position.z), Quaternion.identity);
 		}
+
+		count++;
 	}
 
 	/*public void PickSpawnRate()

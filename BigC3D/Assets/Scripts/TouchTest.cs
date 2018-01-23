@@ -53,6 +53,7 @@ public class TouchTest : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Enemy")
 		{
+			EnemySpawner.instance.count--;
 			Destroy (col.gameObject);
 			ScoreManager.instance.LoseLife ();
 		}

@@ -27,6 +27,7 @@ public class ProjectileTest : MonoBehaviour
 		if(col.gameObject.tag == "Enemy")
 		{
 			Debug.Log ("Hit");
+			EnemySpawner.instance.count--;
 			Destroy (this.gameObject);
 			Destroy (col.gameObject);
 			ScoreManager.instance.EnemyKill ();
