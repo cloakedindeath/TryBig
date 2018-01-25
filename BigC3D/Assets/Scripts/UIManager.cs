@@ -184,7 +184,7 @@ public class UIManager : MonoBehaviour
 	}
 	public void GoBackToMenu()
 	{
-		SceneManager.LoadScene ("Menu");
+		SceneManager.LoadScene ("Main");
 	}
 
 	IEnumerator SpawnEnemies()
