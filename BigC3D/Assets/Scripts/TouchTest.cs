@@ -19,7 +19,7 @@ public class TouchTest : MonoBehaviour
 			////////////////////////////////////////////////////
 			//Check that player position is within the screen//
 			//////////////////////////////////////////////////
-			if (player.transform.position.x >= -4.5f && player.transform.position.x <= 3.70f) 
+			if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
 			{
 				//////////////////////////////////////////
 				//Touch movement with Y-axis restricted//
@@ -33,7 +33,7 @@ public class TouchTest : MonoBehaviour
 				//Guarantees that the player wont go off screen//
 				////////////////////////////////////////////////
 				Vector2 p = player.transform.position;
-				player.transform.position = new Vector2( Mathf.Clamp( p.x, -4.5f, 3.7f ), p.y);
+				player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
 			}
 		}
 

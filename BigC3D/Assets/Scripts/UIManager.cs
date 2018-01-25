@@ -17,13 +17,18 @@ public class UIManager : MonoBehaviour
 	public float timeCountDown;
 	public GameObject startGamePanel;
 	public GameObject waveStartPanel;
+	public GameObject waveEndPanel;
 	public float gameStartCountdown;
-	public GameObject enemyDestroyer;
+	public float inbetweenTimer;
+	public int waveCount;
 
 	public Text scoreText;
 	public Text livesText;
 	public Text waveTimerText;
 	public Text startCountdownTimerText;
+	public Text waveOverScoreText;
+	public Text waveOverText;
+	public Text waveIndicatorText;
 
 	public GameObject gameOverPanel;
 	public Text gameOverScore;
@@ -47,6 +52,7 @@ public class UIManager : MonoBehaviour
 		timeCountDown = 0;
 		startCountdown = false;
 		startWaveCountdown = false;
+		waveCount = 1;
 	}
 
 	// Update is called once per frame
@@ -55,33 +61,58 @@ public class UIManager : MonoBehaviour
 		//Start pre Wave countdown
 		if(startCountdown == true && gameOver == false)
 		{
+			
 			gameStartCountdown -= Time.deltaTime;
 			if(gameStartCountdown <= 0)
 			{
 				startCountdown = false;
 				startWaveCountdown = true;
 				waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountdownRemover");
-				timeCountDown = 30.5f;
-			}
-		}
-		if(startWaveCountdown == true && gameOver == false)
-		{
-			enemyDestroyer.SetActive (false);
-			timeCountDown -= Time.deltaTime;
-			if(timeCountDown <= 0)
-			{
-				DestroyAllEnemies ();
+				timeCountDown = 25.5f;
+				inbetweenTimer = 3.5f;
 			}
 		}
 		//Start actual wave countdown
+		else if(startWaveCountdown == true && gameOver == false)
+		{
+			//StartCoroutine (SpawnEnemies ());
+			EnemySpawner.instance.PickEnemyType();
+			timeCountDown -= Time.deltaTime;
 
+			if(timeCountDown <= 0)
+			{
+				DestroyAllEnemies ();
+				timeCountDown = 0;
+				waveEndPanel.SetActive(true);
+				inbetweenTimer -= Time.deltaTime;
+			}
+			if (inbetweenTimer <= 0)
+			{
+				waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
+				waveEndPanel.GetComponent<Animator> ().Play ("WaveEndAway");
+				waveEndPanel.SetActive (false);
+				startWaveCountdown = false;
+				startCountdown = true;
+				gameStartCountdown = 3.5f;
+				waveCount = waveCount + 1;
+			}
 
-
+		}
+			
 		//Update text elements
 		scoreText.text = "Score: " + ScoreManager.instance.score.ToString();
 		livesText.text = "Lives: " + ScoreManager.instance.lives.ToString();
-		waveTimerText.text = "Wave Timer: " + timeCountDown.ToString("f0");
+		waveTimerText.text = "Wave " + waveCount + " Timer: " + timeCountDown.ToString("f0");
 		startCountdownTimerText.text = gameStartCountdown.ToString ("f0");
+		waveOverScoreText.text = "Score: " + ScoreManager.instance.score.ToString ();
+		waveOverText.text = "Wave " + waveCount;
+		waveIndicatorText.text = "Wave " + waveCount;
+
+		if(waveCount == 10)
+		{
+			gameOver = true;
+			GameOver ();
+		}
 
 	}
 
@@ -90,6 +121,7 @@ public class UIManager : MonoBehaviour
 		gameOver = false;
 		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
 		startCountdown = true;
+		EnemySpawner.instance.spawnTime = 3.5f;
 
 	}
 
@@ -149,5 +181,15 @@ public class UIManager : MonoBehaviour
 	public void RestartGame()
 	{
 		SceneManager.LoadScene ("Main");
+	}
+	public void GoBackToMenu()
+	{
+		SceneManager.LoadScene ("Menu");
+	}
+
+	IEnumerator SpawnEnemies()
+	{
+		yield return new WaitForSeconds(1f);
+		EnemySpawner.instance.PickEnemyType ();
 	}
 }

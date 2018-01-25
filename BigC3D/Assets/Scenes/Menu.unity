@@ -238,7 +238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -189.1}
+  m_AnchoredPosition: {x: 0, y: -197}
   m_SizeDelta: {x: 0, y: -340.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39331511
@@ -5031,7 +5031,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 943266772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.41, z: 0}
+  m_LocalPosition: {x: 0, y: 3.59, z: 0}
   m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5272,7 +5272,7 @@ MonoBehaviour:
   socialMediaPanel: {fileID: 1105459796}
   optionsPanel: {fileID: 39331509}
   startButton: {fileID: 706018562}
-  click: {fileID: 8300000, guid: fad659904171fe44180aedd583c7ba02, type: 3}
+  click: {fileID: 8300000, guid: c045fa5cd0b985242b1a06a719ef3206, type: 3}
 --- !u!4 &1105470387
 Transform:
   m_ObjectHideFlags: 0
@@ -5295,11 +5295,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fad659904171fe44180aedd583c7ba02, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c045fa5cd0b985242b1a06a719ef3206, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
