@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
 	Debug.Log (touchCnt.ToString());
 			//Debug.Log (PlayerPrefs.GetInt ("HighScore"));
 			//Tap to start round
-			if( Input.touchCount >= 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+			if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 			{
 				touchCnt = touchCnt + 1;
 			}
@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour
 				startCountdown = false;
 				startWaveCountdown = true;
 				waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountdownRemover");
-				timeCountDown = 20.5f;
+				timeCountDown = 60.5f;
 				inbetweenTimer = 3.5f;
 				touchCnt = 1;
 			}
@@ -111,12 +111,12 @@ public class UIManager : MonoBehaviour
 				waveEndPanel.SetActive(true);
 
 				//touch to continue after score highlights
-				if( Input.touchCount >= 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+				if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 				{
 					touchCnt = touchCnt + 1;
 
 				}
-				if(touchCnt == 3)
+				if(touchCnt == 3 && gameOver == false)
 				{
 					touchCnt = 0;
 					startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour
 		waveTimerText.text = "Wave " + waveCount + " Timer: " + timeCountDown.ToString("f0");
 		startCountdownTimerText.text = gameStartCountdown.ToString ("f0");
 		waveOverScoreText.text = "Score: " + ScoreManager.instance.score.ToString ();
-		waveOverText.text = "Wave " + waveCount;
+		waveOverText.text = "Wave " + waveCount + " Complete";
 		waveIndicatorText.text = "Wave " + waveCount;
 		furthestWaveText.text = "Wave Level Reached: " + PlayerPrefs.GetInt ("MostWaves").ToString ();
 		//highScoreText.text = "High Score: " + PlayerPrefs.GetInt ("HighScore");
@@ -234,16 +234,29 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
+		timeCountDown = 0;
+		gameOver = true;
 		DestroyAllEnemies ();
 		gameOverPanel.SetActive (true);
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
 		ScoreManager.instance.SetPlayerScores ();
+		waveEndPanel.SetActive (false);
 
 	}
 
 	public void RestartGame()
 	{
-		SceneManager.LoadScene ("Main");
+		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
+		GameObject.Find("ShootButton").GetComponent<Button> ().interactable = true;
+		waveCount = 1;
+		ScoreManager.instance.lives = 3;
+		ScoreManager.instance.score = 0;
+		PlayerPrefs.SetInt ("Score", 0);
+		gameOver = false;
+		gameOverPanel.SetActive (false);
+		waveStartPanel.GetComponent<Animator> ().Play ("ResumeGame");
+		startCountdown = true;
+		startWaveCountdown = false;
 	}
 	public void GoBackToMenu()
 	{
@@ -269,6 +282,16 @@ public class UIManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1f);
 		EnemySpawner.instance.PickEnemyType ();
+	}
+	IEnumerator _RestartGame()
+	{
+		yield return new WaitForSeconds(1f);
+
+		PlayerPrefs.SetInt ("Score", 0);
+		gameOver = false;
+		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
+		startCountdown = true;
+		EnemySpawner.instance.spawnTime = 3.5f;
 	}
 
 }

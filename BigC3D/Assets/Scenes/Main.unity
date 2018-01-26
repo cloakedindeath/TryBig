@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
@@ -1525,7 +1525,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 80
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2124,9 +2124,9 @@ RectTransform:
   m_Father: {fileID: 698195009}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.45, y: -49.15}
+  m_AnchorMin: {x: 0.5, y: 0.29645094}
+  m_AnchorMax: {x: 0.5, y: 0.29645094}
+  m_AnchoredPosition: {x: -1.4499998, y: 3}
   m_SizeDelta: {x: 268.89, y: 128.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754243397
@@ -2243,7 +2243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029a95196df2cb345b1b8d41b98d6cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXpos: 3.5
+  maxXpos: 3.7
   spawnTime: 15
   enemy: {fileID: 1690237016665636, guid: c723b33dd0bd2ee488a19d5355b32b93, type: 2}
   enemies:
