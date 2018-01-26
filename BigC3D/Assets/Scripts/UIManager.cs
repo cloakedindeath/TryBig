@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
 	public float gameStartCountdown;
 	public float inbetweenTimer;
 	public int waveCount;
+	public GameObject shootButton;
+	public GameObject howToPanel;
 
 	public Text scoreText;
 	public Text livesText;
@@ -60,6 +62,8 @@ public class UIManager : MonoBehaviour
 		startCountdown = false;
 		startWaveCountdown = false;
 		waveCount = 1;
+		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
+		shootButton.GetComponent<Button> ().interactable = false;
 	}
 
 	// Update is called once per frame
@@ -95,6 +99,7 @@ public class UIManager : MonoBehaviour
 				timeCountDown = 60.5f;
 				inbetweenTimer = 3.5f;
 				touchCnt = 1;
+				EnemySpawner.instance.PickEnemyType();
 			}
 		}
 		//////////////////////////////
@@ -102,11 +107,13 @@ public class UIManager : MonoBehaviour
 		else if(startWaveCountdown == true && gameOver == false)
 		{
 			EnemySpawner.instance.PickEnemyType();
+			GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
+			shootButton.GetComponent<Button> ().interactable = true;
 			timeCountDown -= Time.deltaTime;
 
 			if( timeCountDown <= 0 && gameOver == false)
 			{
-				DestroyAllEnemies ();
+				//DestroyAllEnemies ();
 				timeCountDown = 0;
 				waveEndPanel.SetActive(true);
 
@@ -246,8 +253,8 @@ public class UIManager : MonoBehaviour
 
 	public void RestartGame()
 	{
-		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
-		GameObject.Find("ShootButton").GetComponent<Button> ().interactable = true;
+		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
+		shootButton.GetComponent<Button> ().interactable = false;
 		waveCount = 1;
 		ScoreManager.instance.lives = 3;
 		ScoreManager.instance.score = 0;
@@ -260,6 +267,7 @@ public class UIManager : MonoBehaviour
 	}
 	public void GoBackToMenu()
 	{
+		gameOver = true;
 		SceneManager.LoadScene ("Main");
 	}
 
@@ -278,20 +286,25 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	public void OpenHowTo()
+	{
+		howToPanel.SetActive (true);
+	}
+	public void CloseHowTo()
+	{
+		howToPanel.GetComponent<Animator> ().Play ("HowToPopDown");
+		StartCoroutine (HowToDisable ());
+	}
+
 	IEnumerator SpawnEnemies()
 	{
 		yield return new WaitForSeconds(1f);
 		EnemySpawner.instance.PickEnemyType ();
 	}
-	IEnumerator _RestartGame()
+	IEnumerator HowToDisable()
 	{
 		yield return new WaitForSeconds(1f);
-
-		PlayerPrefs.SetInt ("Score", 0);
-		gameOver = false;
-		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
-		startCountdown = true;
-		EnemySpawner.instance.spawnTime = 3.5f;
+		howToPanel.SetActive (false);
 	}
 
 }

@@ -64,6 +64,8 @@ public class EnemySpawner : MonoBehaviour
 
 	public void PickEnemyType()
 	{
+		//Control Waves of enemies here****************************************************///////////////
+		/////////************************************************************/////////////////////////
 		float rand = Random.Range (1f, 100);
 		if(spawnTime <= 0)
 		{

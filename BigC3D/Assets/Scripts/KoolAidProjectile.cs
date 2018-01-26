@@ -23,6 +23,26 @@ public class KoolAidProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			Destroy (col.gameObject);
 			ScoreManager.instance.EnemyKill ();
+			TouchTest.instance.ammoOnScreen--;
+		}
+		else if (col.gameObject.tag == "Enemy_Waffle")
+		{
+			
+			Destroy (this.gameObject);
+			TouchTest.instance.ammoOnScreen--;
+
+		}
+		else if (col.gameObject.tag == "Enemy_Chicken")
+		{
+			
+			Destroy (this.gameObject);
+			TouchTest.instance.ammoOnScreen--;
+
+		}
+		else if (col.gameObject.tag == "ProjectileRemover")
+		{
+			Destroy (this.gameObject);
+			TouchTest.instance.ammoOnScreen--;
 		}
 	}
 }

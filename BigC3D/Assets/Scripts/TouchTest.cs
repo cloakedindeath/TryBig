@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class TouchTest : MonoBehaviour 
 {
+
+	public static TouchTest instance;
 	// Update is called once per frame
 	public float speed = 0.1F;
 	public GameObject player; 
@@ -13,10 +15,16 @@ public class TouchTest : MonoBehaviour
 	public Rigidbody[] projectiles;
 	public float bulletSpeed = 20;
 	public int ammoType;
+	public int ammoOnScreen;
 
 	void Awake()
 	{
+		if(instance == null)
+		{
+			instance = this;
+		}
 		ammoType = 0;
+		ammoOnScreen = 0;
 	}
 
 	void Update() 
@@ -45,10 +53,13 @@ public class TouchTest : MonoBehaviour
 			}
 		}
 
+
+
 	}
 
 	public void PickAmmoType()
 	{
+		
 		if(ammoType == 0)
 		{
 			projectile = projectiles [0];
@@ -68,12 +79,21 @@ public class TouchTest : MonoBehaviour
 
 	public void Shoot2()
 	{
-		Debug.Log ("Shooting");
-		Rigidbody instantiatedProjectile = Instantiate (projectile,
-			player.transform.position, 
-			Quaternion.identity)
-			as Rigidbody;
-		instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
+		if(ammoOnScreen >=3)
+		{
+			
+
+		}
+		else
+		{
+			Debug.Log ("Shooting");
+			Rigidbody instantiatedProjectile = Instantiate (projectile,
+				player.transform.position, 
+				Quaternion.identity)
+				as Rigidbody;
+			instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
+			ammoOnScreen++;
+		}
 	}
 
 	void OnTriggerEnter(Collider col)
