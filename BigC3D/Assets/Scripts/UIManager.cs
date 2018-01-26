@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour 
 {
@@ -29,10 +30,15 @@ public class UIManager : MonoBehaviour
 	public Text waveOverScoreText;
 	public Text waveOverText;
 	public Text waveIndicatorText;
+	public Text highScoreText;
+	public Text furthestWaveText;
 
 	public GameObject gameOverPanel;
 	public Text gameOverScore;
-	GameObject[] enemies;
+	GameObject[] enemiesW;
+	GameObject[] enemiesC;
+	GameObject[] enemiesK;
+	public int touchCnt = 0;
 
 	void Awake()
 	{
@@ -48,7 +54,8 @@ public class UIManager : MonoBehaviour
 	{
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
-		gameStartCountdown = 3.5f;
+		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
+		gameStartCountdown = -1f;
 		timeCountDown = 0;
 		startCountdown = false;
 		startWaveCountdown = false;
@@ -58,35 +65,73 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		/////////////////////////////////
 		//Start pre Wave countdown
 		if(startCountdown == true && gameOver == false)
 		{
-			
-			gameStartCountdown -= Time.deltaTime;
-			if(gameStartCountdown <= 0)
+
+	Debug.Log (touchCnt.ToString());
+			//Debug.Log (PlayerPrefs.GetInt ("HighScore"));
+			//Tap to start round
+			if( Input.touchCount >= 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 			{
+				touchCnt = touchCnt + 1;
+			}
+			if(touchCnt == 1)
+			{
+				touchCnt = 2;
+				startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
+				gameStartCountdown = 3.5f;
+			}
+			gameStartCountdown -= Time.deltaTime;
+
+			if (gameStartCountdown <= 0.85f && gameStartCountdown > 0) 
+			{
+				
+				startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
 				startCountdown = false;
 				startWaveCountdown = true;
 				waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountdownRemover");
-				timeCountDown = 25.5f;
+				timeCountDown = 20.5f;
 				inbetweenTimer = 3.5f;
+				touchCnt = 1;
 			}
 		}
+		//////////////////////////////
 		//Start actual wave countdown
 		else if(startWaveCountdown == true && gameOver == false)
 		{
-			//StartCoroutine (SpawnEnemies ());
 			EnemySpawner.instance.PickEnemyType();
 			timeCountDown -= Time.deltaTime;
 
-			if(timeCountDown <= 0)
+			if( timeCountDown <= 0 && gameOver == false)
 			{
 				DestroyAllEnemies ();
 				timeCountDown = 0;
 				waveEndPanel.SetActive(true);
-				inbetweenTimer -= Time.deltaTime;
+
+				//touch to continue after score highlights
+				if( Input.touchCount >= 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+				{
+					touchCnt = touchCnt + 1;
+
+				}
+				if(touchCnt == 3)
+				{
+					touchCnt = 0;
+					startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
+					waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
+					waveEndPanel.GetComponent<Animator> ().Play ("WaveEndAway");
+					waveEndPanel.SetActive (false);
+					startWaveCountdown = false;
+					startCountdown = true;
+					gameStartCountdown = 3.5f;
+					waveCount = waveCount + 1;
+					ScoreManager.instance.SetPlayerScores ();
+				}
+				//inbetweenTimer -= Time.deltaTime;
 			}
-			if (inbetweenTimer <= 0)
+			/*if (inbetweenTimer <= 0)
 			{
 				waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
 				waveEndPanel.GetComponent<Animator> ().Play ("WaveEndAway");
@@ -95,10 +140,13 @@ public class UIManager : MonoBehaviour
 				startCountdown = true;
 				gameStartCountdown = 3.5f;
 				waveCount = waveCount + 1;
-			}
+			}*/
 
 		}
-			
+
+		SetHighestWave ();
+
+		/////////////////////////
 		//Update text elements
 		scoreText.text = "Score: " + ScoreManager.instance.score.ToString();
 		livesText.text = "Lives: " + ScoreManager.instance.lives.ToString();
@@ -107,17 +155,20 @@ public class UIManager : MonoBehaviour
 		waveOverScoreText.text = "Score: " + ScoreManager.instance.score.ToString ();
 		waveOverText.text = "Wave " + waveCount;
 		waveIndicatorText.text = "Wave " + waveCount;
+		furthestWaveText.text = "Wave Level Reached: " + PlayerPrefs.GetInt ("MostWaves").ToString ();
+		//highScoreText.text = "High Score: " + PlayerPrefs.GetInt ("HighScore");
 
-		if(waveCount == 10)
+		/*if(waveCount == 10)
 		{
 			gameOver = true;
 			GameOver ();
-		}
+		}*/
 
 	}
 
 	public void GameStart ()
 	{
+		PlayerPrefs.SetInt ("Score", 0);
 		gameOver = false;
 		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
 		startCountdown = true;
@@ -127,11 +178,23 @@ public class UIManager : MonoBehaviour
 
 	void DestroyAllEnemies()
 	{
-		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		enemiesW = GameObject.FindGameObjectsWithTag ("Enemy_Waffle");
 
-		for(int i = 0; i < enemies.Length; i++) 
+		for(int i = 0; i < enemiesW.Length; i++) 
 		{
-			Destroy(enemies[i]);
+			Destroy(enemiesW[i]);
+		}
+		enemiesC = GameObject.FindGameObjectsWithTag ("Enemy_Chicken");
+
+		for(int i = 0; i < enemiesC.Length; i++) 
+		{
+			Destroy(enemiesC[i]);
+		}
+		enemiesK = GameObject.FindGameObjectsWithTag ("Enemy_KoolAid");
+
+		for(int i = 0; i < enemiesK.Length; i++) 
+		{
+			Destroy(enemiesK[i]);
 		}
 
 	}
@@ -146,9 +209,7 @@ public class UIManager : MonoBehaviour
 		gameOver = true;
 		SceneManager.LoadScene("Menu");
 	}
-
-
-
+		
 	/*public void Shoot()
 	{
 		if(Input.GetMouseButtonDown(0))
@@ -176,6 +237,8 @@ public class UIManager : MonoBehaviour
 		DestroyAllEnemies ();
 		gameOverPanel.SetActive (true);
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
+		ScoreManager.instance.SetPlayerScores ();
+
 	}
 
 	public void RestartGame()
@@ -187,9 +250,25 @@ public class UIManager : MonoBehaviour
 		SceneManager.LoadScene ("Main");
 	}
 
+	public void SetHighestWave()
+	{
+		if(PlayerPrefs.HasKey("MostWaves"))
+		{
+			if(waveCount > PlayerPrefs.GetInt("MostWaves"))
+			{
+				PlayerPrefs.SetInt ("MostWaves", waveCount);
+			}
+		}
+		else
+		{
+			PlayerPrefs.SetInt ("MostWaves", waveCount);
+		}
+	}
+
 	IEnumerator SpawnEnemies()
 	{
 		yield return new WaitForSeconds(1f);
 		EnemySpawner.instance.PickEnemyType ();
 	}
+
 }

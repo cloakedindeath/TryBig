@@ -10,10 +10,18 @@ public class TouchTest : MonoBehaviour
 	public GameObject player; 
 
 	public Rigidbody projectile;
+	public Rigidbody[] projectiles;
 	public float bulletSpeed = 20;
+	public int ammoType;
+
+	void Awake()
+	{
+		ammoType = 0;
+	}
 
 	void Update() 
 	{
+		Debug.Log (ammoType);
 		if(UIManager.instance.gameOver == false)
 		{
 			////////////////////////////////////////////////////
@@ -39,6 +47,25 @@ public class TouchTest : MonoBehaviour
 
 	}
 
+	public void PickAmmoType()
+	{
+		if(ammoType == 0)
+		{
+			projectile = projectiles [0];
+			ammoType++;
+		}
+		else if(ammoType == 1)
+		{
+			projectile = projectiles [1];
+			ammoType++;
+		}
+		else if(ammoType == 2)
+		{
+			projectile = projectiles [2];
+			ammoType = 0;
+		}
+	}
+
 	public void Shoot2()
 	{
 		Debug.Log ("Shooting");
@@ -51,7 +78,8 @@ public class TouchTest : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "Enemy")
+		if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy_Waffle" ||
+			col.gameObject.tag == "Enemy_Chicken" || col.gameObject.tag == "Enemy_KoolAid")
 		{
 			EnemySpawner.instance.count--;
 			Destroy (col.gameObject);

@@ -89,7 +89,7 @@ public class MenuUIManager : MonoBehaviour
 	public void OrderApparel()
 	{
 		//audioSource.PlayOneShot(click, 1F);
-		Application.OpenURL("http://www.macflyfresh.com/index.php/shop/category/19-big-c-waffles.html");
+		Application.OpenURL("http://www.macflyfresh.com/index.php?option=com_hikashop&ctrl=category&task=listing&cid=19&name=big-c-waffles&Itemid=278");
 	}
 
 	public void OrderFood()

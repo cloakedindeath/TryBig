@@ -32,18 +32,34 @@ public class ScoreManager : MonoBehaviour
 	{
 		if(lives <= 0)
 		{
-			//Time.timeScale = 0;
-			//GameObject.Find("EnemyTest").GetComponent<EnemyController>().StopEnemyMovement();
+			PlayerPrefs.SetInt ("Score", score);
+
 			GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
 			//GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().enabled = false;
 			GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 			shootButton.GetComponent<Button> ().interactable = false;
-			PlayerPrefs.SetInt ("Score", score);
+
 			UIManager.instance.GameOver ();
 			lives = 0;
+
 		}
+		UIManager.instance.highScoreText.text ="High Score: " + PlayerPrefs.GetInt ("HighScore").ToString ();
 	}
 
+	public void SetPlayerScores()
+	{
+		if(PlayerPrefs.HasKey("HighScore"))
+		{
+			if(score > PlayerPrefs.GetInt("HighScore"))
+			{
+				PlayerPrefs.SetInt ("HighScore", score);
+			}
+		}
+		else
+		{
+			PlayerPrefs.SetInt ("HighScore", score);
+		}
+	}
 	public void EnemyKill()
 	{
 		score = score + 20;

@@ -24,8 +24,9 @@ GameObject:
   - component: {fileID: 23910852710755682}
   - component: {fileID: 54657717295754920}
   - component: {fileID: 114465997416042490}
+  - component: {fileID: 114756774972266758}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Projectile_chicken
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d257a6b8db94f4448a8f5e6b296939f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,9 +107,20 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052844412802110}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 135f31b067bdc4949bcb13b8876592f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114756774972266758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052844412802110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2436e8aa9211d9540956b4b7b3c93232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &135513980418393446

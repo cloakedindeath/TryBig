@@ -9,6 +9,9 @@ TagManager:
   - ProjectileRemover
   - EnemyDestroyer
   - EarlyDestroyer
+  - Enemy_Waffle
+  - Enemy_Chicken
+  - Enemy_KoolAid
   layers:
   - Default
   - TransparentFX
