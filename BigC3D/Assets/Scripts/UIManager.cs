@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
 	public int waveCount;
 	public GameObject shootButton;
 	public GameObject howToPanel;
+	public GameObject pausePanel;
 
 	public Text scoreText;
 	public Text livesText;
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
 	GameObject[] enemiesC;
 	GameObject[] enemiesK;
 	public int touchCnt = 0;
+	public int mpCnt;
 
 	void Awake()
 	{
@@ -49,7 +51,7 @@ public class UIManager : MonoBehaviour
 			instance = this;
 		}
 		gameOver = true;
-
+		mpCnt = 0;
 	}
 	// Use this for initialization
 	void Start () 
@@ -180,6 +182,7 @@ public class UIManager : MonoBehaviour
 		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
 		startCountdown = true;
 		EnemySpawner.instance.spawnTime = 3.5f;
+		mpCnt = 0;
 
 	}
 
@@ -264,6 +267,7 @@ public class UIManager : MonoBehaviour
 		waveStartPanel.GetComponent<Animator> ().Play ("ResumeGame");
 		startCountdown = true;
 		startWaveCountdown = false;
+		mpCnt = 0;
 	}
 	public void GoBackToMenu()
 	{
@@ -295,6 +299,22 @@ public class UIManager : MonoBehaviour
 		howToPanel.GetComponent<Animator> ().Play ("HowToPopDown");
 		StartCoroutine (HowToDisable ());
 	}
+	public void Pause()
+	{
+		pausePanel.SetActive (true);
+		StartCoroutine (PauseTime ());
+	}
+	public void PauseResume()
+	{
+		Time.timeScale = 1;
+		pausePanel.GetComponent<Animator> ().Play ("PauseAway");
+		StartCoroutine (PauseDisable ());
+	}
+	public void PauseQuit()
+	{
+		Time.timeScale = 1;
+		SceneManager.LoadScene ("Main");
+	}
 
 	IEnumerator SpawnEnemies()
 	{
@@ -305,6 +325,16 @@ public class UIManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1f);
 		howToPanel.SetActive (false);
+	}
+	IEnumerator PauseTime()
+	{
+		yield return new WaitForSeconds(0.5f);
+		Time.timeScale = 0;
+	}
+	IEnumerator PauseDisable()
+	{
+		yield return new WaitForSeconds(0.5f);
+		pausePanel.SetActive (false);
 	}
 
 }

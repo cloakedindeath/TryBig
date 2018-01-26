@@ -10,6 +10,10 @@ public class ScoreManager : MonoBehaviour
 	public int score;
 	public int lives;
 	public Button shootButton;
+	//public int mpAmt;
+	public int points = 20;
+	public GameObject mpText;
+	public Text mp;
 
 	void Awake()
 	{
@@ -25,6 +29,7 @@ public class ScoreManager : MonoBehaviour
 		lives = 3;
 		score = 0;
 		PlayerPrefs.SetInt ("Score", 0);
+		//mpAmt = 0;
 	}
 	
 	// Update is called once per frame
@@ -41,8 +46,23 @@ public class ScoreManager : MonoBehaviour
 
 			UIManager.instance.GameOver ();
 			lives = 0;
+		}
+
+		if(UIManager.instance.mpCnt == 0)
+		{
+			mp.text = " ";
 
 		}
+		else if(UIManager.instance.mpCnt >= 10 && UIManager.instance.mpCnt < 30)
+		{
+			mp.text = "x2";
+		}
+		else if ( UIManager.instance.mpCnt >= 30)
+		{
+			mp.text = "x3";
+		}
+	
+
 		UIManager.instance.highScoreText.text ="High Score: " + PlayerPrefs.GetInt ("HighScore").ToString ();
 	}
 
@@ -62,7 +82,20 @@ public class ScoreManager : MonoBehaviour
 	}
 	public void EnemyKill()
 	{
-		score = score + 20;
+		if(UIManager.instance.mpCnt == 0)
+		{
+			score += points;
+		}
+		if(UIManager.instance.mpCnt >= 10 && UIManager.instance.mpCnt < 30)
+		{
+			score += (points * 2);
+		}
+		else if ( UIManager.instance.mpCnt >= 30)
+		{
+			score += (points * 3);
+		}
+
+
 	}
 	public void LoseLife()
 	{

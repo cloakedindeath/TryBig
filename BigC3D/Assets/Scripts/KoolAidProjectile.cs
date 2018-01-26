@@ -24,12 +24,14 @@ public class KoolAidProjectile : MonoBehaviour {
 			Destroy (col.gameObject);
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
+			UIManager.instance.mpCnt++;
 		}
 		else if (col.gameObject.tag == "Enemy_Waffle")
 		{
 			
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
+			UIManager.instance.mpCnt = 0;
 
 		}
 		else if (col.gameObject.tag == "Enemy_Chicken")
@@ -37,12 +39,14 @@ public class KoolAidProjectile : MonoBehaviour {
 			
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
+			UIManager.instance.mpCnt = 0;
 
 		}
 		else if (col.gameObject.tag == "ProjectileRemover")
 		{
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
+			UIManager.instance.mpCnt = 0;
 		}
 	}
 }
