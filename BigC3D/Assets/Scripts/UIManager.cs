@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 	public GameObject shootButton;
 	public GameObject howToPanel;
 	public GameObject pausePanel;
+	public Slider mpBar;
 
 	public Text scoreText;
 	public Text livesText;
@@ -115,7 +116,7 @@ public class UIManager : MonoBehaviour
 
 			if( timeCountDown <= 0 && gameOver == false)
 			{
-				//DestroyAllEnemies ();
+				DestroyAllEnemies ();
 				timeCountDown = 0;
 				waveEndPanel.SetActive(true);
 

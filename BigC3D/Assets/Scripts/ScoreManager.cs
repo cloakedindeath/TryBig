@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
 	public int points = 20;
 	public GameObject mpText;
 	public Text mp;
+	public Slider mpBar;
 
 	void Awake()
 	{
@@ -29,12 +30,14 @@ public class ScoreManager : MonoBehaviour
 		lives = 3;
 		score = 0;
 		PlayerPrefs.SetInt ("Score", 0);
+		points = 20;
 		//mpAmt = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		SubmitSliderSetting ();
 		if(lives <= 0)
 		{
 			PlayerPrefs.SetInt ("Score", score);
@@ -51,14 +54,19 @@ public class ScoreManager : MonoBehaviour
 		if(UIManager.instance.mpCnt == 0)
 		{
 			mp.text = " ";
-
+			mpBar.minValue = 0;
+			mpBar.maxValue = 10;
 		}
 		else if(UIManager.instance.mpCnt >= 10 && UIManager.instance.mpCnt < 30)
 		{
+
 			mp.text = "x2";
+			mpBar.minValue = 10;
+			mpBar.maxValue = 30;
 		}
 		else if ( UIManager.instance.mpCnt >= 30)
 		{
+			
 			mp.text = "x3";
 		}
 	
@@ -82,10 +90,7 @@ public class ScoreManager : MonoBehaviour
 	}
 	public void EnemyKill()
 	{
-		if(UIManager.instance.mpCnt == 0)
-		{
-			score += points;
-		}
+		
 		if(UIManager.instance.mpCnt >= 10 && UIManager.instance.mpCnt < 30)
 		{
 			score += (points * 2);
@@ -94,11 +99,21 @@ public class ScoreManager : MonoBehaviour
 		{
 			score += (points * 3);
 		}
+		else
+		{
+			score += points;
+		}
 
 
 	}
 	public void LoseLife()
 	{
 		lives = lives - 1;
+	}
+
+	public void SubmitSliderSetting()
+	{
+		Debug.Log (mpBar.value);
+		mpBar.value = UIManager.instance.mpCnt;
 	}
 }

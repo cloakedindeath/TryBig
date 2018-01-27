@@ -49,6 +49,8 @@ public class EnemySpawner : MonoBehaviour
 		}*/
 
 		spawnTime -= Time.deltaTime;
+
+
 	}
 
 	public void StopSpawning()
@@ -84,7 +86,31 @@ public class EnemySpawner : MonoBehaviour
 				Instantiate (enemies[2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 					transform.position.y, transform.position.z), Quaternion.identity);
 			}
-			spawnTime = 1;
+		
+			if(UIManager.instance.waveCount >= 0 && UIManager.instance.waveCount <= 10)
+			{
+				spawnTime = 2f;
+			}
+			else if(UIManager.instance.waveCount >= 11 && UIManager.instance.waveCount <= 20)
+			{
+				spawnTime = 1.75f;
+			}
+			else if(UIManager.instance.waveCount >= 21 && UIManager.instance.waveCount <= 30)
+			{
+				spawnTime = 1.5f;
+			}
+			else if(UIManager.instance.waveCount >= 31 && UIManager.instance.waveCount <= 40)
+			{
+				spawnTime = 1.25f;
+			}
+			else if(UIManager.instance.waveCount >= 41 && UIManager.instance.waveCount <= 50)
+			{
+				spawnTime = 1.1f;
+			}
+			else if(UIManager.instance.waveCount >= 51)
+			{
+				spawnTime = 1f;
+			}
 		}
 			
 
@@ -102,4 +128,9 @@ public class EnemySpawner : MonoBehaviour
 			spawnTime = 0.2f;
 		}
 	}*/
+
+	IEnumerator SpawnEnemies()
+	{
+		yield return new WaitForSeconds (1.5f);
+	}
 }
