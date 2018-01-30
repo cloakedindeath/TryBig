@@ -281,9 +281,13 @@ public class UIManager : MonoBehaviour
 	public void GoBackToMenu()
 	{
 		PauseResume ();
+		DestroyAllEnemies ();
 		gameOver = false;
+		//touchCnt = 0;
+		//gameStartCountdown = 3.5f;
 		gameOverPanel.GetComponent<Animator> ().Play ("GOAway");
 		startGamePanel.GetComponent<Animator> ().Play ("BeginAnim");
+		waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
 		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 		shootButton.GetComponent<Button> ().interactable = false;
 		waveCount = 1;

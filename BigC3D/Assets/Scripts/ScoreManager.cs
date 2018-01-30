@@ -73,7 +73,6 @@ public class ScoreManager : MonoBehaviour
 				livesGone = true;
 				timedLivesReturn = 20f;
 				UIManager.instance.livesTimerOB.SetActive (true);
-
 			}
 
 		}
@@ -90,6 +89,8 @@ public class ScoreManager : MonoBehaviour
 			if(timedLivesReturn <= 0)
 			{
 				livesGone = false;
+				lives = 3;
+				PlayerPrefs.SetInt ("lives", 3);
 			}
 		}
 
