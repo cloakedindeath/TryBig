@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
 
 	public void StartGame()
 	{
-		UIManager.instance.GameStart ();
+		if(ScoreManager.instance.lives >= 1)
+		{
+			UIManager.instance.GameStart ();
+			ScoreManager.instance.startLives = false;
+		}
+
 	}
 }

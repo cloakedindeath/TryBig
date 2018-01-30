@@ -15,6 +15,10 @@ public class ScoreManager : MonoBehaviour
 	public GameObject mpText;
 	public Text mp;
 	public Slider mpBar;
+	public float timedLivesReturn = 1800f;
+	public Button resumeButton;
+	public bool livesGone = false;
+	public bool startLives = true;
 
 	void Awake()
 	{
@@ -27,29 +31,71 @@ public class ScoreManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		lives = 3;
+		PlayerPrefs.SetInt ("lives", lives);
+		//lives = PlayerPrefs.GetInt("lives");
 		score = 0;
 		PlayerPrefs.SetInt ("Score", 0);
 		points = 20;
+
 		//mpAmt = 0;
+		/*if(timedLivesReturn == 0)
+		{
+			lives = 3;
+			PlayerPrefs.SetInt ("lives", lives);
+		}*/
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		SubmitSliderSetting ();
+		if (timedLivesReturn <= 0 && livesGone == false && startLives == true) 
+		{
+			lives = 3;
+			PlayerPrefs.SetInt ("lives", lives);
+			UIManager.instance.livesTimerOB.SetActive (false);
+		}
 		if(lives <= 0)
 		{
 			PlayerPrefs.SetInt ("Score", score);
-
+			PlayerPrefs.SetInt ("lives", 0);
 			GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
 			//GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().enabled = false;
 			GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 			shootButton.GetComponent<Button> ().interactable = false;
-
+			resumeButton.GetComponent<Button> ().interactable = false;
 			UIManager.instance.GameOver ();
-			lives = 0;
+			//lives = 0;
+
+			if(livesGone == false)
+			{
+				livesGone = true;
+				timedLivesReturn = 20f;
+				UIManager.instance.livesTimerOB.SetActive (true);
+
+			}
+
 		}
+		else
+		{
+			resumeButton.GetComponent<Button> ().interactable = true;
+			UIManager.instance.livesTimerOB.SetActive (false);
+		}
+	
+		if(livesGone == true)
+		{
+			//timedLivesReturn = 18000.0f;
+			TimerStart ();
+			if(timedLivesReturn <= 0)
+			{
+				livesGone = false;
+			}
+		}
+
+		SubmitSliderSetting ();
+
+		TimerStart ();
 
 		if(UIManager.instance.mpCnt == 0)
 		{
@@ -109,6 +155,8 @@ public class ScoreManager : MonoBehaviour
 	public void LoseLife()
 	{
 		lives = lives - 1;
+		PlayerPrefs.SetInt ("lives", lives);
+
 	}
 
 	public void SubmitSliderSetting()
@@ -116,4 +164,10 @@ public class ScoreManager : MonoBehaviour
 		Debug.Log (mpBar.value);
 		mpBar.value = UIManager.instance.mpCnt;
 	}
+
+	void TimerStart()
+	{
+		timedLivesReturn -= Time.deltaTime;
+	}
+
 }

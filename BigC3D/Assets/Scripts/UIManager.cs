@@ -25,10 +25,13 @@ public class UIManager : MonoBehaviour
 	public GameObject shootButton;
 	public GameObject howToPanel;
 	public GameObject pausePanel;
+	public GameObject shopPanel;
+	public GameObject shopPanelPause;
 	public Slider mpBar;
 
 	public Text scoreText;
 	public Text livesText;
+	public Text menuLivesText;
 	public Text waveTimerText;
 	public Text startCountdownTimerText;
 	public Text waveOverScoreText;
@@ -36,6 +39,8 @@ public class UIManager : MonoBehaviour
 	public Text waveIndicatorText;
 	public Text highScoreText;
 	public Text furthestWaveText;
+	public Text livesTimer;
+	public GameObject livesTimerOB;
 
 	public GameObject gameOverPanel;
 	public Text gameOverScore;
@@ -160,6 +165,8 @@ public class UIManager : MonoBehaviour
 		//Update text elements
 		scoreText.text = "Score: " + ScoreManager.instance.score.ToString();
 		livesText.text = "Lives: " + ScoreManager.instance.lives.ToString();
+		menuLivesText.text = "Lives: " + PlayerPrefs.GetInt("lives").ToString();
+		livesTimer.text = ScoreManager.instance.timedLivesReturn.ToString ();
 		waveTimerText.text = "Wave " + waveCount + " Timer: " + timeCountDown.ToString("f0");
 		startCountdownTimerText.text = gameStartCountdown.ToString ("f0");
 		waveOverScoreText.text = "Score: " + ScoreManager.instance.score.ToString ();
@@ -248,7 +255,7 @@ public class UIManager : MonoBehaviour
 		timeCountDown = 0;
 		gameOver = true;
 		DestroyAllEnemies ();
-		gameOverPanel.SetActive (true);
+		gameOverPanel.GetComponent<Animator> ().Play ("GameOverPopUp");
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
 		ScoreManager.instance.SetPlayerScores ();
 		waveEndPanel.SetActive (false);
@@ -260,11 +267,12 @@ public class UIManager : MonoBehaviour
 		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 		shootButton.GetComponent<Button> ().interactable = false;
 		waveCount = 1;
-		ScoreManager.instance.lives = 3;
+		//ScoreManager.instance.lives = 3;
 		ScoreManager.instance.score = 0;
 		PlayerPrefs.SetInt ("Score", 0);
 		gameOver = false;
-		gameOverPanel.SetActive (false);
+		//gameOverPanel.SetActive (false);
+		gameOverPanel.GetComponent<Animator> ().Play ("GOAway");
 		waveStartPanel.GetComponent<Animator> ().Play ("ResumeGame");
 		startCountdown = true;
 		startWaveCountdown = false;
@@ -272,8 +280,23 @@ public class UIManager : MonoBehaviour
 	}
 	public void GoBackToMenu()
 	{
-		gameOver = true;
-		SceneManager.LoadScene ("Main");
+		PauseResume ();
+		gameOver = false;
+		gameOverPanel.GetComponent<Animator> ().Play ("GOAway");
+		startGamePanel.GetComponent<Animator> ().Play ("BeginAnim");
+		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
+		shootButton.GetComponent<Button> ().interactable = false;
+		waveCount = 1;
+		//ScoreManager.instance.lives = 3;
+		ScoreManager.instance.score = 0;
+		PlayerPrefs.SetInt ("Score", 0);
+		//gameOver = false;
+		gameOverPanel.SetActive (false);
+		//waveStartPanel.GetComponent<Animator> ().Play ("ResumeGame");
+		startCountdown = false;
+		startWaveCountdown = false;
+		mpCnt = 0;
+		//SceneManager.LoadScene ("Main");
 	}
 
 	public void SetHighestWave()
@@ -316,6 +339,26 @@ public class UIManager : MonoBehaviour
 		Time.timeScale = 1;
 		SceneManager.LoadScene ("Main");
 	}
+	public void OpenShop()
+	{
+		shopPanel.GetComponent<Animator> ().Play ("ShopPop");
+	}
+	public void pauseOpenShop()
+	{
+		Time.timeScale = 1;
+		shopPanelPause.GetComponent<Animator> ().Play ("ShopPop");
+		StartCoroutine (openPauseShop ());
+	}
+	public void pauseCloseShop()
+	{
+		Time.timeScale = 1;
+		shopPanelPause.GetComponent<Animator> ().Play ("ShopRight");
+		StartCoroutine (openPauseShop ());
+	}
+	public void CloseShop()
+	{
+		shopPanel.GetComponent<Animator> ().Play ("ShopRight");
+	}
 
 	IEnumerator SpawnEnemies()
 	{
@@ -337,5 +380,11 @@ public class UIManager : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		pausePanel.SetActive (false);
 	}
+	IEnumerator openPauseShop()
+	{
+		yield return new WaitForSeconds(0.5f);
+		Time.timeScale = 0;
+	}
+
 
 }
