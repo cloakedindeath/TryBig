@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
 	public Text waveIndicatorText;
 	public Text highScoreText;
 	public Text furthestWaveText;
-	public Text livesTimer;
+	//public Text livesTimer;
 	public GameObject livesTimerOB;
 
 	public GameObject gameOverPanel;
@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
 
 	void Awake()
 	{
+		
 		if(instance == null)
 		{
 			instance = this;
@@ -62,6 +63,7 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		DontDestroyOnLoad (livesTimerOB);
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
 		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
@@ -82,8 +84,7 @@ public class UIManager : MonoBehaviour
 		if(startCountdown == true && gameOver == false)
 		{
 
-	Debug.Log (touchCnt.ToString());
-			//Debug.Log (PlayerPrefs.GetInt ("HighScore"));
+	
 			//Tap to start round
 			if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 			{
@@ -118,7 +119,8 @@ public class UIManager : MonoBehaviour
 			GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
 			shootButton.GetComponent<Button> ().interactable = true;
 			timeCountDown -= Time.deltaTime;
-
+			///////////////////////
+			//wave over
 			if( timeCountDown <= 0 && gameOver == false)
 			{
 				DestroyAllEnemies ();
@@ -164,9 +166,9 @@ public class UIManager : MonoBehaviour
 		/////////////////////////
 		//Update text elements
 		scoreText.text = "Score: " + ScoreManager.instance.score.ToString();
-		livesText.text = "Lives: " + ScoreManager.instance.lives.ToString();
+		livesText.text = "Lives: " + PlayerPrefs.GetInt("lives").ToString();
 		menuLivesText.text = "Lives: " + PlayerPrefs.GetInt("lives").ToString();
-		livesTimer.text = ScoreManager.instance.timedLivesReturn.ToString ();
+		//livesTimer.text = ScoreManager.instance.timedLivesReturn.ToString ();
 		waveTimerText.text = "Wave " + waveCount + " Timer: " + timeCountDown.ToString("f0");
 		startCountdownTimerText.text = gameStartCountdown.ToString ("f0");
 		waveOverScoreText.text = "Score: " + ScoreManager.instance.score.ToString ();
@@ -301,6 +303,11 @@ public class UIManager : MonoBehaviour
 		startWaveCountdown = false;
 		mpCnt = 0;
 		//SceneManager.LoadScene ("Main");
+		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
+		gameStartCountdown = -1f;
+		timeCountDown = 0;
+		touchCnt = 0;
+
 	}
 
 	public void SetHighestWave()

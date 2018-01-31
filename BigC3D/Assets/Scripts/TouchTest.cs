@@ -29,7 +29,7 @@ public class TouchTest : MonoBehaviour
 
 	void Update() 
 	{
-		Debug.Log (ammoType);
+		//Debug.Log (ammoType);
 		if(UIManager.instance.gameOver == false)
 		{
 			////////////////////////////////////////////////////

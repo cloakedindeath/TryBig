@@ -15,13 +15,14 @@ public class ScoreManager : MonoBehaviour
 	public GameObject mpText;
 	public Text mp;
 	public Slider mpBar;
-	public float timedLivesReturn = 1800f;
+	public float timedLivesReturn;
 	public Button resumeButton;
 	public bool livesGone = false;
 	public bool startLives = true;
 
 	void Awake()
 	{
+		
 		if(instance == null)
 		{
 			instance = this;
@@ -31,8 +32,8 @@ public class ScoreManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		PlayerPrefs.SetInt ("lives", lives);
-		//lives = PlayerPrefs.GetInt("lives");
+		//PlayerPrefs.SetInt ("lives", lives);
+		PlayerPrefs.GetInt("lives");
 		score = 0;
 		PlayerPrefs.SetInt ("Score", 0);
 		points = 20;
@@ -44,59 +45,69 @@ public class ScoreManager : MonoBehaviour
 			PlayerPrefs.SetInt ("lives", lives);
 		}*/
 
-
+		//PlayerPrefs.DeleteKey ("FirstTime");
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (timedLivesReturn <= 0 && livesGone == false && startLives == true) 
-		{
-			lives = 3;
-			PlayerPrefs.SetInt ("lives", lives);
-			UIManager.instance.livesTimerOB.SetActive (false);
-		}
-		if(lives <= 0)
-		{
-			PlayerPrefs.SetInt ("Score", score);
-			PlayerPrefs.SetInt ("lives", 0);
-			GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
-			//GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().enabled = false;
-			GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
-			shootButton.GetComponent<Button> ().interactable = false;
-			resumeButton.GetComponent<Button> ().interactable = false;
-			UIManager.instance.GameOver ();
-			//lives = 0;
+		Debug.Log (PlayerPrefs.GetInt ("FirstTime"));
 
-			if(livesGone == false)
+		if (livesGone == false && PlayerPrefs.GetInt("FirstTime") == 0) 
+		{
+			PlayerPrefs.SetInt ("lives", 3);
+			PlayerPrefs.SetInt ("FirstTime", 1);
+			SetFirstTimeLives();
+			UIManager.instance.livesTimerOB.SetActive (false);
+			UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = false;
+		}
+		if( PlayerPrefs.GetInt("FirstTime") == 1)
+		{
+			if(PlayerPrefs.GetInt("lives") <= 0 )
+			{
+				PlayerPrefs.SetInt ("Score", score);
+				PlayerPrefs.SetInt ("lives", 0);
+				GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
+				GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
+				shootButton.GetComponent<Button> ().interactable = false;
+				resumeButton.GetComponent<Button> ().interactable = false;
+				UIManager.instance.GameOver ();
+				UIManager.instance.livesTimerOB.SetActive (true);
+				UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
+				//lives = 0;
+
+				/*if(livesGone == false)
 			{
 				livesGone = true;
-				timedLivesReturn = 20f;
+				//timedLivesReturn = 20000f;
 				UIManager.instance.livesTimerOB.SetActive (true);
-			}
+				UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
+			}*/
 
+			}
+			else
+			{
+				resumeButton.GetComponent<Button> ().interactable = true;
+				UIManager.instance.livesTimerOB.SetActive (false);
+			}
 		}
-		else
-		{
-			resumeButton.GetComponent<Button> ().interactable = true;
-			UIManager.instance.livesTimerOB.SetActive (false);
-		}
+
 	
-		if(livesGone == true)
+		/*if(livesGone == true)
 		{
 			//timedLivesReturn = 18000.0f;
-			TimerStart ();
+			//TimerStart ();
 			if(timedLivesReturn <= 0)
 			{
 				livesGone = false;
-				lives = 3;
+				//lives = 3;
 				PlayerPrefs.SetInt ("lives", 3);
 			}
-		}
+		}*/
 
 		SubmitSliderSetting ();
 
-		TimerStart ();
+		//TimerStart ();
 
 		if(UIManager.instance.mpCnt == 0)
 		{
@@ -155,8 +166,9 @@ public class ScoreManager : MonoBehaviour
 	}
 	public void LoseLife()
 	{
-		lives = lives - 1;
-		PlayerPrefs.SetInt ("lives", lives);
+		//lives = lives - 1;
+		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
+		//PlayerPrefs.SetInt ("lives", lives);
 
 	}
 
@@ -168,7 +180,23 @@ public class ScoreManager : MonoBehaviour
 
 	void TimerStart()
 	{
-		timedLivesReturn -= Time.deltaTime;
+		//timedLivesReturn -= Time.deltaTime;
+
+	}
+
+	void SetFirstTimeLives()
+	{
+		if(PlayerPrefs.HasKey("FirstTime"))
+		{
+			if(PlayerPrefs.GetInt("FirstTime") == 1)
+			{
+				
+			}
+		}
+		else
+		{
+			PlayerPrefs.SetInt ("FirstTime", 1);
+		}
 	}
 
 }
