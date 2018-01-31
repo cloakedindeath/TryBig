@@ -74,6 +74,14 @@ public class PersistentTimer : MonoBehaviour
 				{
 					//add code to flag and stop endless loop
 					PlayerPrefs.SetInt("lives", 3);
+					if(PlayerPrefs.GetInt("lives") == 3)
+					{
+						allowTimerRestart = true;
+					}
+					else
+					{
+						allowTimerRestart = false;
+					}
 					//allowTimerRestart = true;
 					resetTimer = allowTimerRestart;
 				}

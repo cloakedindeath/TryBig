@@ -193,6 +193,7 @@ public class UIManager : MonoBehaviour
 		startCountdown = true;
 		EnemySpawner.instance.spawnTime = 3.5f;
 		mpCnt = 0;
+		gameOverPanel.SetActive (false);
 
 	}
 
@@ -255,6 +256,7 @@ public class UIManager : MonoBehaviour
 	public void GameOver()
 	{
 		timeCountDown = 0;
+		gameOverPanel.SetActive (true);
 		gameOver = true;
 		DestroyAllEnemies ();
 		gameOverPanel.GetComponent<Animator> ().Play ("GameOverPopUp");
