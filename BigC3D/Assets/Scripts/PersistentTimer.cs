@@ -25,6 +25,7 @@ public class PersistentTimer : MonoBehaviour
 	void Start()
 	{
 		curHealth = maxHealth;
+
 	}
 
 	void Awake()

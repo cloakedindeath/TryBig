@@ -10,6 +10,7 @@ public class MenuUIManager : MonoBehaviour
 	public GameObject startButton;
 	public AudioClip click;
 	//AudioSource audioSource;
+	public float timer;
 
 	// Use this for initialization
 	void Start () 
@@ -18,17 +19,24 @@ public class MenuUIManager : MonoBehaviour
 		//audioSource = GetComponent<AudioSource>();
 		AudioSource audio = GetComponent<AudioSource>();
 		audio.Play();
+		timer = 0f;
+		PlayerPrefs.SetFloat ("TimeDiff", timer);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if(PlayerPrefs.HasKey("TimeOnExit"))
+		{
+			timer += Time.deltaTime;
+		}
+		Debug.Log (timer);
 	}
 
 	public void StartGame()
 	{
 		//audioSource.PlayOneShot(click, 1F);
+		PlayerPrefs.SetFloat("TimeDiff",timer);
 		SceneManager.LoadScene ("Main");
 	}
 		
