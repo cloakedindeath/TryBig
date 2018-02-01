@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PersistentTimer : MonoBehaviour 
 {
+	public static PersistentTimer instance;
+
 	public Text timer;
 	int minutes = 1;
 	int seconds = 0;
@@ -17,7 +19,7 @@ public class PersistentTimer : MonoBehaviour
 	public int defaultStartMinutes = 1;
 	public bool allowTimerRestart = false;
 
-	private int savedSeconds;
+	public int savedSeconds;
 	private bool resetTimer = false;
 
 	void Start()
@@ -27,7 +29,11 @@ public class PersistentTimer : MonoBehaviour
 
 	void Awake()
 	{
-		DontDestroyOnLoad(transform.gameObject);
+		if(instance == null)
+		{
+			instance = this;
+		}
+		//DontDestroyOnLoad(this);
 		minutes = defaultStartMinutes;
 
 		if(PlayerPrefs.HasKey("TimeOnExit"))
@@ -40,15 +46,19 @@ public class PersistentTimer : MonoBehaviour
 			seconds = (int)milliseconds;
 			milliseconds -= seconds;
 
-			PlayerPrefs.DeleteKey ("TimeOnExit");
+			//PlayerPrefs.DeleteKey ("TimeOnExit");
 		}
 	}
 
 	public void Update()
 	{
+		Debug.Log(PlayerPrefs.GetFloat("TimeOnExit"));
+		Debug.Log(savedSeconds);
+		//PlayerPrefs.SetInt ("TimeOnExit", savedSeconds);
 		if(PlayerPrefs.GetInt("lives") == 0)
 		{
 			//count down in seconds
+
 			milliseconds += Time.deltaTime;
 
 			if(resetTimer)
@@ -77,6 +87,7 @@ public class PersistentTimer : MonoBehaviour
 					if(PlayerPrefs.GetInt("lives") == 3)
 					{
 						allowTimerRestart = true;
+						//PlayerPrefs.DeleteKey ("TimeOnExit");
 					}
 					else
 					{
@@ -114,7 +125,8 @@ public class PersistentTimer : MonoBehaviour
 		if(numSeconds > 0)
 		{
 			milliseconds += numSeconds;
-			PlayerPrefs.SetFloat ("TimeOnExit", milliseconds);
+			//PlayerPrefs.SetFloat ("TimeOnExit", milliseconds);
+			PlayerPrefs.SetFloat ("TimeOnExit", savedSeconds);
 		}
 	}
 }

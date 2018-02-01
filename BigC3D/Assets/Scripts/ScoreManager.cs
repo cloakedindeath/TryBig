@@ -174,7 +174,7 @@ public class ScoreManager : MonoBehaviour
 
 	public void SubmitSliderSetting()
 	{
-		Debug.Log (mpBar.value);
+		//Debug.Log (mpBar.value);
 		mpBar.value = UIManager.instance.mpCnt;
 	}
 

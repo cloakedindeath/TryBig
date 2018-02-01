@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		DontDestroyOnLoad (livesTimerOB);
+		//DontDestroyOnLoad (livesTimerOB);
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
 		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
@@ -228,6 +228,7 @@ public class UIManager : MonoBehaviour
 	public void goToMenu()
 	{
 		gameOver = true;
+		PlayerPrefs.SetFloat ("TimeOnExit", PersistentTimer.instance.savedSeconds);
 		SceneManager.LoadScene("Menu");
 	}
 		

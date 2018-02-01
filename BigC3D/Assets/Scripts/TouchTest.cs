@@ -52,11 +52,9 @@ public class TouchTest : MonoBehaviour
 				player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
 			}
 		}
-
-
-
 	}
 
+	//Ammo Switch
 	public void PickAmmoType()
 	{
 		
