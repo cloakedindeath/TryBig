@@ -25,7 +25,13 @@ public class PersistentTimer : MonoBehaviour
 	void Start()
 	{
 		curHealth = maxHealth;
+		if(PlayerPrefs.GetFloat("TimeDiff") >= 0 && PlayerPrefs.GetFloat("TimeOnExit") >= 0)
+		{
+			float diff = (PlayerPrefs.GetFloat ("TimeOnExit") - PlayerPrefs.GetFloat ("TimeDiff"));
+			//PlayerPrefs.SetFloat ("TimeOnExit", diff);
+			seconds = (int)diff;
 
+		}
 	}
 
 	void Awake()

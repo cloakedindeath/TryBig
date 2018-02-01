@@ -26,11 +26,13 @@ public class MenuUIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		Debug.Log (PlayerPrefs.GetFloat("TimeDiff"));
 		if(PlayerPrefs.HasKey("TimeOnExit"))
 		{
 			timer += Time.deltaTime;
+			PlayerPrefs.SetFloat ("TimeDiff", timer);
 		}
-		Debug.Log (timer);
+		//Debug.Log (timer);
 	}
 
 	public void StartGame()
