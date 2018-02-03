@@ -9,7 +9,7 @@ public class PersistentTimer : MonoBehaviour
 
 	public Text timer;
 	int minutes = 1;
-	int seconds = 0;
+	int seconds = 60;
 	float milliseconds = 0;
 
 	public int curHealth;
@@ -19,7 +19,7 @@ public class PersistentTimer : MonoBehaviour
 	public int defaultStartMinutes = 1;
 	public bool allowTimerRestart = false;
 
-	public int savedSeconds = 90;
+	public int savedSeconds = 0;
 	private bool resetTimer = false;
 
 	void Start()
@@ -30,11 +30,13 @@ public class PersistentTimer : MonoBehaviour
 			float diff = (PlayerPrefs.GetFloat ("TimeOnExit") - PlayerPrefs.GetFloat ("TimeDiff"));
 			//PlayerPrefs.SetFloat ("TimeOnExit", diff);
 			PlayerPrefs.SetFloat("TimeDiff", 0);
+			//PlayerPrefs.DeleteKey ("TimeOnExit");
 			seconds = (int)diff;
 		}
-		else{
-			PlayerPrefs.SetInt ("TimeOnExit", seconds);
-		}
+		/*else{
+			PlayerPrefs.SetFloat ("TimeOnExit", seconds);
+			//PlayerPrefs.DeleteKey ("TimeOnExit");
+		}*/
 	}
 
 	void Awake()
@@ -63,8 +65,8 @@ public class PersistentTimer : MonoBehaviour
 	public void Update()
 	{
 		Debug.Log(PlayerPrefs.GetFloat("TimeOnExit"));
-		Debug.Log(savedSeconds);
-		Debug.Log (resetTimer);
+		//Debug.Log(savedSeconds);
+		Debug.Log (seconds);
 		//PlayerPrefs.SetInt ("TimeOnExit", savedSeconds);
 		//Debug.Log(milliseconds);
 		if(PlayerPrefs.GetInt("lives") == 0 )
@@ -92,6 +94,7 @@ public class PersistentTimer : MonoBehaviour
 						seconds = 59;
 						minutes--;
 					}
+
 				}
 				else
 				{
@@ -106,6 +109,7 @@ public class PersistentTimer : MonoBehaviour
 				//allowTimerRestart = true;
 				ScoreManager.instance.hp = 10;
 				allowTimerRestart = true;
+				minutes = defaultStartMinutes;
 				//
 			}
 			else
@@ -121,10 +125,11 @@ public class PersistentTimer : MonoBehaviour
 				savedSeconds = seconds;
 			}
 
-			if(savedSeconds <= 0 )
+			if(seconds <= 0 && minutes <= 0)
 			{
 				PlayerPrefs.SetInt("lives", 3);
 				ScoreManager.instance.hp = 10;
+				minutes = 1;
 			}
 		}
 
