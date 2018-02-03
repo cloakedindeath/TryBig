@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TouchTest : MonoBehaviour 
 {
@@ -13,9 +14,11 @@ public class TouchTest : MonoBehaviour
 
 	public Rigidbody projectile;
 	public Rigidbody[] projectiles;
+	public Sprite[] ammoColor;
 	public float bulletSpeed = 20;
 	public int ammoType;
 	public int ammoOnScreen;
+	public Button ammoSwitchButton;
 
 	void Awake()
 	{
@@ -25,6 +28,7 @@ public class TouchTest : MonoBehaviour
 		}
 		ammoType = 0;
 		ammoOnScreen = 0;
+		ammoSwitchButton.image.sprite = ammoColor [0];
 	}
 
 	void Update() 
@@ -61,16 +65,20 @@ public class TouchTest : MonoBehaviour
 		if(ammoType == 0)
 		{
 			projectile = projectiles [0];
+			ammoSwitchButton.image.sprite = ammoColor [1];
 			ammoType++;
 		}
 		else if(ammoType == 1)
 		{
 			projectile = projectiles [1];
+
+			ammoSwitchButton.image.sprite = ammoColor [2];
 			ammoType++;
 		}
 		else if(ammoType == 2)
 		{
 			projectile = projectiles [2];
+			ammoSwitchButton.image.sprite = ammoColor [0];
 			ammoType = 0;
 		}
 	}
