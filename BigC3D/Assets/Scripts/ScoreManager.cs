@@ -15,10 +15,12 @@ public class ScoreManager : MonoBehaviour
 	public GameObject mpText;
 	public Text mp;
 	public Slider mpBar;
+	public Slider hpBar;
 	public float timedLivesReturn;
 	public Button resumeButton;
 	public bool livesGone = false;
 	public bool startLives = true;
+	public int hp;
 
 	void Awake()
 	{
@@ -26,6 +28,10 @@ public class ScoreManager : MonoBehaviour
 		if(instance == null)
 		{
 			instance = this;
+		}
+		if(PlayerPrefs.GetInt("lives") > 0)
+		{
+			hp = 10;
 		}
 	}
 
@@ -37,7 +43,10 @@ public class ScoreManager : MonoBehaviour
 		score = 0;
 		PlayerPrefs.SetInt ("Score", 0);
 		points = 20;
-
+		if(PlayerPrefs.GetInt("lives") >= 3)
+		{
+			hp = 10;
+		}
 		//mpAmt = 0;
 		/*if(timedLivesReturn == 0)
 		{
@@ -90,6 +99,8 @@ public class ScoreManager : MonoBehaviour
 				resumeButton.GetComponent<Button> ().interactable = true;
 				UIManager.instance.livesTimerOB.SetActive (false);
 			}
+
+		
 		}
 
 	
@@ -166,9 +177,15 @@ public class ScoreManager : MonoBehaviour
 	}
 	public void LoseLife()
 	{
-		//lives = lives - 1;
-		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
-		//PlayerPrefs.SetInt ("lives", lives);
+		hp = (hp - 1);
+		if(hp <= 0)
+		{
+			PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
+			hp = 10;
+			UIManager.instance.GameOver ();
+			//UIManager.instance.touchCnt = 0;
+		}
+	
 
 	}
 
@@ -176,6 +193,7 @@ public class ScoreManager : MonoBehaviour
 	{
 		//Debug.Log (mpBar.value);
 		mpBar.value = UIManager.instance.mpCnt;
+		hpBar.value = hp;
 	}
 
 	void TimerStart()

@@ -400,5 +400,9 @@ public class UIManager : MonoBehaviour
 		Time.timeScale = 0;
 	}
 
+	public void LifeAway()
+	{
+		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
+	}
 
 }

@@ -19,7 +19,7 @@ public class PersistentTimer : MonoBehaviour
 	public int defaultStartMinutes = 1;
 	public bool allowTimerRestart = false;
 
-	public int savedSeconds;
+	public int savedSeconds = 90;
 	private bool resetTimer = false;
 
 	void Start()
@@ -31,6 +31,9 @@ public class PersistentTimer : MonoBehaviour
 			//PlayerPrefs.SetFloat ("TimeOnExit", diff);
 			PlayerPrefs.SetFloat("TimeDiff", 0);
 			seconds = (int)diff;
+		}
+		else{
+			PlayerPrefs.SetInt ("TimeOnExit", seconds);
 		}
 	}
 
@@ -61,10 +64,12 @@ public class PersistentTimer : MonoBehaviour
 	{
 		Debug.Log(PlayerPrefs.GetFloat("TimeOnExit"));
 		Debug.Log(savedSeconds);
+		Debug.Log (resetTimer);
 		//PlayerPrefs.SetInt ("TimeOnExit", savedSeconds);
 		//Debug.Log(milliseconds);
-		if(PlayerPrefs.GetInt("lives") == 0)
+		if(PlayerPrefs.GetInt("lives") == 0 )
 		{
+			
 			//count down in seconds
 			//PlayerPrefs.SetFloat("TimeOnExit",60);
 			milliseconds += Time.deltaTime;
@@ -91,19 +96,21 @@ public class PersistentTimer : MonoBehaviour
 				else
 				{
 					//add code to flag and stop endless loop
-					PlayerPrefs.SetInt("lives", 3);
-					if(PlayerPrefs.GetInt("lives") == 3)
-					{
-						allowTimerRestart = true;
-						//PlayerPrefs.DeleteKey ("TimeOnExit");
-					}
-					else
-					{
-						allowTimerRestart = false;
-					}
-					//allowTimerRestart = true;
+					//resetTimer = true;
 					resetTimer = allowTimerRestart;
+
 				}
+			}
+			if(PlayerPrefs.GetInt("lives") == 3)
+			{
+				//allowTimerRestart = true;
+				ScoreManager.instance.hp = 10;
+				allowTimerRestart = true;
+				//
+			}
+			else
+			{
+				allowTimerRestart = false;
 			}
 
 			if(seconds != savedSeconds)
@@ -112,6 +119,12 @@ public class PersistentTimer : MonoBehaviour
 				timer.text = string.Format("Time:{0}:{1:D2}", minutes,seconds);
 
 				savedSeconds = seconds;
+			}
+
+			if(savedSeconds <= 0 )
+			{
+				PlayerPrefs.SetInt("lives", 3);
+				ScoreManager.instance.hp = 10;
 			}
 		}
 
@@ -124,6 +137,8 @@ public class PersistentTimer : MonoBehaviour
 		savedSeconds = 0;
 		milliseconds = 1.0f - Time.deltaTime;
 		resetTimer = false;
+		//PlayerPrefs.DeleteKey ("TimeOnExit");
+		//PlayerPrefs.SetFloat ("TimeOnExit", defaultStartMinutes);
 	}
 
 	private void OnApplicationQuit()
