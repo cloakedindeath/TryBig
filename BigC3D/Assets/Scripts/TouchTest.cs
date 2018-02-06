@@ -85,13 +85,9 @@ public class TouchTest : MonoBehaviour
 
 	public void Shoot2()
 	{
-		if(ammoOnScreen >=3)
+		if(ammoOnScreen <=2)
 		{
 			
-
-		}
-		else
-		{
 			Debug.Log ("Shooting");
 			Rigidbody instantiatedProjectile = Instantiate (projectile,
 				player.transform.position, 
@@ -99,6 +95,10 @@ public class TouchTest : MonoBehaviour
 				as Rigidbody;
 			instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
 			ammoOnScreen++;
+		}
+		else
+		{
+			
 		}
 	}
 
