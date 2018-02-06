@@ -47,8 +47,11 @@ public class UIManager : MonoBehaviour
 	GameObject[] enemiesW;
 	GameObject[] enemiesC;
 	GameObject[] enemiesK;
+	GameObject[] projectiles;
 	public int touchCnt = 0;
-	public int mpCnt;
+	public float mpCnt;
+
+
 
 	void Awake()
 	{
@@ -63,6 +66,7 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		
 		//DontDestroyOnLoad (livesTimerOB);
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
@@ -74,8 +78,10 @@ public class UIManager : MonoBehaviour
 		waveCount = 1;
 		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 		shootButton.GetComponent<Button> ().interactable = false;
-	}
 
+		//audio.volume = 0.3f;
+
+	}
 	// Update is called once per frame
 	void Update () 
 	{
@@ -216,6 +222,12 @@ public class UIManager : MonoBehaviour
 		for(int i = 0; i < enemiesK.Length; i++) 
 		{
 			Destroy(enemiesK[i]);
+		}
+		projectiles = GameObject.FindGameObjectsWithTag ("Projectile");
+
+		for(int i = 0; i < projectiles.Length; i++) 
+		{
+			Destroy(projectiles[i]);
 		}
 
 	}

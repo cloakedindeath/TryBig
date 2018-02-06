@@ -19,6 +19,9 @@ public class TouchTest : MonoBehaviour
 	public int ammoType;
 	public int ammoOnScreen;
 	public Button ammoSwitchButton;
+	AudioSource audio;
+	public AudioClip shoot;
+	public AudioClip ammoSwap;
 
 	void Awake()
 	{
@@ -29,6 +32,11 @@ public class TouchTest : MonoBehaviour
 		ammoType = 0;
 		ammoOnScreen = 0;
 		ammoSwitchButton.image.sprite = ammoColor [0];
+	}
+
+	void Start()
+	{
+		audio = GetComponent<AudioSource>();
 	}
 
 	void Update() 
@@ -64,19 +72,21 @@ public class TouchTest : MonoBehaviour
 		
 		if(ammoType == 0)
 		{
+			audio.PlayOneShot (ammoSwap);
 			projectile = projectiles [0];
 			ammoSwitchButton.image.sprite = ammoColor [1];
 			ammoType++;
 		}
 		else if(ammoType == 1)
 		{
+			audio.PlayOneShot (ammoSwap);
 			projectile = projectiles [1];
-
 			ammoSwitchButton.image.sprite = ammoColor [2];
 			ammoType++;
 		}
 		else if(ammoType == 2)
 		{
+			audio.PlayOneShot (ammoSwap);
 			projectile = projectiles [2];
 			ammoSwitchButton.image.sprite = ammoColor [0];
 			ammoType = 0;
@@ -89,6 +99,7 @@ public class TouchTest : MonoBehaviour
 		{
 			
 			Debug.Log ("Shooting");
+			audio.PlayOneShot (shoot);
 			Rigidbody instantiatedProjectile = Instantiate (projectile,
 				player.transform.position, 
 				Quaternion.identity)

@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour
 			Destroy (gameObject);
 			EnemySpawner.instance.count--;
 			ScoreManager.instance.LoseLife ();
+			UIManager.instance.mpCnt = 0;
 		}
 	}
 		

@@ -21,6 +21,9 @@ public class ScoreManager : MonoBehaviour
 	public bool livesGone = false;
 	public bool startLives = true;
 	public int hp;
+	AudioSource audio;
+	public AudioClip mpDing;
+	public bool ding;
 
 	void Awake()
 	{
@@ -38,6 +41,8 @@ public class ScoreManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		ding = false;
+		audio = GetComponent<AudioSource>();
 		//PlayerPrefs.SetInt ("lives", lives);
 		PlayerPrefs.GetInt("lives");
 		score = 0;
@@ -85,6 +90,7 @@ public class ScoreManager : MonoBehaviour
 				UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
 				//lives = 0;
 
+
 				/*if(livesGone == false)
 			{
 				livesGone = true;
@@ -98,6 +104,7 @@ public class ScoreManager : MonoBehaviour
 			{
 				resumeButton.GetComponent<Button> ().interactable = true;
 				UIManager.instance.livesTimerOB.SetActive (false);
+				ding = false;
 			}
 
 		
@@ -119,6 +126,30 @@ public class ScoreManager : MonoBehaviour
 		SubmitSliderSetting ();
 
 		//TimerStart ();
+		//Play sound when multiplier reached
+		if(UIManager.instance.mpCnt == 10 && !audio.isPlaying)
+		{
+			if(!audio.isPlaying)
+			{
+				UIManager.instance.mpCnt = 10.5f;
+				audio.PlayOneShot (mpDing);
+				ding = true;
+			}
+		}
+		if(UIManager.instance.mpCnt > 11)
+		{
+			UIManager.instance.mpCnt = (UIManager.instance.mpCnt - 0.5f);
+		}
+		if(UIManager.instance.mpCnt >= 30 && ding == true)
+		{
+			if(!audio.isPlaying)
+			{
+				UIManager.instance.mpCnt = 30.5f;
+				audio.PlayOneShot (mpDing);
+				ding = false;
+			}
+		}
+
 
 		if(UIManager.instance.mpCnt == 0)
 		{
@@ -128,14 +159,15 @@ public class ScoreManager : MonoBehaviour
 		}
 		else if(UIManager.instance.mpCnt >= 10 && UIManager.instance.mpCnt < 30)
 		{
-
+			
 			mp.text = "x2";
 			mpBar.minValue = 10;
 			mpBar.maxValue = 30;
+		
 		}
 		else if ( UIManager.instance.mpCnt >= 30)
 		{
-			
+			audio.PlayOneShot (mpDing);
 			mp.text = "x3";
 		}
 	
