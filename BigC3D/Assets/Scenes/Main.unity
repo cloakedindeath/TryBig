@@ -3713,7 +3713,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f701e91dfa53f9744a42ec6fa27defb1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7169,6 +7169,7 @@ MonoBehaviour:
   ammoSwitchButton: {fileID: 845403097}
   shoot: {fileID: 8300000, guid: 644bf92f313376340be4e76c1ebead4a, type: 3}
   ammoSwap: {fileID: 8300000, guid: 4289ce770fdd6864e8167fb2f242b070, type: 3}
+  playerHurt: {fileID: 8300000, guid: 0eea813c7891bb84aafe30cce7b9196f, type: 3}
 --- !u!82 &1942308205
 AudioSource:
   m_ObjectHideFlags: 0

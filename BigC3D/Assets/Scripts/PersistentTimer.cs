@@ -127,6 +127,7 @@ public class PersistentTimer : MonoBehaviour
 
 			if(seconds <= 0 && minutes <= 0)
 			{
+				PlayerPrefs.SetFloat ("TimeOnExit", 0);
 				PlayerPrefs.SetInt("lives", 3);
 				ScoreManager.instance.hp = 10;
 				minutes = 1;

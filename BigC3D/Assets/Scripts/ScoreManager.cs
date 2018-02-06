@@ -136,15 +136,15 @@ public class ScoreManager : MonoBehaviour
 				ding = true;
 			}
 		}
-		if(UIManager.instance.mpCnt > 11)
+		/*if(UIManager.instance.mpCnt == 11)
 		{
 			UIManager.instance.mpCnt = (UIManager.instance.mpCnt - 0.5f);
-		}
-		if(UIManager.instance.mpCnt >= 30 && ding == true)
+		}*/
+		if(UIManager.instance.mpCnt == 30 && ding == true)
 		{
 			if(!audio.isPlaying)
 			{
-				UIManager.instance.mpCnt = 30.5f;
+				//UIManager.instance.mpCnt = 30.5f;
 				audio.PlayOneShot (mpDing);
 				ding = false;
 			}

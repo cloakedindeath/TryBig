@@ -22,6 +22,7 @@ public class TouchTest : MonoBehaviour
 	AudioSource audio;
 	public AudioClip shoot;
 	public AudioClip ammoSwap;
+	public AudioClip playerHurt;
 
 	void Awake()
 	{
@@ -118,6 +119,7 @@ public class TouchTest : MonoBehaviour
 		if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy_Waffle" ||
 			col.gameObject.tag == "Enemy_Chicken" || col.gameObject.tag == "Enemy_KoolAid")
 		{
+			audio.PlayOneShot (playerHurt);
 			EnemySpawner.instance.count--;
 			Destroy (col.gameObject);
 			ScoreManager.instance.LoseLife ();

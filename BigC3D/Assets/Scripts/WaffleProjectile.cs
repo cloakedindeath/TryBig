@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WaffleProjectile : MonoBehaviour {
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +21,7 @@ public class WaffleProjectile : MonoBehaviour {
 		if (col.gameObject.tag == "Enemy_Waffle")
 		{
 			Debug.Log ("Hit");
-			EnemySpawner.instance.count--;
+			//EnemySpawner.instance.count--;
 			Destroy (this.gameObject);
 			Destroy (col.gameObject);
 			ScoreManager.instance.EnemyKill ();

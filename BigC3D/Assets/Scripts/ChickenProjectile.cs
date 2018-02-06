@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ChickenProjectile : MonoBehaviour {
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,6 +20,7 @@ public class ChickenProjectile : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Enemy_Chicken")
 		{
+			
 			Debug.Log ("Hit");
 			EnemySpawner.instance.count--;
 			Destroy (this.gameObject);
@@ -25,6 +28,7 @@ public class ChickenProjectile : MonoBehaviour {
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt++;
+
 		}
 		else if (col.gameObject.tag == "Enemy_KoolAid")
 		{
@@ -36,7 +40,7 @@ public class ChickenProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Enemy_Waffle")
 		{
-			
+
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
@@ -44,6 +48,7 @@ public class ChickenProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "ProjectileRemover")
 		{
+
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
