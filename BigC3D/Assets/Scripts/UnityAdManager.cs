@@ -33,7 +33,7 @@ public class UnityAdManager : MonoBehaviour
 		
 	}
 
-	/*public void ShowAd()
+	/*public void ShowAd_timed()
 	{
 		if(PlayerPrefs.HasKey("Adcount"))
 		{

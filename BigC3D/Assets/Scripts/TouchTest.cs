@@ -19,7 +19,7 @@ public class TouchTest : MonoBehaviour
 	public int ammoType;
 	public int ammoOnScreen;
 	public Button ammoSwitchButton;
-	AudioSource audio;
+	AudioSource audioC;
 	public AudioClip shoot;
 	public AudioClip ammoSwap;
 	public AudioClip playerHurt;
@@ -37,7 +37,7 @@ public class TouchTest : MonoBehaviour
 
 	void Start()
 	{
-		audio = GetComponent<AudioSource>();
+		audioC = GetComponent<AudioSource>();
 	}
 
 	void Update() 
@@ -73,21 +73,21 @@ public class TouchTest : MonoBehaviour
 		
 		if(ammoType == 0)
 		{
-			audio.PlayOneShot (ammoSwap);
+			audioC.PlayOneShot (ammoSwap);
 			projectile = projectiles [0];
 			ammoSwitchButton.image.sprite = ammoColor [1];
 			ammoType++;
 		}
 		else if(ammoType == 1)
 		{
-			audio.PlayOneShot (ammoSwap);
+			audioC.PlayOneShot (ammoSwap);
 			projectile = projectiles [1];
 			ammoSwitchButton.image.sprite = ammoColor [2];
 			ammoType++;
 		}
 		else if(ammoType == 2)
 		{
-			audio.PlayOneShot (ammoSwap);
+			audioC.PlayOneShot (ammoSwap);
 			projectile = projectiles [2];
 			ammoSwitchButton.image.sprite = ammoColor [0];
 			ammoType = 0;
@@ -100,7 +100,7 @@ public class TouchTest : MonoBehaviour
 		{
 			
 			Debug.Log ("Shooting");
-			audio.PlayOneShot (shoot);
+			audioC.PlayOneShot (shoot);
 			Rigidbody instantiatedProjectile = Instantiate (projectile,
 				player.transform.position, 
 				Quaternion.identity)
@@ -119,7 +119,7 @@ public class TouchTest : MonoBehaviour
 		if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy_Waffle" ||
 			col.gameObject.tag == "Enemy_Chicken" || col.gameObject.tag == "Enemy_KoolAid")
 		{
-			audio.PlayOneShot (playerHurt);
+			audioC.PlayOneShot (playerHurt);
 			EnemySpawner.instance.count--;
 			Destroy (col.gameObject);
 			ScoreManager.instance.LoseLife ();

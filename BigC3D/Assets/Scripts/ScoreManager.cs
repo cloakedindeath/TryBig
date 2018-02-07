@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
 	public bool livesGone = false;
 	public bool startLives = true;
 	public int hp;
-	AudioSource audio;
+	AudioSource audioControl;
 	public AudioClip mpDing;
 	public bool ding;
 
@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
 	void Start () 
 	{
 		ding = false;
-		audio = GetComponent<AudioSource>();
+		audioControl = GetComponent<AudioSource>();
 		//PlayerPrefs.SetInt ("lives", lives);
 		PlayerPrefs.GetInt("lives");
 		score = 0;
@@ -127,12 +127,12 @@ public class ScoreManager : MonoBehaviour
 
 		//TimerStart ();
 		//Play sound when multiplier reached
-		if(UIManager.instance.mpCnt == 10 && !audio.isPlaying)
+		if(UIManager.instance.mpCnt == 10 && !audioControl.isPlaying)
 		{
-			if(!audio.isPlaying)
+			if(!audioControl.isPlaying)
 			{
 				UIManager.instance.mpCnt = 10.5f;
-				audio.PlayOneShot (mpDing);
+				audioControl.PlayOneShot (mpDing);
 				ding = true;
 			}
 		}
@@ -142,10 +142,10 @@ public class ScoreManager : MonoBehaviour
 		}*/
 		if(UIManager.instance.mpCnt == 30 && ding == true)
 		{
-			if(!audio.isPlaying)
+			if(!audioControl.isPlaying)
 			{
 				//UIManager.instance.mpCnt = 30.5f;
-				audio.PlayOneShot (mpDing);
+				audioControl.PlayOneShot (mpDing);
 				ding = false;
 			}
 		}
@@ -167,7 +167,7 @@ public class ScoreManager : MonoBehaviour
 		}
 		else if ( UIManager.instance.mpCnt >= 30)
 		{
-			audio.PlayOneShot (mpDing);
+			audioControl.PlayOneShot (mpDing);
 			mp.text = "x3";
 		}
 	
