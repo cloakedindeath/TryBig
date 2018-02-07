@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class WaffleProjectile : MonoBehaviour {
 
+	public static WaffleProjectile instance;
+	public bool correct;
 
+	void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -20,17 +29,20 @@ public class WaffleProjectile : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Enemy_Waffle")
 		{
+			correct = true;
 			Debug.Log ("Hit");
 			//EnemySpawner.instance.count--;
 			Destroy (this.gameObject);
-			Destroy (col.gameObject);
+			//Destroy (col.gameObject);
+			//col.gameObject.transform.position += new Vector3 (0, -0.1f, 0);
+			//StartCoroutine (DestroyEnemy ());
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt++;
 		}
 		else if (col.gameObject.tag == "Enemy_KoolAid")
 		{
-			
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
@@ -38,7 +50,7 @@ public class WaffleProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Enemy_Chicken")
 		{
-			
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
@@ -46,9 +58,15 @@ public class WaffleProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "ProjectileRemover")
 		{
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
 		}
+	}
+	IEnumerator DestroyEnemy()
+	{
+		yield return new WaitForSeconds (1f);
+		Destroy (gameObject);
 	}
 }

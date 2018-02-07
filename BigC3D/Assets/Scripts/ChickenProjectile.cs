@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class ChickenProjectile : MonoBehaviour {
 
+	public static ChickenProjectile instance;
+	public bool correct;
 
+	void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +29,13 @@ public class ChickenProjectile : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Enemy_Chicken")
 		{
-			
+			correct = true;
 			Debug.Log ("Hit");
 			EnemySpawner.instance.count--;
 			Destroy (this.gameObject);
-			Destroy (col.gameObject);
+			//Destroy (col.gameObject);
+			//col.gameObject.transform.position += new Vector3 (0, -0.1f, 0);
+			//StartCoroutine (DestroyEnemy ());
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt++;
@@ -32,7 +43,7 @@ public class ChickenProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Enemy_KoolAid")
 		{
-			
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
@@ -40,7 +51,7 @@ public class ChickenProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Enemy_Waffle")
 		{
-
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
@@ -48,10 +59,15 @@ public class ChickenProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "ProjectileRemover")
 		{
-
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
 		}
+	}
+	IEnumerator DestroyEnemy()
+	{
+		yield return new WaitForSeconds (1f);
+		Destroy (gameObject);
 	}
 }

@@ -6,12 +6,14 @@ public class EnemyController : MonoBehaviour
 {
 	public float speed;
 	public Rigidbody rb;
+	AudioSource audioE;
+	public AudioClip enHit;
 
 	// Use this for initialization
 	void Start () 
 	{
 		rb.GetComponent<Rigidbody> ();
-
+		audioE = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -37,11 +39,12 @@ public class EnemyController : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "EarlyDestroyer")
+		if (col.gameObject.tag == "Projectile")
 		{
-			Destroy (gameObject);
-			EnemySpawner.instance.count--;
-			//ScoreManager.instance.LoseLife ();
+			audioE.PlayOneShot (enHit);
+			StopEnemyMovement ();
+			gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
+			StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
@@ -51,5 +54,10 @@ public class EnemyController : MonoBehaviour
 			UIManager.instance.mpCnt = 0;
 		}
 	}
-		
+
+	IEnumerator DestroyEnemy()
+	{
+		yield return new WaitForSeconds (.6f);
+		Destroy (gameObject);
+	}
 }

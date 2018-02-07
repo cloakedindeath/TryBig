@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class KoolAidProjectile : MonoBehaviour {
 
+	public static KoolAidProjectile instance;
+	public bool correct;
 
+	void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -20,17 +29,18 @@ public class KoolAidProjectile : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "Enemy_KoolAid")
 		{
+			correct = true;
 			Debug.Log ("Hit");
 			EnemySpawner.instance.count--;
 			Destroy (this.gameObject);
-			Destroy (col.gameObject);
+			//Destroy (col.gameObject);
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt++;
 		}
 		else if (col.gameObject.tag == "Enemy_Waffle")
 		{
-			
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
@@ -38,7 +48,7 @@ public class KoolAidProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "Enemy_Chicken")
 		{
-			
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
@@ -46,6 +56,7 @@ public class KoolAidProjectile : MonoBehaviour {
 		}
 		else if (col.gameObject.tag == "ProjectileRemover")
 		{
+			correct = false;
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
