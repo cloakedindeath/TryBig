@@ -194,6 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.2
   rb: {fileID: 54422957047355932}
+  yesHit: {fileID: 8300000, guid: 24cfd15cd10b67948b31bd368247154b, type: 3}
+  noHit: {fileID: 8300000, guid: 7693803b6e7cdef458b8a0ae745cf3c6, type: 3}
   enHit: {fileID: 8300000, guid: c790764a7e5689c45b69f9031ad71c3c, type: 3}
 --- !u!136 &136716477177023448
 CapsuleCollider:

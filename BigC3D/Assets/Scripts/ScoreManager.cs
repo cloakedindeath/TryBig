@@ -144,7 +144,7 @@ public class ScoreManager : MonoBehaviour
 		{
 			if(!audioControl.isPlaying)
 			{
-				//UIManager.instance.mpCnt = 30.5f;
+				UIManager.instance.mpCnt = 30.5f;
 				audioControl.PlayOneShot (mpDing);
 				ding = false;
 			}

@@ -32,10 +32,11 @@ public class ChickenProjectile : MonoBehaviour {
 			correct = true;
 			Debug.Log ("Hit");
 			EnemySpawner.instance.count--;
-			Destroy (this.gameObject);
+
 			//Destroy (col.gameObject);
-			//col.gameObject.transform.position += new Vector3 (0, -0.1f, 0);
-			//StartCoroutine (DestroyEnemy ());
+			col.gameObject.transform.position = new Vector3 (-20, -0.1f, 0);
+			StartCoroutine (DestroyEnemy ());
+			Destroy (this.gameObject);
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt++;

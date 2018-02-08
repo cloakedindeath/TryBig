@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
 	public float speed;
 	public Rigidbody rb;
 	AudioSource audioE;
+	public AudioClip yesHit;
+	public AudioClip noHit;
 	public AudioClip enHit;
 
 	// Use this for initialization
@@ -39,16 +41,53 @@ public class EnemyController : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "Projectile")
+		if (col.gameObject.tag == "WaffleAmmo" && WaffleProjectile.instance.correct == true)
 		{
-			audioE.PlayOneShot (enHit);
+			audioE.PlayOneShot (yesHit);
 			StopEnemyMovement ();
-			gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
-			StartCoroutine (DestroyEnemy ());
+		//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
+			//StartCoroutine (DestroyEnemy ());
+		}
+		if (col.gameObject.tag == "WaffleAmmo" && WaffleProjectile.instance.correct == false)
+		{
+			audioE.PlayOneShot (noHit);
+			//StopEnemyMovement ();
+			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
+			//StartCoroutine (DestroyEnemy ());
+		}
+		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == true)
+		{
+			audioE.PlayOneShot (yesHit);
+			StopEnemyMovement ();
+			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
+			//StartCoroutine (DestroyEnemy ());
+		}
+		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == false)
+		{
+			audioE.PlayOneShot (noHit);
+			//StopEnemyMovement ();
+			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
+			//StartCoroutine (DestroyEnemy ());
+		}
+		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == true)
+		{
+			audioE.PlayOneShot (yesHit);
+			StopEnemyMovement ();
+			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
+			//StartCoroutine (DestroyEnemy ());
+		}
+		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == false)
+		{
+			audioE.PlayOneShot (noHit);
+			//StopEnemyMovement ();
+			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
+			//StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
-			Destroy (gameObject);
+			audioE.PlayOneShot (enHit);
+			//Destroy (gameObject);
+			StartCoroutine (DestroyEnemy ());
 			EnemySpawner.instance.count--;
 			ScoreManager.instance.LoseLife ();
 			UIManager.instance.mpCnt = 0;

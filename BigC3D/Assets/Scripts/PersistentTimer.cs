@@ -69,7 +69,7 @@ public class PersistentTimer : MonoBehaviour
 		Debug.Log (seconds);
 		//PlayerPrefs.SetInt ("TimeOnExit", savedSeconds);
 		//Debug.Log(milliseconds);
-		if(PlayerPrefs.GetInt("lives") == 0 )
+		if(PlayerPrefs.GetInt("lives") <= 0 )
 		{
 			
 			//count down in seconds

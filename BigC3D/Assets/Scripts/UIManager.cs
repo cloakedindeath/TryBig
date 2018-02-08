@@ -50,7 +50,8 @@ public class UIManager : MonoBehaviour
 	GameObject[] projectiles;
 	public int touchCnt = 0;
 	public float mpCnt;
-
+	AudioSource audioU;
+	public AudioClip deathSound;
 
 
 	void Awake()
@@ -66,7 +67,7 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		
+		audioU = GetComponent<AudioSource>();
 		//DontDestroyOnLoad (livesTimerOB);
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
@@ -268,6 +269,7 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
+		audioU.PlayOneShot (deathSound);
 		timeCountDown = 0;
 		gameOverPanel.SetActive (true);
 		gameOver = true;
@@ -281,6 +283,7 @@ public class UIManager : MonoBehaviour
 
 	public void RestartGame()
 	{
+		audioU.Stop ();
 		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 		shootButton.GetComponent<Button> ().interactable = false;
 		waveCount = 1;
@@ -299,6 +302,7 @@ public class UIManager : MonoBehaviour
 	{
 		PauseResume ();
 		DestroyAllEnemies ();
+		audioU.Stop ();
 		gameOver = false;
 		//touchCnt = 0;
 		//gameStartCountdown = 3.5f;

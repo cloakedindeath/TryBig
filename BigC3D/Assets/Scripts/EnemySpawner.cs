@@ -89,19 +89,19 @@ public class EnemySpawner : MonoBehaviour
 		
 			if(UIManager.instance.waveCount >= 0 && UIManager.instance.waveCount <= 10)
 			{
-				spawnTime = 2f;
+				spawnTime = 1.5f;
 			}
 			else if(UIManager.instance.waveCount >= 11 && UIManager.instance.waveCount <= 20)
 			{
-				spawnTime = 1.75f;
+				spawnTime = 1.4f;
 			}
 			else if(UIManager.instance.waveCount >= 21 && UIManager.instance.waveCount <= 30)
 			{
-				spawnTime = 1.5f;
+				spawnTime = 1.3f;
 			}
 			else if(UIManager.instance.waveCount >= 31 && UIManager.instance.waveCount <= 40)
 			{
-				spawnTime = 1.25f;
+				spawnTime = 1.2f;
 			}
 			else if(UIManager.instance.waveCount >= 41 && UIManager.instance.waveCount <= 50)
 			{

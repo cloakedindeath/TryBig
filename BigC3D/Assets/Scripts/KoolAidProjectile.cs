@@ -32,6 +32,8 @@ public class KoolAidProjectile : MonoBehaviour {
 			correct = true;
 			Debug.Log ("Hit");
 			EnemySpawner.instance.count--;
+			col.gameObject.transform.position = new Vector3 (-20, -0.1f, 0);
+			StartCoroutine (DestroyEnemy ());
 			Destroy (this.gameObject);
 			//Destroy (col.gameObject);
 			ScoreManager.instance.EnemyKill ();
@@ -61,5 +63,11 @@ public class KoolAidProjectile : MonoBehaviour {
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
 		}
+	}
+
+	IEnumerator DestroyEnemy()
+	{
+		yield return new WaitForSeconds (1f);
+		Destroy (gameObject);
 	}
 }

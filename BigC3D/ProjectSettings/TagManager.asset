@@ -12,6 +12,9 @@ TagManager:
   - Enemy_Waffle
   - Enemy_Chicken
   - Enemy_KoolAid
+  - WaffleAmmo
+  - ChickenAmmo
+  - KoolAidAmmo
   layers:
   - Default
   - TransparentFX
