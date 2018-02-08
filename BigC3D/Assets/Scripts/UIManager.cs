@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
 	public float mpCnt;
 	AudioSource audioU;
 	public AudioClip deathSound;
+	public bool death;
 
 
 	void Awake()
@@ -68,6 +69,7 @@ public class UIManager : MonoBehaviour
 	void Start () 
 	{
 		audioU = GetComponent<AudioSource>();
+		death = false;
 		//DontDestroyOnLoad (livesTimerOB);
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
@@ -189,6 +191,10 @@ public class UIManager : MonoBehaviour
 			gameOver = true;
 			GameOver ();
 		}*/
+		if(PlayerPrefs.GetInt("lives") <= 0 )
+		{
+			death = true;
+		}
 
 	}
 
@@ -269,7 +275,12 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
-		audioU.PlayOneShot (deathSound);
+		if(!audioU.isPlaying && death == true)
+		{
+			//audioU.PlayOneShot (deathSound);
+			death = false;
+		}
+
 		timeCountDown = 0;
 		gameOverPanel.SetActive (true);
 		gameOver = true;

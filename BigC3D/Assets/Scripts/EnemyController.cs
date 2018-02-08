@@ -45,43 +45,28 @@ public class EnemyController : MonoBehaviour
 		{
 			audioE.PlayOneShot (yesHit);
 			StopEnemyMovement ();
-		//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
-			//StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "WaffleAmmo" && WaffleProjectile.instance.correct == false)
 		{
 			audioE.PlayOneShot (noHit);
-			//StopEnemyMovement ();
-			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
-			//StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == true)
 		{
 			audioE.PlayOneShot (yesHit);
 			StopEnemyMovement ();
-			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
-			//StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == false)
 		{
 			audioE.PlayOneShot (noHit);
-			//StopEnemyMovement ();
-			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
-			//StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == true)
 		{
 			audioE.PlayOneShot (yesHit);
 			StopEnemyMovement ();
-			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
-			//StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == false)
 		{
 			audioE.PlayOneShot (noHit);
-			//StopEnemyMovement ();
-			//	gameObject.transform.position = new Vector3 (-10, -10f*speed, 0);
-			//StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
