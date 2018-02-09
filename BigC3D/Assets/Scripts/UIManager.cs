@@ -52,7 +52,10 @@ public class UIManager : MonoBehaviour
 	public float mpCnt;
 	AudioSource audioU;
 	public AudioClip deathSound;
+	public AudioClip countdown;
+	public AudioClip click;
 	public bool death;
+	public int deathCnt;
 
 
 	void Awake()
@@ -81,7 +84,7 @@ public class UIManager : MonoBehaviour
 		waveCount = 1;
 		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 		shootButton.GetComponent<Button> ().interactable = false;
-
+		deathCnt = 5;
 		//audio.volume = 0.3f;
 
 	}
@@ -101,6 +104,7 @@ public class UIManager : MonoBehaviour
 			}
 			if(touchCnt == 1)
 			{
+				audioU.PlayOneShot (countdown);
 				touchCnt = 2;
 				startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
 				gameStartCountdown = 3.5f;
@@ -130,7 +134,7 @@ public class UIManager : MonoBehaviour
 			timeCountDown -= Time.deltaTime;
 			///////////////////////
 			//wave over
-			if( timeCountDown <= 0 && gameOver == false)
+			if( timeCountDown <= 0 && gameOver == false && ScoreManager.instance.hp > 0)
 			{
 				DestroyAllEnemies ();
 				timeCountDown = 0;
@@ -200,6 +204,8 @@ public class UIManager : MonoBehaviour
 
 	public void GameStart ()
 	{
+		audioU.PlayOneShot (click, 1f);
+		deathCnt = 0;
 		PlayerPrefs.SetInt ("Score", 0);
 		gameOver = false;
 		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
@@ -246,6 +252,7 @@ public class UIManager : MonoBehaviour
 
 	public void goToMenu()
 	{
+		audioU.PlayOneShot (click, 1f);
 		gameOver = true;
 		PlayerPrefs.SetFloat ("TimeOnExit", PersistentTimer.instance.savedSeconds);
 		SceneManager.LoadScene("Menu");
@@ -275,15 +282,18 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
-		if(!audioU.isPlaying && death == true)
+		gameOver = true;
+		if(!audioU.isPlaying && deathCnt == 0 && gameOver == true)
 		{
-			//audioU.PlayOneShot (deathSound);
+			audioU.PlayOneShot (deathSound);
+			deathCnt = 5;
 			death = false;
+			gameOver = false;
 		}
 
 		timeCountDown = 0;
 		gameOverPanel.SetActive (true);
-		gameOver = true;
+
 		DestroyAllEnemies ();
 		gameOverPanel.GetComponent<Animator> ().Play ("GameOverPopUp");
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
@@ -294,6 +304,8 @@ public class UIManager : MonoBehaviour
 
 	public void RestartGame()
 	{
+		audioU.PlayOneShot (click, 1f);
+		gameOver = false;
 		audioU.Stop ();
 		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 		shootButton.GetComponent<Button> ().interactable = false;
@@ -311,6 +323,7 @@ public class UIManager : MonoBehaviour
 	}
 	public void GoBackToMenu()
 	{
+		audioU.PlayOneShot (click, 1f);
 		PauseResume ();
 		DestroyAllEnemies ();
 		audioU.Stop ();
@@ -357,47 +370,56 @@ public class UIManager : MonoBehaviour
 
 	public void OpenHowTo()
 	{
+		audioU.PlayOneShot (click, 1f);
 		howToPanel.SetActive (true);
 	}
 	public void CloseHowTo()
 	{
+		audioU.PlayOneShot (click, 1f);
 		howToPanel.GetComponent<Animator> ().Play ("HowToPopDown");
 		StartCoroutine (HowToDisable ());
 	}
 	public void Pause()
 	{
+		audioU.PlayOneShot (click, 1f);
 		pausePanel.SetActive (true);
 		StartCoroutine (PauseTime ());
 	}
 	public void PauseResume()
 	{
+		audioU.PlayOneShot (click, 1f);
 		Time.timeScale = 1;
 		pausePanel.GetComponent<Animator> ().Play ("PauseAway");
 		StartCoroutine (PauseDisable ());
 	}
 	public void PauseQuit()
 	{
+		audioU.PlayOneShot (click, 1f);
 		Time.timeScale = 1;
 		SceneManager.LoadScene ("Main");
 	}
 	public void OpenShop()
 	{
+		audioU.PlayOneShot (click, 1f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopPop");
 	}
 	public void pauseOpenShop()
 	{
+		audioU.PlayOneShot (click, 1f);
 		Time.timeScale = 1;
 		shopPanelPause.GetComponent<Animator> ().Play ("ShopPop");
 		StartCoroutine (openPauseShop ());
 	}
 	public void pauseCloseShop()
 	{
+		audioU.PlayOneShot (click, 1f);
 		Time.timeScale = 1;
 		shopPanelPause.GetComponent<Animator> ().Play ("ShopRight");
 		StartCoroutine (openPauseShop ());
 	}
 	public void CloseShop()
 	{
+		audioU.PlayOneShot (click, 1f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopRight");
 	}
 

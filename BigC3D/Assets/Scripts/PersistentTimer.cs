@@ -71,7 +71,6 @@ public class PersistentTimer : MonoBehaviour
 		//Debug.Log(milliseconds);
 		if(PlayerPrefs.GetInt("lives") <= 0 )
 		{
-			
 			//count down in seconds
 			//PlayerPrefs.SetFloat("TimeOnExit",60);
 			milliseconds += Time.deltaTime;
@@ -131,6 +130,7 @@ public class PersistentTimer : MonoBehaviour
 				PlayerPrefs.SetInt("lives", 3);
 				ScoreManager.instance.hp = 10;
 				minutes = 1;
+				//seconds = 60;
 			}
 		}
 
@@ -155,7 +155,7 @@ public class PersistentTimer : MonoBehaviour
 		{
 			milliseconds += numSeconds;
 			//PlayerPrefs.SetFloat ("TimeOnExit", milliseconds);
-			PlayerPrefs.SetFloat ("TimeOnExit", savedSeconds);
+			PlayerPrefs.SetFloat ("TimeOnExit", seconds);
 		}
 	}
 }

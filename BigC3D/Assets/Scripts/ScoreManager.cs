@@ -21,9 +21,10 @@ public class ScoreManager : MonoBehaviour
 	public bool livesGone = false;
 	public bool startLives = true;
 	public int hp;
-	AudioSource audioControl;
+	public AudioSource audioControl;
 	public AudioClip mpDing;
 	public bool ding;
+	public int dingCnt = 1;
 
 	void Awake()
 	{
@@ -42,6 +43,7 @@ public class ScoreManager : MonoBehaviour
 	void Start () 
 	{
 		ding = false;
+		dingCnt = 1;
 		audioControl = GetComponent<AudioSource>();
 		//PlayerPrefs.SetInt ("lives", lives);
 		PlayerPrefs.GetInt("lives");
@@ -151,8 +153,16 @@ public class ScoreManager : MonoBehaviour
 		}
 
 
-		if(UIManager.instance.mpCnt == 0)
+		if(UIManager.instance.mpCnt == 0 && UIManager.instance.gameOver == false )
 		{
+			
+			if(!audioControl.isPlaying && dingCnt == 0)
+			{
+				audioControl.pitch = 0.1f;
+				audioControl.PlayOneShot (mpDing, .1f);
+				dingCnt++;
+			}
+
 			mp.text = " ";
 			mpBar.minValue = 0;
 			mpBar.maxValue = 10;

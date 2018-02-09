@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 		{
 			UIManager.instance.GameStart ();
 			ScoreManager.instance.startLives = false;
+
 		}
 
 	}

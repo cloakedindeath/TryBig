@@ -1927,7 +1927,7 @@ RectTransform:
   - {fileID: 1593843344}
   - {fileID: 1869388889}
   m_Father: {fileID: 2020190890}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2576,7 +2576,7 @@ RectTransform:
   - {fileID: 642116475}
   - {fileID: 10383352}
   m_Father: {fileID: 2020190890}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3799,8 +3799,10 @@ MonoBehaviour:
   livesGone: 0
   startLives: 1
   hp: 0
+  audioControl: {fileID: 0}
   mpDing: {fileID: 8300000, guid: a681d9572b30a584da9d37b3058e73aa, type: 3}
   ding: 0
+  dingCnt: 1
 --- !u!4 &872359922
 Transform:
   m_ObjectHideFlags: 0
@@ -4302,7 +4304,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f701e91dfa53f9744a42ec6fa27defb1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7779,6 +7781,10 @@ MonoBehaviour:
   touchCnt: 0
   mpCnt: 0
   deathSound: {fileID: 8300000, guid: dd280f3c5485393488484b2c72006f7a, type: 3}
+  countdown: {fileID: 8300000, guid: de3f1211a86bbdb49bbda8461bb68c0b, type: 3}
+  click: {fileID: 8300000, guid: 93edea40605a03e4c95ef6d400183549, type: 3}
+  death: 0
+  deathCnt: 0
 --- !u!4 &1899812488
 Transform:
   m_ObjectHideFlags: 0
@@ -7803,7 +7809,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7908,7 +7914,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1913557290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62, y: 2.28, z: -25.51}
+  m_LocalPosition: {x: 0.62, y: 2.28, z: -23.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8448,8 +8454,8 @@ RectTransform:
   m_Children:
   - {fileID: 2106853475}
   - {fileID: 698195009}
-  - {fileID: 356607828}
   - {fileID: 546537514}
+  - {fileID: 356607828}
   - {fileID: 1055096138}
   - {fileID: 1203473961}
   - {fileID: 393229141}

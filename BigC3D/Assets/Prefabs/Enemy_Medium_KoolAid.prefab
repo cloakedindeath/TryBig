@@ -111,7 +111,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -194,8 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.2
   rb: {fileID: 54422957047355932}
-  yesHit: {fileID: 8300000, guid: 24cfd15cd10b67948b31bd368247154b, type: 3}
-  noHit: {fileID: 8300000, guid: 7693803b6e7cdef458b8a0ae745cf3c6, type: 3}
+  yesHit: {fileID: 8300000, guid: 7e93505fdb30282498c7a1d196def0a6, type: 3}
+  noHit: {fileID: 8300000, guid: 9922ee65c8b67c544ba90c68bf9ca5b4, type: 3}
   enHit: {fileID: 8300000, guid: c790764a7e5689c45b69f9031ad71c3c, type: 3}
 --- !u!136 &136716477177023448
 CapsuleCollider:

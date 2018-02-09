@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "WaffleAmmo" && WaffleProjectile.instance.correct == false)
 		{
-			audioE.PlayOneShot (noHit);
+			audioE.PlayOneShot (noHit,1);
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == true)
 		{
@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == false)
 		{
-			audioE.PlayOneShot (noHit);
+			audioE.PlayOneShot (noHit,1);
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == true)
 		{
@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == false)
 		{
-			audioE.PlayOneShot (noHit);
+			audioE.PlayOneShot (noHit,1);
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
