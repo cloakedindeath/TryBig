@@ -134,7 +134,8 @@ public class ScoreManager : MonoBehaviour
 			if(!audioControl.isPlaying)
 			{
 				UIManager.instance.mpCnt = 10.5f;
-				audioControl.PlayOneShot (mpDing);
+				audioControl.pitch = 1.2f;
+				audioControl.PlayOneShot (mpDing, 1f);
 				ding = true;
 			}
 		}
@@ -147,7 +148,8 @@ public class ScoreManager : MonoBehaviour
 			if(!audioControl.isPlaying)
 			{
 				UIManager.instance.mpCnt = 30.5f;
-				audioControl.PlayOneShot (mpDing);
+				audioControl.pitch = 1.4f;
+				audioControl.PlayOneShot (mpDing,1f);
 				ding = false;
 			}
 		}
@@ -159,7 +161,7 @@ public class ScoreManager : MonoBehaviour
 			if(!audioControl.isPlaying && dingCnt == 0)
 			{
 				audioControl.pitch = 0.1f;
-				audioControl.PlayOneShot (mpDing, .1f);
+				audioControl.PlayOneShot (mpDing, 1f);
 				dingCnt++;
 			}
 
@@ -175,9 +177,15 @@ public class ScoreManager : MonoBehaviour
 			mpBar.maxValue = 30;
 		
 		}
-		else if ( UIManager.instance.mpCnt >= 30)
+		else if ( UIManager.instance.mpCnt >= 30 && ding == true)//may need to fix this later
 		{
-			audioControl.PlayOneShot (mpDing);
+			if(!audioControl.isPlaying && dingCnt == 1)
+			{
+				audioControl.pitch = 1.4f;
+				audioControl.PlayOneShot (mpDing, 1f);
+				dingCnt++;
+			}
+			//audioControl.PlayOneShot (mpDing);
 			mp.text = "x3";
 		}
 	
@@ -225,6 +233,7 @@ public class ScoreManager : MonoBehaviour
 			PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
 			hp = 10;
 			UIManager.instance.GameOver ();
+			//UIManager.instance.waveEndPanel.SetActive (false);
 			//UIManager.instance.touchCnt = 0;
 		}
 	

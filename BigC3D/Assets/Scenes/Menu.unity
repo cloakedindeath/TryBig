@@ -5317,7 +5317,7 @@ MonoBehaviour:
   socialMediaPanel: {fileID: 1105459796}
   optionsPanel: {fileID: 39331509}
   startButton: {fileID: 706018562}
-  click: {fileID: 8300000, guid: 93edea40605a03e4c95ef6d400183549, type: 3}
+  click: {fileID: 8300000, guid: c629a0874743a804a88719d220689912, type: 3}
   timer: 0
 --- !u!4 &1105470387
 Transform:
@@ -5559,11 +5559,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c045fa5cd0b985242b1a06a719ef3206, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: cbbbd9c5fdce8d94395ccb215c520783, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

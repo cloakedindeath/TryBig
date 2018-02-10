@@ -136,19 +136,22 @@ public class UIManager : MonoBehaviour
 			//wave over
 			if( timeCountDown <= 0 && gameOver == false && ScoreManager.instance.hp > 0)
 			{
-				DestroyAllEnemies ();
+				
 				timeCountDown = 0;
 				waveEndPanel.SetActive(true);
-
+				//touchCnt = 0;
+				shootButton.GetComponent<Button> ().interactable = false;
+				DestroyAllEnemies ();
 				//touch to continue after score highlights
 				if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 				{
 					touchCnt = touchCnt + 1;
 
 				}
-				if(touchCnt == 3 && gameOver == false)
+				if(touchCnt == 2 && gameOver == false)
 				{
-					touchCnt = 0;
+					touchCnt = 3;
+					audioU.PlayOneShot (countdown);
 					startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
 					waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
 					waveEndPanel.GetComponent<Animator> ().Play ("WaveEndAway");
@@ -205,6 +208,7 @@ public class UIManager : MonoBehaviour
 	public void GameStart ()
 	{
 		audioU.PlayOneShot (click, 1f);
+		waveEndPanel.SetActive (false);
 		deathCnt = 0;
 		PlayerPrefs.SetInt ("Score", 0);
 		gameOver = false;

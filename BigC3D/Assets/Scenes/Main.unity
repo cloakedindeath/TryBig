@@ -4302,9 +4302,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f701e91dfa53f9744a42ec6fa27defb1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2330392202fec62449a1bcbce13521da, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7781,8 +7781,8 @@ MonoBehaviour:
   touchCnt: 0
   mpCnt: 0
   deathSound: {fileID: 8300000, guid: dd280f3c5485393488484b2c72006f7a, type: 3}
-  countdown: {fileID: 8300000, guid: de3f1211a86bbdb49bbda8461bb68c0b, type: 3}
-  click: {fileID: 8300000, guid: 93edea40605a03e4c95ef6d400183549, type: 3}
+  countdown: {fileID: 8300000, guid: 3d1ee77d45730ef44846393f6aa03060, type: 3}
+  click: {fileID: 8300000, guid: c629a0874743a804a88719d220689912, type: 3}
   death: 0
   deathCnt: 0
 --- !u!4 &1899812488
