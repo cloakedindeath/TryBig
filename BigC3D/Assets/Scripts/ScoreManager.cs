@@ -143,7 +143,7 @@ public class ScoreManager : MonoBehaviour
 		{
 			UIManager.instance.mpCnt = (UIManager.instance.mpCnt - 0.5f);
 		}*/
-		if(UIManager.instance.mpCnt == 30 && ding == true)
+		if(UIManager.instance.mpCnt >= 30 && ding == true)
 		{
 			if(!audioControl.isPlaying)
 			{
