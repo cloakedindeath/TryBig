@@ -65,6 +65,7 @@ public class EnemySpawner : MonoBehaviour
 		InvokeRepeating ("PickEnemyType", 0.2f, spawnTime);
 	}
 
+	//Enemy AI in one method
 	public void PickEnemyType()
 	{
 		//Control Waves of enemies here****************************************************///////////////
@@ -139,18 +140,130 @@ public class EnemySpawner : MonoBehaviour
 			else if (UIManager.instance.waveCount >= 21 && UIManager.instance.waveCount <= 30) 
 			{
 				spawnTime = 1.1f;
+
+				if (rand >= 0 && rand <= 19) {
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 20 && rand <= 38) {
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 39 && rand <= 57) {
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 58 && rand <= 71) {
+					Debug.Log ("fast1");
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 72 && rand <= 86) {
+					Debug.Log ("fast2");
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 87 && rand <= 100) {
+					Debug.Log ("fast3");
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
 			}
 			else if (UIManager.instance.waveCount >= 31 && UIManager.instance.waveCount <= 40) 
 			{
 				spawnTime = 1.0f;
+
+				if (rand >= 0 && rand <= 17) {
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 18 && rand <= 33) {
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 34 && rand <= 49) {
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 50 && rand <= 65) {
+					Debug.Log ("fast1");
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 66 && rand <= 82) {
+					Debug.Log ("fast2");
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 83 && rand <= 100) {
+					Debug.Log ("fast3");
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
 			} 
 			else if (UIManager.instance.waveCount >= 41 && UIManager.instance.waveCount <= 50) 
 			{
 				spawnTime = 0.9f;
+
+				if (rand >= 0 && rand <= 15) {
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 16 && rand <= 30) {
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 31 && rand <= 45) {
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 46 && rand <= 62) {
+					Debug.Log ("fast1");
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 63 && rand <= 81) {
+					Debug.Log ("fast2");
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 82 && rand <= 100) {
+					Debug.Log ("fast3");
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
 			} 
 			else if (UIManager.instance.waveCount >= 51) 
 			{
 				spawnTime = 0.8f;
+
+				if (rand >= 0 && rand <= 13) {
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 14 && rand <= 26) {
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 27 && rand <= 38) {
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 39 && rand <= 59) {
+					Debug.Log ("fast1");
+					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 60 && rand <= 80) {
+					Debug.Log ("fast2");
+					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
+				if (rand >= 81 && rand <= 100) {
+					Debug.Log ("fast3");
+					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
+						transform.position.y, transform.position.z), Quaternion.identity);
+				}
 			}
 		}
 	}
