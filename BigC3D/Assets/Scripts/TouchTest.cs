@@ -13,6 +13,9 @@ public class TouchTest : MonoBehaviour
 	public GameObject player; 
 
 	public Rigidbody projectile;
+	public Rigidbody projectile1;
+	public Rigidbody projectile2;
+	public Rigidbody projectile3;
 	public Rigidbody[] projectiles;
 	public Sprite[] ammoColor;
 	public float bulletSpeed = 20;
@@ -68,7 +71,6 @@ public class TouchTest : MonoBehaviour
 		}
 
 	}
-
 
 	public void moveLeft()
 	{
@@ -163,17 +165,9 @@ public class TouchTest : MonoBehaviour
 			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
 		}
 	}
-
 	//Ammo Switch
-	public void PickAmmoType()
+	/*public void PickAmmoType()
 	{
-		/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Ended) 
-		{
-			
-		}*/
-		/*if (EventSystem.current.IsPointerOverGameObject (Input.GetTouch (0).fingerId)) {
-			//Input.GetTouch(0).phase = TouchPhase.Ended;
-		}*/
 		if(ammoType == 0)
 		{
 			audioC.PlayOneShot (ammoSwap);
@@ -195,21 +189,54 @@ public class TouchTest : MonoBehaviour
 			ammoSwitchButton.image.sprite = ammoColor [0];
 			ammoType = 0;
 		}
-	}
+	}*/
 
 	public void Shoot2()
 	{
-		/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Ended) 
-		{
-		
-		}*/
-
 		if(ammoOnScreen <=2)
 		{
 
 			Debug.Log ("Shooting");
 			audioC.PlayOneShot (shoot);
-			Rigidbody instantiatedProjectile = Instantiate (projectile,
+			Rigidbody instantiatedProjectile = Instantiate (projectile1,
+				player.transform.position, 
+				Quaternion.identity)
+				as Rigidbody;
+			instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
+			ammoOnScreen++;
+		}
+		else
+		{
+
+		}
+	}
+	public void Shoot3()
+	{
+		if(ammoOnScreen <=2)
+		{
+
+			Debug.Log ("Shooting");
+			audioC.PlayOneShot (shoot);
+			Rigidbody instantiatedProjectile = Instantiate (projectile2,
+				player.transform.position, 
+				Quaternion.identity)
+				as Rigidbody;
+			instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
+			ammoOnScreen++;
+		}
+		else
+		{
+
+		}
+	}
+	public void ShootKool()
+	{
+		if(ammoOnScreen <=3)
+		{
+
+			Debug.Log ("Shooting kool");
+			audioC.PlayOneShot (shoot);
+			Rigidbody instantiatedProjectile = Instantiate (projectile3,
 				player.transform.position, 
 				Quaternion.identity)
 				as Rigidbody;
@@ -242,14 +269,9 @@ public class TouchTest : MonoBehaviour
 		EventSystem.current.RaycastAll(touch, hits);
 		//Debug.Log (hits.Count);
 		return (hits.Count > 0); // discard swipe if an UI element is beneath
-		/*if (EventSystem.current.IsPointerOverGameObject () && EventSystem.current.currentSelectedGameObject != null && 
-			EventSystem.current.currentSelectedGameObject.GetComponent<Button> () != null )
-		{
-			//
-			return false;
-		}*/
 
 	}
+
 	public void ondownMoveLeft()
 	{ goleft = true; }
 	public void ondownMoveRight()

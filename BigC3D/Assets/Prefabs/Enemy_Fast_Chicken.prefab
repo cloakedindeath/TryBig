@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114662974245193500}
   - component: {fileID: 54422957047355932}
   m_Layer: 0
-  m_Name: Enemy_Fast
+  m_Name: Enemy_Fast_Chicken
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   rb: {fileID: 54422957047355932}
+  yesHit: {fileID: 8300000, guid: 430b2ff9632270545bd7a881caf7786d, type: 3}
+  noHit: {fileID: 8300000, guid: ca4a3eed9527623498d262fef04aa6c5, type: 3}
+  enHit: {fileID: 8300000, guid: c790764a7e5689c45b69f9031ad71c3c, type: 3}
 --- !u!136 &136716477177023448
 CapsuleCollider:
   m_ObjectHideFlags: 1

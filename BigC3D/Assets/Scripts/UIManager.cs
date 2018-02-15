@@ -91,6 +91,8 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		
+
 		/////////////////////////////////
 		//Start pre Wave countdown
 		if(startCountdown == true && gameOver == false)
@@ -456,6 +458,10 @@ public class UIManager : MonoBehaviour
 	public void LifeAway()
 	{
 		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
+	}
+	public void waveCountIncrease()
+	{
+		waveCount += 10;;
 	}
 
 }
