@@ -148,7 +148,15 @@ public class UIManager : MonoBehaviour
 			//wave over
 			if( timeCountDown <= 0 && gameOver == false && ScoreManager.instance.hp > 0)
 			{
-				
+				startWaveCountdown = false;
+				if(startWaveCountdown == false)
+				{
+					foreach (GameObject buttons in controls)
+					{
+						buttons.GetComponent<Button>().interactable = false;
+					}
+					GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
+				}
 				timeCountDown = 0;
 				waveEndPanel.SetActive(true);
 				//touchCnt = 0;
@@ -219,7 +227,7 @@ public class UIManager : MonoBehaviour
 
 	public void nextWaveStart()
 	{
-		touchCnt = 0;
+		touchCnt = 1;
 		audioU.PlayOneShot (countdown);
 		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
 		waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
