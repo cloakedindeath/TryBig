@@ -127,7 +127,7 @@ public class ScoreManager : MonoBehaviour
 
 		SubmitSliderSetting ();
 
-		//TimerStart ();
+		#region Multiplier UI and Sound Control
 		//Play sound when multiplier reached
 		if(UIManager.instance.mpCnt == 10 && !audioControl.isPlaying)
 		{
@@ -136,25 +136,24 @@ public class ScoreManager : MonoBehaviour
 				UIManager.instance.mpCnt = 10.5f;
 				audioControl.pitch = 1.2f;
 				audioControl.PlayOneShot (mpDing, 1f);
-				ding = true;
+
 			}
 		}
-		/*if(UIManager.instance.mpCnt == 11)
+		if(UIManager.instance.mpCnt >= 10)
 		{
-			UIManager.instance.mpCnt = (UIManager.instance.mpCnt - 0.5f);
-		}*/
-		if(UIManager.instance.mpCnt >= 30 && ding == true)
+			ding = true;
+		}
+		if(UIManager.instance.mpCnt == 30 && ding == true)
 		{
 			if(!audioControl.isPlaying)
 			{
 				UIManager.instance.mpCnt = 30.5f;
 				audioControl.pitch = 1.4f;
 				audioControl.PlayOneShot (mpDing,1f);
-				ding = false;
+				//ding = false;
 			}
 		}
-
-
+			
 		if(UIManager.instance.mpCnt == 0 && UIManager.instance.gameOver == false )
 		{
 			
@@ -179,6 +178,7 @@ public class ScoreManager : MonoBehaviour
 		}
 		else if ( UIManager.instance.mpCnt >= 30 && ding == true)//may need to fix this later
 		{
+			mp.text = "x3";
 			if(!audioControl.isPlaying && dingCnt == 1)
 			{
 				audioControl.pitch = 1.4f;
@@ -186,9 +186,9 @@ public class ScoreManager : MonoBehaviour
 				dingCnt++;
 			}
 			//audioControl.PlayOneShot (mpDing);
-			mp.text = "x3";
+		
 		}
-	
+	#endregion
 
 		UIManager.instance.highScoreText.text ="High Score: " + PlayerPrefs.GetInt ("HighScore").ToString ();
 	}

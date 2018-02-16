@@ -40,7 +40,7 @@ public class TouchTest : MonoBehaviour
 		}
 		ammoType = 0;
 		ammoOnScreen = 0;
-		ammoSwitchButton.image.sprite = ammoColor [0];
+		//ammoSwitchButton.image.sprite = ammoColor [0];
 	}
 
 	void Start()
@@ -193,7 +193,7 @@ public class TouchTest : MonoBehaviour
 
 	public void Shoot2()
 	{
-		if(ammoOnScreen <=2)
+		if(ammoOnScreen <=2 && UIManager.instance.startWaveCountdown == true)
 		{
 
 			Debug.Log ("Shooting");
@@ -212,7 +212,7 @@ public class TouchTest : MonoBehaviour
 	}
 	public void Shoot3()
 	{
-		if(ammoOnScreen <=2)
+		if(ammoOnScreen <=2 && UIManager.instance.startWaveCountdown == true)
 		{
 
 			Debug.Log ("Shooting");
@@ -231,7 +231,7 @@ public class TouchTest : MonoBehaviour
 	}
 	public void ShootKool()
 	{
-		if(ammoOnScreen <=3)
+		if(ammoOnScreen <= 2 && UIManager.instance.startWaveCountdown == true)
 		{
 
 			Debug.Log ("Shooting kool");

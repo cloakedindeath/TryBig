@@ -65,6 +65,7 @@ public class EnemySpawner : MonoBehaviour
 		InvokeRepeating ("PickEnemyType", 0.2f, spawnTime);
 	}
 
+	#region AI logic
 	//Enemy AI in one method
 	public void PickEnemyType()
 	{
@@ -90,17 +91,17 @@ public class EnemySpawner : MonoBehaviour
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 71 && rand <= 80) {
-					Debug.Log ("fast1");
+					//Debug.Log ("fast1");
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 81 && rand <= 90) {
-					Debug.Log ("fast2");
+					//Debug.Log ("fast2");
 					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 91 && rand <= 100) {
-					Debug.Log ("fast3");
+					//Debug.Log ("fast3");
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
@@ -122,17 +123,17 @@ public class EnemySpawner : MonoBehaviour
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 66 && rand <= 78) {
-					Debug.Log ("fast1");
+					//Debug.Log ("fast1");
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 79 && rand <= 90) {
-					Debug.Log ("fast2");
+					//Debug.Log ("fast2");
 					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 91 && rand <= 100) {
-					Debug.Log ("fast3");
+					//Debug.Log ("fast3");
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
@@ -154,17 +155,17 @@ public class EnemySpawner : MonoBehaviour
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 58 && rand <= 71) {
-					Debug.Log ("fast1");
+					//Debug.Log ("fast1");
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 72 && rand <= 86) {
-					Debug.Log ("fast2");
+					//Debug.Log ("fast2");
 					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 87 && rand <= 100) {
-					Debug.Log ("fast3");
+					//Debug.Log ("fast3");
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
@@ -186,17 +187,17 @@ public class EnemySpawner : MonoBehaviour
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 50 && rand <= 65) {
-					Debug.Log ("fast1");
+					//Debug.Log ("fast1");
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 66 && rand <= 82) {
-					Debug.Log ("fast2");
+					//Debug.Log ("fast2");
 					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 83 && rand <= 100) {
-					Debug.Log ("fast3");
+					//Debug.Log ("fast3");
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
@@ -218,17 +219,17 @@ public class EnemySpawner : MonoBehaviour
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 46 && rand <= 62) {
-					Debug.Log ("fast1");
+					//Debug.Log ("fast1");
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 63 && rand <= 81) {
-					Debug.Log ("fast2");
+					//Debug.Log ("fast2");
 					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 82 && rand <= 100) {
-					Debug.Log ("fast3");
+					//Debug.Log ("fast3");
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
@@ -250,35 +251,24 @@ public class EnemySpawner : MonoBehaviour
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 39 && rand <= 59) {
-					Debug.Log ("fast1");
+					//Debug.Log ("fast1");
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 60 && rand <= 80) {
-					Debug.Log ("fast2");
+					//Debug.Log ("fast2");
 					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 81 && rand <= 100) {
-					Debug.Log ("fast3");
+					//Debug.Log ("fast3");
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 			}
 		}
 	}
-
-	/*public void PickSpawnRate()
-	{
-		if(timeCnt > 1000f)
-		{
-			spawnTime = 0.4f;
-		}
-		if(timeCnt >= 1500f)
-		{
-			spawnTime = 0.2f;
-		}
-	}*/
+	#endregion
 
 	IEnumerator SpawnEnemies()
 	{

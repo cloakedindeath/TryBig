@@ -15,6 +15,7 @@ TagManager:
   - WaffleAmmo
   - ChickenAmmo
   - KoolAidAmmo
+  - Controls
   layers:
   - Default
   - TransparentFX

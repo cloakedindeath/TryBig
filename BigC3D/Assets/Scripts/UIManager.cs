@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
 	public GameObject pausePanel;
 	public GameObject shopPanel;
 	public GameObject shopPanelPause;
+	public GameObject[] controls;
 	public Slider mpBar;
 
 	public Text scoreText;
@@ -97,6 +98,10 @@ public class UIManager : MonoBehaviour
 		//Start pre Wave countdown
 		if(startCountdown == true && gameOver == false)
 		{
+			foreach (GameObject buttons in controls)
+			{
+				buttons.GetComponent<Button>().interactable = false;
+			}
 
 	
 			//Tap to start round
@@ -130,8 +135,13 @@ public class UIManager : MonoBehaviour
 		//Start actual wave countdown
 		else if(startWaveCountdown == true && gameOver == false)
 		{
+			
 			EnemySpawner.instance.PickEnemyType();
 			GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
+			foreach (GameObject buttons in controls)
+			{
+				buttons.GetComponent<Button>().interactable = true;
+			}
 			shootButton.GetComponent<Button> ().interactable = true;
 			timeCountDown -= Time.deltaTime;
 			///////////////////////
@@ -145,7 +155,7 @@ public class UIManager : MonoBehaviour
 				shootButton.GetComponent<Button> ().interactable = false;
 				DestroyAllEnemies ();
 				//touch to continue after score highlights
-				if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+				/*if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 				{
 					touchCnt = touchCnt + 1;
 
@@ -163,7 +173,7 @@ public class UIManager : MonoBehaviour
 					gameStartCountdown = 3.5f;
 					waveCount = waveCount + 1;
 					ScoreManager.instance.SetPlayerScores ();
-				}
+				}*/
 				//inbetweenTimer -= Time.deltaTime;
 			}
 			/*if (inbetweenTimer <= 0)
@@ -205,6 +215,21 @@ public class UIManager : MonoBehaviour
 			death = true;
 		}
 
+	}
+
+	public void nextWaveStart()
+	{
+		touchCnt = 0;
+		audioU.PlayOneShot (countdown);
+		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
+		waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
+		waveEndPanel.GetComponent<Animator> ().Play ("WaveEndAway");
+		waveEndPanel.SetActive (false);
+		startWaveCountdown = false;
+		startCountdown = true;
+		gameStartCountdown = 3.5f;
+		waveCount = waveCount + 1;
+		ScoreManager.instance.SetPlayerScores ();
 	}
 
 	public void GameStart ()
