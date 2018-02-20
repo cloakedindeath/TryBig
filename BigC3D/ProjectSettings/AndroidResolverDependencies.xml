@@ -1,4 +1,5 @@
 <dependencies>
+<<<<<<< HEAD
   <packages>
     <package>com.google.games:gpgs-plugin-support:0.9.50</package>
   </packages>
@@ -29,4 +30,8 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-license-11.6.2</file>
     <file>Assets/Plugins/Android/com.google.games.gpgs-plugin-support-0.9.50</file>
   </files>
+=======
+  <packages />
+  <files />
+>>>>>>> newWave
 </dependencies>

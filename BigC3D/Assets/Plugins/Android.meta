@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d863d9f4d0163c9428c6c1dc6fa8a783
 folderAsset: yes
 timeCreated: 1518816767
+=======
+guid: b1320004a3cc7c24983649fc007dcd31
+folderAsset: yes
+timeCreated: 1519162316
+>>>>>>> newWave
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
