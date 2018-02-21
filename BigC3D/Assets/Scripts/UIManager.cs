@@ -321,6 +321,8 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
+		waveEndPanel.SetActive (false);
+		UnityAdManager.instance.ShowAd2 ();
 		gameOver = true;
 		if(!audioU.isPlaying && deathCnt == 0 && gameOver == true)
 		{
@@ -337,12 +339,13 @@ public class UIManager : MonoBehaviour
 		gameOverPanel.GetComponent<Animator> ().Play ("GameOverPopUp");
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
 		ScoreManager.instance.SetPlayerScores ();
-		waveEndPanel.SetActive (false);
+
 
 	}
 
 	public void RestartGame()
 	{
+		waveEndPanel.SetActive (false);
 		audioU.PlayOneShot (click, 1f);
 		gameOver = false;
 		audioU.Stop ();

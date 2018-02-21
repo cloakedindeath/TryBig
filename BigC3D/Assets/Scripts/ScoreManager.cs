@@ -268,4 +268,9 @@ public class ScoreManager : MonoBehaviour
 		}
 	}
 
+	public void paidAddLife()
+	{
+		UnityAdManager.instance.ShowAd();
+		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+	}
 }

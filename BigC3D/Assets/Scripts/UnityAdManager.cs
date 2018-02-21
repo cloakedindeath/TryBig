@@ -32,7 +32,7 @@ public class UnityAdManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		Debug.Log (PlayerPrefs.GetInt ("Adcount"));
 	}
 
 	/*public void ShowAd_timed()
@@ -66,4 +66,29 @@ public class UnityAdManager : MonoBehaviour
 			Advertisement.Show ("video");
 		}
 	}
+
+	public void ShowAd2()
+	{
+		if(PlayerPrefs.HasKey("Adcount"))
+		{
+			if(PlayerPrefs.GetInt("Adcount") == 2)
+			{
+				if(Advertisement.IsReady("video"))
+				{
+					Advertisement.Show ("video");
+				}
+
+				PlayerPrefs.SetInt ("Adcount", 0);
+			}
+			else
+			{
+				PlayerPrefs.SetInt ("Adcount", (PlayerPrefs.GetInt ("Adcount") + 1));
+			}
+		}
+		else
+		{
+			PlayerPrefs.SetInt ("Adcount", 0);
+		}
+	}
+
 }
