@@ -51,6 +51,15 @@ public class TouchTest : MonoBehaviour
 
 	void Update() 
 	{
+		/*if(Application.platform == RuntimePlatform.Android)
+		{
+			
+		}
+		else
+		{
+			
+		}*/
+
 		//Debug.Log (ammoType);
 		if(UIManager.instance.gameOver == false)
 		{

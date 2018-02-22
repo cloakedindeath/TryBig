@@ -321,6 +321,7 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
+		
 		waveEndPanel.SetActive (false);
 		UnityAdManager.instance.ShowAd2 ();
 		gameOver = true;
@@ -338,6 +339,7 @@ public class UIManager : MonoBehaviour
 		DestroyAllEnemies ();
 		gameOverPanel.GetComponent<Animator> ().Play ("GameOverPopUp");
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
+		LeaderBoardManager.instance.AddScoreToLeaderboard ();
 		ScoreManager.instance.SetPlayerScores ();
 
 
@@ -442,6 +444,7 @@ public class UIManager : MonoBehaviour
 	}
 	public void OpenShop()
 	{
+		UnityAdManager.instance.ShowAd ();
 		audioU.PlayOneShot (click, 1f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopPop");
 	}
@@ -500,4 +503,8 @@ public class UIManager : MonoBehaviour
 		waveCount += 10;;
 	}
 
+	public void ShowLeaderboard()
+	{
+		LeaderBoardManager.instance.ShowLeaderboard ();
+	}
 }
