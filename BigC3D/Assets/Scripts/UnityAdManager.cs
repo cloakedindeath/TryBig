@@ -20,7 +20,7 @@ public class UnityAdManager : MonoBehaviour
 			Destroy (this.gameObject);
 		}
 
-		Advertisement.Initialize ("1675995", true);
+		Advertisement.Initialize ("1675995", false);
 	}
 
 	// Use this for initialization
