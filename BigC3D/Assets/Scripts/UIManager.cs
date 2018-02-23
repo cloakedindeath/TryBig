@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		LeaderBoardManager.instance.Login();
 		audioU = GetComponent<AudioSource>();
 		death = false;
 		//DontDestroyOnLoad (livesTimerOB);
@@ -339,8 +340,9 @@ public class UIManager : MonoBehaviour
 		DestroyAllEnemies ();
 		gameOverPanel.GetComponent<Animator> ().Play ("GameOverPopUp");
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
-		LeaderBoardManager.instance.AddScoreToLeaderboard ();
+
 		ScoreManager.instance.SetPlayerScores ();
+		LeaderBoardManager.instance.AddScoreToLeaderboard ();
 
 
 	}
@@ -505,6 +507,7 @@ public class UIManager : MonoBehaviour
 
 	public void ShowLeaderboard()
 	{
-		LeaderBoardManager.instance.ShowLeaderboard ();
+		audioU.PlayOneShot (click, 1f);
+		LeaderBoardManager.instance._ShowLeaderboard ();
 	}
 }

@@ -8021,8 +8021,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1899812487}
-        m_MethodName: ShowLeaderboard
+      - m_Target: {fileID: 1801882063}
+        m_MethodName: _ShowLeaderboard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
