@@ -42,7 +42,7 @@ public class TouchTest : MonoBehaviour
 		ammoType = 0;
 		ammoOnScreen = 0;
 		//ammoSwitchButton.image.sprite = ammoColor [0];
-		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
+		//InvokeRepeating("Idle",0.1f,0.1f);
 	}
 
 	void Start()
@@ -90,6 +90,11 @@ public class TouchTest : MonoBehaviour
 			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
 		}
 
+	}
+
+	public void Idle()
+	{
+		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
 	}
 
 	public void moveLeft()

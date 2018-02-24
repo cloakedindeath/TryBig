@@ -68,6 +68,7 @@ public class UIManager : MonoBehaviour
 		}
 		gameOver = true;
 		mpCnt = 0;
+		//GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
 	}
 	// Use this for initialization
 	void Start () 
