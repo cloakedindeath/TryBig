@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		LeaderBoardManager.instance.Login();
+		//LeaderBoardManager.instance.Login();
 		audioU = GetComponent<AudioSource>();
 		death = false;
 		//DontDestroyOnLoad (livesTimerOB);
@@ -342,7 +342,7 @@ public class UIManager : MonoBehaviour
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
 
 		ScoreManager.instance.SetPlayerScores ();
-		LeaderBoardManager.instance.AddScoreToLeaderboard ();
+		LeaderBoardManager.instance.OnAddScoreToLeaderBoard();
 
 
 	}
@@ -508,6 +508,6 @@ public class UIManager : MonoBehaviour
 	public void ShowLeaderboard()
 	{
 		audioU.PlayOneShot (click, 1f);
-		LeaderBoardManager.instance._ShowLeaderboard ();
+		LeaderBoardManager.instance.OnShowLeaderBoard ();
 	}
 }

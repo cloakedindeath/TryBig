@@ -29,6 +29,7 @@ public class TouchTest : MonoBehaviour
 	public Vector3 destination;
 	public bool goleft = false;
 	public bool goright = false;
+	public GameObject model;
 
 
 
@@ -41,6 +42,7 @@ public class TouchTest : MonoBehaviour
 		ammoType = 0;
 		ammoOnScreen = 0;
 		//ammoSwitchButton.image.sprite = ammoColor [0];
+		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
 	}
 
 	void Start()
@@ -59,7 +61,6 @@ public class TouchTest : MonoBehaviour
 		{
 			
 		}*/
-
 		//Debug.Log (ammoType);
 		if(UIManager.instance.gameOver == false)
 		{
@@ -68,12 +69,22 @@ public class TouchTest : MonoBehaviour
 			//////////////////////////////////////////////////
 
 		}
+		if(goleft == false && goright == false)
+		{
+			model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
+		}
 		if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
 		{
 			if(goright == true)
-			{ transform.Translate(-Vector3.right * speed * Time.deltaTime); }
+			{ 	model.GetComponent<Animator> ().Play ("ANIM_Player_Run_Right");
+				transform.Translate(-Vector3.right * speed * Time.deltaTime); }
 			if(goleft == true)
-			{ transform.Translate(Vector3.right * speed * Time.deltaTime); }
+			{ 
+				model.GetComponent<Animator> ().Play ("ANIM_Player_Run_Left");
+				transform.Translate(Vector3.right * speed * Time.deltaTime); }
+			else{
+				//model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
+			}
 			
 			Vector2 p = player.transform.position;
 			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
@@ -204,7 +215,7 @@ public class TouchTest : MonoBehaviour
 	{
 		if(ammoOnScreen <=2 && UIManager.instance.startWaveCountdown == true)
 		{
-
+			model.GetComponent<Animator> ().Play ("ANIM_Player_Fire_01");
 			Debug.Log ("Shooting");
 			audioC.PlayOneShot (shoot);
 			Rigidbody instantiatedProjectile = Instantiate (projectile1,
@@ -223,7 +234,7 @@ public class TouchTest : MonoBehaviour
 	{
 		if(ammoOnScreen <=2 && UIManager.instance.startWaveCountdown == true)
 		{
-
+			model.GetComponent<Animator> ().Play ("ANIM_Player_Fire_01");
 			Debug.Log ("Shooting");
 			audioC.PlayOneShot (shoot);
 			Rigidbody instantiatedProjectile = Instantiate (projectile2,
@@ -242,7 +253,7 @@ public class TouchTest : MonoBehaviour
 	{
 		if(ammoOnScreen <= 2 && UIManager.instance.startWaveCountdown == true)
 		{
-
+			model.GetComponent<Animator> ().Play ("ANIM_Player_Fire_01");
 			Debug.Log ("Shooting kool");
 			audioC.PlayOneShot (shoot);
 			Rigidbody instantiatedProjectile = Instantiate (projectile3,
