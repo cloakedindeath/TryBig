@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
 
 	void MoveEnemyToPlayer()
 	{
+		
 		rb.velocity = new Vector3 (0,0,speed);
 	}
 
