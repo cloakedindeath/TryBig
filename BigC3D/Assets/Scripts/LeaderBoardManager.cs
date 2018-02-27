@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
-using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
+using GooglePlayGames.BasicApi;
+
+//using GoogleMobileAds.Api;
+
 
 public class LeaderBoardManager : MonoBehaviour 
 {
@@ -12,39 +15,43 @@ public class LeaderBoardManager : MonoBehaviour
 
 	void Awake()
 	{
+		PlayGamesPlatform.Activate();
+		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+
+			.Build();
+
+		PlayGamesPlatform.InitializeInstance(config);
+		// recommended for debugging:
+		PlayGamesPlatform.DebugLogEnabled = true;
+		// Activate the Google Play Games platform
+	
+		if (! PlayGamesPlatform.Instance.localUser.authenticated) {
+			PlayGamesPlatform.Instance.Authenticate ((bool success) => {
+				if (success) {
+					/// Signed in! Hooray!
+				} else {
+					/// Not signed in. We'll want to show a sign in button
+				}
+			}, true);   /// <--- That "true" is very important!
+		} else {
+			Debug.Log("We're already signed in");
+		}
+		
 		if(instance == null)
 		{
 			instance = this;
 		}
-		//PlayGamesPlatform.Activate ();
 
-		/*#if UNITY_ANDROID*/
-		//  ADD THIS CODE BETWEEN THESE COMMENTS
-
-		// Create client configuration
-		PlayGamesClientConfiguration config = new 
-			PlayGamesClientConfiguration.Builder()
-			.Build();
-
-		// Enable debugging output (recommended)
-		PlayGamesPlatform.DebugLogEnabled = true;
-
-		// Initialize and activate the platform
-		PlayGamesPlatform.InitializeInstance(config);
-		/*PlayGamesPlatform.Activate();
-		// END THE CODE TO PASTE INTO START
-		#endif*/
-		//Login();
 	}
 
 	#region DEFAULT_UNITY_CALLBACKS
 	void Start ()
 	{
 		// recommended for debugging:
-		PlayGamesPlatform.DebugLogEnabled = true;
+		//PlayGamesPlatform.DebugLogEnabled = true;
 
 		// Activate the Google Play Games platform
-		PlayGamesPlatform.Activate ();
+		//PlayGamesPlatform.Activate ();
 	}
 	#endregion
 	#region BUTTON_CALLBACKS
@@ -175,3 +182,22 @@ public class LeaderBoardManager : MonoBehaviour
 		}
 	}
 }
+//PlayGamesPlatform.Activate ();
+
+		/*#if UNITY_ANDROID*/
+		//  ADD THIS CODE BETWEEN THESE COMMENTS
+
+		// Create client configuration
+		//PlayGamesClientConfiguration config = new 
+			//PlayGamesClientConfiguration.Builder()
+			//.Build();
+
+		// Enable debugging output (recommended)
+		//PlayGamesPlatform.DebugLogEnabled = true;
+
+		// Initialize and activate the platform
+		//PlayGamesPlatform.InitializeInstance(config);*/
+		/*PlayGamesPlatform.Activate();
+		// END THE CODE TO PASTE INTO START
+		#endif*/
+		//Login();

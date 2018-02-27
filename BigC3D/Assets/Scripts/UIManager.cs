@@ -343,7 +343,7 @@ public class UIManager : MonoBehaviour
 		gameOverScore.text = "Score: " + ScoreManager.instance.score.ToString();
 
 		ScoreManager.instance.SetPlayerScores ();
-		LeaderBoardManager.instance.OnAddScoreToLeaderBoard();
+		LeaderBoardManager.instance.AddScoreToLeaderboard();
 
 
 	}
@@ -509,6 +509,6 @@ public class UIManager : MonoBehaviour
 	public void ShowLeaderboard()
 	{
 		audioU.PlayOneShot (click, 1f);
-		LeaderBoardManager.instance.OnShowLeaderBoard ();
+		LeaderBoardManager.instance._ShowLeaderboard ();
 	}
 }

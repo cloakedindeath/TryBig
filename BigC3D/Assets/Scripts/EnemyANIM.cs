@@ -8,11 +8,11 @@ public class EnemyANIM : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		model.GetComponent<Animator> ().Play ("ANIM_Monster_Walk_01");
+		//model.GetComponent<Animator> ().Play ("ANIM_Monster_Walk_01");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		model.GetComponent<Animator> ().Play ("ANIM_Monster_Walk_01");
 	}
 }

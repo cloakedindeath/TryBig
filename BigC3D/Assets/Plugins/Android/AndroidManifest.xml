@@ -23,6 +23,9 @@
     <meta-data android:name="unity.splash-mode" android:value="0" />
     <meta-data android:name="unity.splash-enable" android:value="True" />
     <meta-data android:name="android.max_aspect" android:value="2.1" />
+    <activity android:name="com.google.games.bridge.NativeBridgeActivity"
+		android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+		 
   </application>
   <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="26" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
