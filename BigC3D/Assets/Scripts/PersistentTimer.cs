@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Timers;
 
 public class PersistentTimer : MonoBehaviour 
 {
 	public static PersistentTimer instance;
-
+	System.DateTime expiryTime;
 	public Text timer;
-	int minutes = 1;
+	 public int minutes = 1;
 	int seconds = 60;
 	float milliseconds = 0;
 
@@ -32,6 +33,10 @@ public class PersistentTimer : MonoBehaviour
 			PlayerPrefs.SetFloat("TimeDiff", 0);
 			//PlayerPrefs.DeleteKey ("TimeOnExit");
 			seconds = (int)diff;
+		}
+
+		if ( !this.ReadTimestamp ("timer") ) {
+			this.ScheduleTimer ();
 		}
 		/*else{
 			PlayerPrefs.SetFloat ("TimeOnExit", seconds);
@@ -64,6 +69,11 @@ public class PersistentTimer : MonoBehaviour
 
 	public void Update()
 	{
+		Debug.Log (expiryTime.ToString());
+		if ( System.DateTime.Now > expiryTime ) {
+			//OnTimer ();
+			this.ScheduleTimer ();
+		}
 		Debug.Log(PlayerPrefs.GetFloat("TimeOnExit"));
 		//Debug.Log(savedSeconds);
 		Debug.Log (seconds);
@@ -158,4 +168,49 @@ public class PersistentTimer : MonoBehaviour
 			PlayerPrefs.SetFloat ("TimeOnExit", seconds);
 		}
 	}
+
+	void ScheduleTimer () {
+		expiryTime = System.DateTime.Now.AddDays (1.0);
+		this.WriteTimestamp ("timer");
+	}
+	private bool ReadTimestamp (string key) {
+		long tmp = System.Convert.ToInt64 (PlayerPrefs.GetString(key, "0"));
+		if ( tmp == 0 ) {
+			return false;
+		}
+		expiryTime = System.DateTime.FromBinary (tmp);
+		return true;
+	}
+
+	private void WriteTimestamp (string key) {
+		PlayerPrefs.SetString (key, expiryTime.ToBinary().ToString());
+	}
 }
+/*DateTime expiryTime;
+void Start () {
+	if ( !this.ReadTimestamp ("timer") ) {
+		this.ScheduleTimer ();
+	}
+}
+void Update () {
+	if ( DateTime.Now > expiryTime ) {
+		OnTimer ();
+		this.ScheduleTimer ();
+	}
+}
+void ScheduleTimer () {
+	expiryTime = DateTime.Now.AddDays (1.0);
+	this.WriteTimestamp ("timer");
+}
+private bool ReadTimestamp (string key) {
+	long tmp = Convert.ToInt64 (PlayerPrefs.GetString(key, "0"));
+	if ( tmp == 0 ) {
+		return false;
+	}
+	expiryTime = DateTime.FromBinary (tmp);
+	return true;
+}
+
+private void WriteTimestamp (string key) {
+	PlayerPrefs.SetString (key, expiryTime.ToBinary().ToString());
+}*/

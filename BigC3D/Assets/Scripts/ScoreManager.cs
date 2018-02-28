@@ -271,6 +271,7 @@ public class ScoreManager : MonoBehaviour
 	public void paidAddLife()
 	{
 		UnityAdManager.instance.ShowAd();
+		PersistentTimer.instance.minutes = 1;
 		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
 	}
 }

@@ -325,7 +325,7 @@ public class UIManager : MonoBehaviour
 	{
 		
 		waveEndPanel.SetActive (false);
-		UnityAdManager.instance.ShowAd2 ();
+		//UnityAdManager.instance.ShowAd2 ();
 		gameOver = true;
 		if(!audioU.isPlaying && deathCnt == 0 && gameOver == true)
 		{
