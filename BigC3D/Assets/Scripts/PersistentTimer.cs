@@ -9,7 +9,7 @@ public class PersistentTimer : MonoBehaviour
 	public static PersistentTimer instance;
 	System.DateTime expiryTime;
 	public Text timer;
-	 public int minutes = 1;
+	public int minutes = 1;
 	int seconds = 60;
 	float milliseconds = 0;
 
@@ -139,7 +139,8 @@ public class PersistentTimer : MonoBehaviour
 				PlayerPrefs.SetFloat ("TimeOnExit", 0);
 				PlayerPrefs.SetInt("lives", 3);
 				ScoreManager.instance.hp = 10;
-				minutes = 1;
+				savedSeconds = 60;
+				//minutes = 1;
 				//seconds = 60;
 			}
 		}

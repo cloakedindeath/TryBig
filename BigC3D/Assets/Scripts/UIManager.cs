@@ -69,6 +69,12 @@ public class UIManager : MonoBehaviour
 		gameOver = true;
 		mpCnt = 0;
 		//GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
+		if (PlayerPrefs.GetInt ("lives") <= 0) {
+			ScoreManager.instance.waitPanel.SetActive (true);
+		}
+		else if (PlayerPrefs.GetInt ("lives") >= 1) {
+			ScoreManager.instance.waitPanel.SetActive (false);
+		}
 	}
 	// Use this for initialization
 	void Start () 
@@ -295,7 +301,7 @@ public class UIManager : MonoBehaviour
 	{
 		audioU.PlayOneShot (click, 1f);
 		gameOver = true;
-		PlayerPrefs.SetFloat ("TimeOnExit", PersistentTimer.instance.savedSeconds);
+		//PlayerPrefs.SetFloat ("TimeOnExit", PersistentTimer.instance.savedSeconds);
 		SceneManager.LoadScene("Menu");
 	}
 		
@@ -397,6 +403,14 @@ public class UIManager : MonoBehaviour
 		gameStartCountdown = -1f;
 		timeCountDown = 0;
 		touchCnt = 0;
+		if (PlayerPrefs.GetInt ("lives") <= 0) {
+			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+			ScoreManager.instance.waitPanel.SetActive (true);
+		}
+		else if (PlayerPrefs.GetInt ("lives") >= 1) {
+			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+		}
+
 
 	}
 
@@ -415,6 +429,7 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	#region Button Click Events
 	public void OpenHowTo()
 	{
 		audioU.PlayOneShot (click, 1f);
@@ -511,4 +526,6 @@ public class UIManager : MonoBehaviour
 		audioU.PlayOneShot (click, 1f);
 		LeaderBoardManager.instance._ShowLeaderboard ();
 	}
+
+	#endregion
 }

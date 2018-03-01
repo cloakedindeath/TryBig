@@ -18,19 +18,19 @@ public class MenuUIManager : MonoBehaviour
 		Invoke ("OptionsButtonPulse", 1f);
 		audioSource = GetComponent<AudioSource>();
 		//audioSource.Play();
-		timer = 0f;
-		PlayerPrefs.SetFloat ("TimeDiff", timer);
+		//timer = 0f;
+		//PlayerPrefs.SetFloat ("TimeDiff", timer);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log (PlayerPrefs.GetFloat("TimeDiff"));
-		if(PlayerPrefs.HasKey("TimeOnExit"))
+		//Debug.Log (PlayerPrefs.GetFloat("TimeDiff"));
+		/*if(PlayerPrefs.HasKey("TimeOnExit"))
 		{
-			timer += Time.deltaTime;
-			PlayerPrefs.SetFloat ("TimeDiff", timer);
-		}
+			//timer += Time.deltaTime;
+			//PlayerPrefs.SetFloat ("TimeDiff", timer);
+		}*/
 		//Debug.Log (timer);
 	}
 

@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
 	public AudioClip mpDing;
 	public bool ding;
 	public int dingCnt = 1;
+	public GameObject waitPanel;
 
 	void Awake()
 	{
@@ -87,9 +88,11 @@ public class ScoreManager : MonoBehaviour
 				GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
 				shootButton.GetComponent<Button> ().interactable = false;
 				resumeButton.GetComponent<Button> ().interactable = false;
+				resumeButton.gameObject.SetActive (false);
 				UIManager.instance.GameOver ();
-				UIManager.instance.livesTimerOB.SetActive (true);
-				UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
+				//waitPanel.SetActive (true);
+				//UIManager.instance.livesTimerOB.SetActive (true);
+				//UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
 				//lives = 0;
 
 
@@ -105,8 +108,10 @@ public class ScoreManager : MonoBehaviour
 			else
 			{
 				resumeButton.GetComponent<Button> ().interactable = true;
+				resumeButton.gameObject.SetActive (true);
 				UIManager.instance.livesTimerOB.SetActive (false);
 				ding = false;
+				//waitPanel.SetActive (false);
 			}
 
 		
@@ -271,7 +276,8 @@ public class ScoreManager : MonoBehaviour
 	public void paidAddLife()
 	{
 		UnityAdManager.instance.ShowAd();
-		PersistentTimer.instance.minutes = 1;
+		//PersistentTimer.instance.savedSeconds = 60;
+		waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
 	}
 }
