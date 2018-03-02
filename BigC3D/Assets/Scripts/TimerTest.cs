@@ -9,12 +9,13 @@ public class TimerTest : MonoBehaviour
 	public static TimerTest instance;
 	public float msToWait = 15000f;
 
-	private Text timer;
-	private Button chestButton;
+	public Text timer;
+	public Button chestButton;
 	private ulong lastChestOpen;
 	public GameObject waitPanel;
 	AudioSource audioT;
 	public AudioClip click;
+
 
 	void Awake()
 	{
@@ -45,6 +46,7 @@ public class TimerTest : MonoBehaviour
 		else if (PlayerPrefs.GetInt ("lives") >= 1) {
 			ScoreManager.instance.waitPanel.SetActive (false);
 		}*/
+	
 		if(!chestButton.IsInteractable())
 		{
 			if(isChestReady())
@@ -70,7 +72,7 @@ public class TimerTest : MonoBehaviour
 		}
 	}
 
-	public void ChestClick()
+	/*public void ChestClick()
 	{
 		//Debug.Log( DateTime.Now.Ticks.ToString());
 		//lastChestOpen = (ulong)DateTime.Now.Ticks;
@@ -84,13 +86,17 @@ public class TimerTest : MonoBehaviour
 		//waitPanel.SetActive(false);
 		UIManager.instance.GoBackToMenu();
 
-	}
+	}*/
 
 	public void Deathcheck()
 	{
-		lastChestOpen = (ulong)DateTime.Now.Ticks;
-		PlayerPrefs.SetString ("LastRewardGiven", DateTime.Now.Ticks.ToString ());
-		//chestButton.interactable = false;
+		if (PlayerPrefs.GetInt ("lives") <= 0) {
+			lastChestOpen = (ulong)DateTime.Now.Ticks;
+			PlayerPrefs.SetString ("LastRewardGiven", DateTime.Now.Ticks.ToString ());
+			chestButton.interactable = false;
+		}
+
+
 	}
 
 	private bool isChestReady()
@@ -99,12 +105,12 @@ public class TimerTest : MonoBehaviour
 		ulong m = diff / TimeSpan.TicksPerMillisecond;
 
 		float secondsLeft = ((float)msToWait - m) / 1000f;
-		if(secondsLeft < 0)
+		if(secondsLeft < 0 )
 		{
-			timer.text = "";
+			//timer.text = "";
 			ScoreManager.instance.hp = 10;
 			PlayerPrefs.SetInt ("lives", 3);
-			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//waitPanel.SetActive(false);
 			UIManager.instance.GoBackToMenu();
 			return true;

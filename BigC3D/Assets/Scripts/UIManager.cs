@@ -68,12 +68,12 @@ public class UIManager : MonoBehaviour
 		}
 		gameOver = true;
 		mpCnt = 0;
-		//GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = true;
 		if (PlayerPrefs.GetInt ("lives") <= 0) {
-			ScoreManager.instance.waitPanel.SetActive (true);
+			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+			//ScoreManager.instance.waitPanel.SetActive (true);
 		}
-		else if (PlayerPrefs.GetInt ("lives") >= 1) {
-			ScoreManager.instance.waitPanel.SetActive (false);
+		if (PlayerPrefs.GetInt ("lives") >= 1) {
+			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		}
 	}
 	// Use this for initialization
@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
 	void Update () 
 	{
 		
-
+	
 		/////////////////////////////////
 		//Start pre Wave countdown
 		if(startCountdown == true && gameOver == false)
@@ -405,9 +405,9 @@ public class UIManager : MonoBehaviour
 		touchCnt = 0;
 		if (PlayerPrefs.GetInt ("lives") <= 0) {
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			ScoreManager.instance.waitPanel.SetActive (true);
+			//ScoreManager.instance.waitPanel.SetActive (true);
 		}
-		else if (PlayerPrefs.GetInt ("lives") >= 1) {
+		 if (PlayerPrefs.GetInt ("lives") >= 1) {
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		}
 
