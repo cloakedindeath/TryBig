@@ -66,6 +66,13 @@ public class UnityAdManager : MonoBehaviour
 			Advertisement.Show ("video");
 		}
 	}
+	public void rewardAd()
+	{
+		if(Advertisement.IsReady("rewardedVideo"))
+		{
+			Advertisement.Show ("rewardedVideo");
+		}
+	}
 
 	public void ShowAd2()
 	{

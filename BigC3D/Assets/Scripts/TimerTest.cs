@@ -47,7 +47,7 @@ public class TimerTest : MonoBehaviour
 			ScoreManager.instance.waitPanel.SetActive (false);
 		}*/
 	
-		if(!chestButton.IsInteractable())
+		if(chestButton.interactable == false && UIManager.instance.gameOver == true)
 		{
 			if(isChestReady())
 			{
@@ -72,21 +72,21 @@ public class TimerTest : MonoBehaviour
 		}
 	}
 
-	/*public void ChestClick()
+	public void ChestClick()
 	{
 		//Debug.Log( DateTime.Now.Ticks.ToString());
 		//lastChestOpen = (ulong)DateTime.Now.Ticks;
 		//PlayerPrefs.SetString ("LastRewardGiven", DateTime.Now.Ticks.ToString ());
 		//chestButton.interactable = false;
-		audioT.PlayOneShot(click,1f);
+		//audioT.PlayOneShot(click,1f);
 		// Gives lives back or reward the player
 		ScoreManager.instance.hp = 10;
-		PlayerPrefs.SetInt ("lives", 3);
+		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt("lives" + 3));
 		ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		//waitPanel.SetActive(false);
 		UIManager.instance.GoBackToMenu();
 
-	}*/
+	}
 
 	public void Deathcheck()
 	{
@@ -107,8 +107,11 @@ public class TimerTest : MonoBehaviour
 		float secondsLeft = ((float)msToWait - m) / 1000f;
 		if(secondsLeft < 0 )
 		{
+			ScoreManager.instance.resumeRewardButton.SetActive (false);
+			//ScoreManager.instance.resumeButton.gameObject.SetActive (true);
 			//timer.text = "";
 			ScoreManager.instance.hp = 10;
+			//ChestClick ();
 			PlayerPrefs.SetInt ("lives", 3);
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//waitPanel.SetActive(false);

@@ -333,12 +333,12 @@ public class UIManager : MonoBehaviour
 		waveEndPanel.SetActive (false);
 		//UnityAdManager.instance.ShowAd2 ();
 		gameOver = true;
-		if(!audioU.isPlaying && deathCnt == 0 && gameOver == true)
+		if(!audioU.isPlaying && deathCnt == 0 /*&& gameOver == true*/)
 		{
 			audioU.PlayOneShot (deathSound);
 			deathCnt = 5;
 			death = false;
-			gameOver = false;
+			//gameOver = false;
 		}
 
 		timeCountDown = 0;
@@ -525,6 +525,14 @@ public class UIManager : MonoBehaviour
 	{
 		audioU.PlayOneShot (click, 1f);
 		LeaderBoardManager.instance._ShowLeaderboard ();
+	}
+
+	public void paidAddLife()
+	{
+		UnityAdManager.instance.ShowAd();
+		//PersistentTimer.instance.savedSeconds = 60;
+		ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
 	}
 
 	#endregion

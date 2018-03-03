@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
 	public bool ding;
 	public int dingCnt = 1;
 	public GameObject waitPanel;
+	public GameObject resumeRewardButton;
+
 
 	void Awake()
 	{
@@ -276,6 +278,7 @@ public class ScoreManager : MonoBehaviour
 	public void paidAddLife()
 	{
 		UnityAdManager.instance.ShowAd();
+		resumeRewardButton.SetActive (true);
 		//PersistentTimer.instance.savedSeconds = 60;
 		waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);

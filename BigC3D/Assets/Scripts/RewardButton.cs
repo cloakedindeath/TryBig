@@ -59,9 +59,10 @@ public class RewardButton : MonoBehaviour {
 		lastChestOpen = (ulong)DateTime.Now.Ticks;
 		PlayerPrefs.SetString ("RewardGiven", DateTime.Now.Ticks.ToString ());
 		chestButton.interactable = false;
-
+		UIManager.instance.gameOver = true;
 		// Gives lives back or reward the player
-
+		ScoreManager.instance.resumeRewardButton.SetActive (true);
+		ScoreManager.instance.resumeButton.gameObject.SetActive (false);
 		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
 		ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 	}
