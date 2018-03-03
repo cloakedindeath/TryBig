@@ -15,17 +15,15 @@ public class LeaderBoardManager : MonoBehaviour
 
 	void Awake()
 	{
-		PlayGamesPlatform.Activate();
-		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
-
-			.Build();
-
+		//
+		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
 		PlayGamesPlatform.InitializeInstance(config);
+		PlayGamesPlatform.Activate();
 		// recommended for debugging:
 		PlayGamesPlatform.DebugLogEnabled = true;
 		// Activate the Google Play Games platform
 	
-		if (! PlayGamesPlatform.Instance.localUser.authenticated) {
+		/*if (! PlayGamesPlatform.Instance.localUser.authenticated) {
 			PlayGamesPlatform.Instance.Authenticate ((bool success) => {
 				if (success) {
 					/// Signed in! Hooray!
@@ -35,7 +33,7 @@ public class LeaderBoardManager : MonoBehaviour
 			}, true);   /// <--- That "true" is very important!
 		} else {
 			Debug.Log("We're already signed in");
-		}
+		}*/
 		
 		if(instance == null)
 		{
@@ -47,11 +45,7 @@ public class LeaderBoardManager : MonoBehaviour
 	#region DEFAULT_UNITY_CALLBACKS
 	void Start ()
 	{
-		// recommended for debugging:
-		//PlayGamesPlatform.DebugLogEnabled = true;
-
-		// Activate the Google Play Games platform
-		//PlayGamesPlatform.Activate ();
+		LogIn ();
 	}
 	#endregion
 	#region BUTTON_CALLBACKS
@@ -134,7 +128,7 @@ public class LeaderBoardManager : MonoBehaviour
 		}
 	}*/
 
-	public void AddScoreToLeaderboard()
+	public  void AddScoreToLeaderboard()
 	{
 		Social.ReportScore (PlayerPrefs.GetInt ("HighScore"), "CgkIsvTzoaYHEAIQAA", (bool success) => {
 			if(success)
@@ -144,7 +138,7 @@ public class LeaderBoardManager : MonoBehaviour
 		});
 	}
 
-	public void _ShowLeaderboard()
+	public  void _ShowLeaderboard()
 	{
 		
 		//PlayGamesPlatform.Instance.ShowLeaderboardUI("CgkIsvTzoaYHEAIQAA");
@@ -164,7 +158,7 @@ public class LeaderBoardManager : MonoBehaviour
 
 	}
 
-	public void SignInCallback(bool success) {
+	public  void SignInCallback(bool success) {
 		if (success) {
 			Debug.Log("(Lollygagger) Signed in!");
 
