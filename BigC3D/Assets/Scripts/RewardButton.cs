@@ -10,8 +10,8 @@ public class RewardButton : MonoBehaviour {
 	//
 	public float msToWait = 15000f;
 
-	private Text timer2;
-	private Button chestButton;
+	public Text timer2;
+	public Button chestButton;
 	private ulong lastChestOpen;
 
 	private void Start()
@@ -75,7 +75,7 @@ public class RewardButton : MonoBehaviour {
 		float secondsLeft = ((float)msToWait - m) / 1000f;
 		if(secondsLeft < 0)
 		{
-			timer2.text = "Watch Ad for 1 life";
+			timer2.text = "Watch Ad";
 			return true;
 		}
 		else

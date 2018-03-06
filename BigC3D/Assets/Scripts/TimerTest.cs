@@ -53,7 +53,7 @@ public class TimerTest : MonoBehaviour
 			{
 				chestButton.interactable = true;
 
-				return;
+				//return;
 			}
 			//Set the Timer
 			ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);

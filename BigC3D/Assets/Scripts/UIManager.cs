@@ -74,6 +74,7 @@ public class UIManager : MonoBehaviour
 		}
 		if (PlayerPrefs.GetInt ("lives") >= 1) {
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+			//ScoreManager.instance.waitPanel.SetActive (false);
 		}
 	}
 	// Use this for initialization
@@ -409,6 +410,7 @@ public class UIManager : MonoBehaviour
 		}
 		 if (PlayerPrefs.GetInt ("lives") >= 1) {
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+			//ScoreManager.instance.waitPanel.SetActive (false);
 		}
 
 

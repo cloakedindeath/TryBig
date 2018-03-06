@@ -23,7 +23,7 @@ public class LeaderBoardManager : MonoBehaviour
 		PlayGamesPlatform.DebugLogEnabled = true;
 		// Activate the Google Play Games platform
 	
-		/*if (! PlayGamesPlatform.Instance.localUser.authenticated) {
+		if (! PlayGamesPlatform.Instance.localUser.authenticated) {
 			PlayGamesPlatform.Instance.Authenticate ((bool success) => {
 				if (success) {
 					/// Signed in! Hooray!
@@ -33,7 +33,7 @@ public class LeaderBoardManager : MonoBehaviour
 			}, true);   /// <--- That "true" is very important!
 		} else {
 			Debug.Log("We're already signed in");
-		}*/
+		}
 		
 		if(instance == null)
 		{
@@ -45,7 +45,7 @@ public class LeaderBoardManager : MonoBehaviour
 	#region DEFAULT_UNITY_CALLBACKS
 	void Start ()
 	{
-		LogIn ();
+		//LogIn ();
 	}
 	#endregion
 	#region BUTTON_CALLBACKS
