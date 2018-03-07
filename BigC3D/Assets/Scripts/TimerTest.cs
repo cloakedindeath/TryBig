@@ -40,20 +40,18 @@ public class TimerTest : MonoBehaviour
 
 	private void Update()
 	{
-		/*if (PlayerPrefs.GetInt ("lives") <= 0) {
-			ScoreManager.instance.waitPanel.SetActive (true);
-		}
-		else if (PlayerPrefs.GetInt ("lives") >= 1) {
+
+		/*if (PlayerPrefs.GetInt ("lives") >= 1) {
 			ScoreManager.instance.waitPanel.SetActive (false);
 		}*/
-	
-		if(chestButton.interactable == false && UIManager.instance.gameOver == true)
+
+		if(chestButton.interactable == false /*&& UIManager.instance.gameOver == true*/)
 		{
 			if(isChestReady())
 			{
 				chestButton.interactable = true;
 
-				//return;
+				return;
 			}
 			//Set the Timer
 			ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
@@ -81,7 +79,7 @@ public class TimerTest : MonoBehaviour
 		//audioT.PlayOneShot(click,1f);
 		// Gives lives back or reward the player
 		ScoreManager.instance.hp = 10;
-		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt("lives" + 3));
+		PlayerPrefs.SetInt ("lives", 3);
 		ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		//waitPanel.SetActive(false);
 		UIManager.instance.GoBackToMenu();
@@ -105,17 +103,19 @@ public class TimerTest : MonoBehaviour
 		ulong m = diff / TimeSpan.TicksPerMillisecond;
 
 		float secondsLeft = ((float)msToWait - m) / 1000f;
+		//Debug.Log (secondsLeft);
 		if(secondsLeft < 0 )
 		{
 			ScoreManager.instance.resumeRewardButton.SetActive (false);
-			//ScoreManager.instance.resumeButton.gameObject.SetActive (true);
+			ScoreManager.instance.resumeButton.gameObject.SetActive (true);
+			timer.text = "Restore Lives";
 			//timer.text = "";
-			ScoreManager.instance.hp = 10;
+			//ScoreManager.instance.hp = 10;
 			//ChestClick ();
-			PlayerPrefs.SetInt ("lives", 3);
+			//PlayerPrefs.SetInt ("lives", 3);
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//waitPanel.SetActive(false);
-			UIManager.instance.GoBackToMenu();
+			//UIManager.instance.GoBackToMenuSetLives();
 			return true;
 		}
 		else

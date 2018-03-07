@@ -70,7 +70,7 @@ public class ScoreManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		//Debug.Log (PlayerPrefs.GetInt ("FirstTime"));
+		Debug.Log (PlayerPrefs.GetInt ("FirstTime"));
 
 		if (livesGone == false && PlayerPrefs.GetInt("FirstTime") == 0) 
 		{

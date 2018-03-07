@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
 	GameObject[] projectiles;
 	public int touchCnt = 0;
 	public float mpCnt;
-	AudioSource audioU;
+	public AudioSource audioU;
 	public AudioClip deathSound;
 	public AudioClip countdown;
 	public AudioClip click;
@@ -69,12 +69,13 @@ public class UIManager : MonoBehaviour
 		gameOver = true;
 		mpCnt = 0;
 		if (PlayerPrefs.GetInt ("lives") <= 0) {
+			//TimerTest.instance.Deathcheck ();
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			//ScoreManager.instance.waitPanel.SetActive (true);
+			ScoreManager.instance.waitPanel.SetActive (true);
 		}
 		if (PlayerPrefs.GetInt ("lives") >= 1) {
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-			//ScoreManager.instance.waitPanel.SetActive (false);
+			StartCoroutine (WaitPanelDown ());
 		}
 	}
 	// Use this for initialization
@@ -377,7 +378,10 @@ public class UIManager : MonoBehaviour
 	}
 	public void GoBackToMenu()
 	{
-		audioU.PlayOneShot (click, 1f);
+		if (!audioU.isPlaying) {
+			audioU.PlayOneShot (click, 1f);
+		}
+
 		PauseResume ();
 		DestroyAllEnemies ();
 		audioU.Stop ();
@@ -405,12 +409,60 @@ public class UIManager : MonoBehaviour
 		timeCountDown = 0;
 		touchCnt = 0;
 		if (PlayerPrefs.GetInt ("lives") <= 0) {
+			ScoreManager.instance.waitPanel.SetActive (true);
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			//ScoreManager.instance.waitPanel.SetActive (true);
+
 		}
 		 if (PlayerPrefs.GetInt ("lives") >= 1) {
 			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//ScoreManager.instance.waitPanel.SetActive (false);
+			StartCoroutine (WaitPanelDown ());
+		}
+
+
+	}
+	public void GoBackToMenuSetLives()
+	{
+		if (!audioU.isPlaying) {
+			audioU.PlayOneShot (click, 1f);
+		}
+		//PlayerPrefs.SetInt ("lives", 3);
+		PauseResume ();
+		DestroyAllEnemies ();
+		audioU.Stop ();
+		gameOver = false;
+		//touchCnt = 0;
+		//gameStartCountdown = 3.5f;
+		gameOverPanel.GetComponent<Animator> ().Play ("GOAway");
+		startGamePanel.GetComponent<Animator> ().Play ("BeginAnim");
+		waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
+		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
+		shootButton.GetComponent<Button> ().interactable = false;
+		waveCount = 1;
+		//ScoreManager.instance.lives = 3;
+		ScoreManager.instance.score = 0;
+		PlayerPrefs.SetInt ("Score", 0);
+		//gameOver = false;
+		gameOverPanel.SetActive (false);
+		//waveStartPanel.GetComponent<Animator> ().Play ("ResumeGame");
+		startCountdown = false;
+		startWaveCountdown = false;
+		mpCnt = 0;
+		//SceneManager.LoadScene ("Main");
+		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
+		gameStartCountdown = -1f;
+		timeCountDown = 0;
+		touchCnt = 0;
+		if (PlayerPrefs.GetInt ("lives") <= 0) {
+			ScoreManager.instance.waitPanel.SetActive (true);
+			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+			//ScoreManager.instance.waitPanel.SetActive (true);
+			//StartCoroutine (WaitPanelUp ());
+		}
+		if (PlayerPrefs.GetInt ("lives") >= 1) {
+			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+			//ScoreManager.instance.waitPanel.SetActive (false);
+			StartCoroutine (WaitPanelDown ());
 		}
 
 
@@ -451,7 +503,10 @@ public class UIManager : MonoBehaviour
 	}
 	public void PauseResume()
 	{
-		audioU.PlayOneShot (click, 1f);
+		if (!audioU.isPlaying) {
+			audioU.PlayOneShot (click, 1f);
+		}
+		//audioU.PlayOneShot (click, 1f);
 		Time.timeScale = 1;
 		pausePanel.GetComponent<Animator> ().Play ("PauseAway");
 		StartCoroutine (PauseDisable ());
@@ -512,6 +567,17 @@ public class UIManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 		Time.timeScale = 0;
+	}
+	IEnumerator WaitPanelDown()
+	{
+		yield return new WaitForSeconds(0.5f);
+		ScoreManager.instance.waitPanel.SetActive (false);
+		PlayerPrefs.SetInt ("lives", 3);
+	}
+	IEnumerator WaitPanelUp()
+	{
+		yield return new WaitForSeconds(0.5f);
+		ScoreManager.instance.waitPanel.SetActive (true);
 	}
 
 	public void LifeAway()

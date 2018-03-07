@@ -54,7 +54,7 @@ public class LeaderBoardManager : MonoBehaviour
 	/// </summary>
 	public void LogIn ()
 	{
-		Social.localUser.Authenticate ((bool success) =>
+		Social.localUser.Authenticate ((success) =>
 			{
 				if (success) {
 					Debug.Log ("Login Sucess");
