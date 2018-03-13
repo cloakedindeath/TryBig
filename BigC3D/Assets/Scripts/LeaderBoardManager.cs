@@ -66,10 +66,10 @@ public class LeaderBoardManager : MonoBehaviour
 	/// <summary>
 	/// Shows All Available Leaderborad
 	/// </summary>
-	public void OnShowLeaderBoard ()
+	/*public void OnShowLeaderBoard ()
 	{
 		//        Social.ShowLeaderboardUI (); // Show all leaderboard
-		((PlayGamesPlatform)Social.Active).ShowLeaderboardUI (LeaderBoard.leaderboard_highest_score); // Show current (Active) leaderboard
+		((PlayGamesPlatform)Social.Active).ShowLeaderboardUI (//LeaderBoard.leaderboard_highest_score); // Show current (Active) leaderboard
 	}
 	/// <summary>
 	/// Adds Score To leader board
@@ -77,7 +77,7 @@ public class LeaderBoardManager : MonoBehaviour
 	public void OnAddScoreToLeaderBoard ()
 	{
 		if (Social.localUser.authenticated) {
-			Social.ReportScore (PlayerPrefs.GetInt ("HighScore"), LeaderBoard.leaderboard_highest_score, (bool success) =>
+			Social.ReportScore (PlayerPrefs.GetInt ("HighScore"), //LeaderBoard.leaderboard_highest_score, (bool success) =>
 				{
 					if (success) {
 						Debug.Log ("Update Score Success");
@@ -87,7 +87,7 @@ public class LeaderBoardManager : MonoBehaviour
 					}
 				});
 		}
-	}
+	}*/
 	/// <summary>
 	/// On Logout of your Google+ Account
 	/// </summary>
