@@ -53,7 +53,7 @@ public class LeaderBoardManager : MonoBehaviour
 	/// <summary>
 	/// Login In Into Your Google+ Account
 	/// </summary>
-	/*public void LogIn ()
+	public void LogIn ()
 	{
 		Social.localUser.Authenticate ((success) =>
 			{
@@ -63,7 +63,7 @@ public class LeaderBoardManager : MonoBehaviour
 					Debug.Log ("Login failed");
 				}
 			});
-	}*/
+	}
 	/// <summary>
 	/// Shows All Available Leaderborad
 	/// </summary>
@@ -143,7 +143,7 @@ public class LeaderBoardManager : MonoBehaviour
 		}
 		else
 		{
-			Login ();
+			LogIn ();
 		}
 
 	}
