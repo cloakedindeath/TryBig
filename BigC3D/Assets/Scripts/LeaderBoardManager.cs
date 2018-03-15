@@ -101,7 +101,16 @@ public class LeaderBoardManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if (PlayGamesPlatform.Instance.localUser.authenticated) {
+			// Sign in with Play Game Services, showing the consent dialog
+			// by setting the second parameter to isSilent=false.
+			//PlayGamesPlatform.Instance.Authenticate(SignInCallback, false);
+			LogInButton.SetActive(false);
+		} else {
+			// Sign out of play games
+			//PlayGamesPlatform.Instance.SignOut();
+			LogInButton.SetActive(true);
+		}
 	}
 
 	public void Login()

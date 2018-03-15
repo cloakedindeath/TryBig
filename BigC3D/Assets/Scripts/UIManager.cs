@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
 	public GameObject howToPanel;
 	public GameObject pausePanel;
 	public GameObject shopPanel;
+	public GameObject pCardPanel;
 	public GameObject shopPanelPause;
 	public GameObject[] controls;
 	public Slider mpBar;
@@ -352,6 +353,7 @@ public class UIManager : MonoBehaviour
 
 		ScoreManager.instance.SetPlayerScores ();
 		LeaderBoardManager.instance.AddScoreToLeaderboard();
+		LeaderBoardManager.instance._ShowLeaderboard ();
 
 
 	}
@@ -542,7 +544,16 @@ public class UIManager : MonoBehaviour
 		audioU.PlayOneShot (click, 1f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopRight");
 	}
-
+	public void pCardOpen()
+	{
+		audioU.PlayOneShot (click, 1f);
+		pCardPanel.GetComponent<Animator> ().Play ("PlayerCardANIM");
+	}
+	public void pCardClose()
+	{
+		audioU.PlayOneShot (click, 1f);
+		pCardPanel.GetComponent<Animator> ().Play ("PlayerCardAway");
+	}
 	IEnumerator SpawnEnemies()
 	{
 		yield return new WaitForSeconds(1f);
@@ -572,7 +583,7 @@ public class UIManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 		ScoreManager.instance.waitPanel.SetActive (false);
-		PlayerPrefs.SetInt ("lives", 3);
+		//PlayerPrefs.SetInt ("lives", 3);
 	}
 	IEnumerator WaitPanelUp()
 	{
