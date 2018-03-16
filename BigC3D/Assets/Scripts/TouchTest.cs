@@ -71,7 +71,7 @@ public class TouchTest : MonoBehaviour
 		}
 		if(goleft == false && goright == false)
 		{
-			model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
+			//model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
 		}
 		if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
 		{
@@ -302,9 +302,11 @@ public class TouchTest : MonoBehaviour
 	public void ondownMoveRight()
 	{ goright = true; }
 	public void onupMoveLeft()
-	{ goleft = false; }
+	{ goleft = false;
+		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");}
 	public void onupMoveRight()
-	{ goright = false; }
+	{ goright = false;
+		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");}
 
 
 }

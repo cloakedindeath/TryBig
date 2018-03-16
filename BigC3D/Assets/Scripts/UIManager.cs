@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
 	public AudioClip click;
 	public bool death;
 	public int deathCnt;
+	public GameObject gun;
 
 
 	void Awake()
@@ -122,7 +123,7 @@ public class UIManager : MonoBehaviour
 			}
 			if(touchCnt == 1)
 			{
-				audioU.PlayOneShot (countdown);
+				audioU.PlayOneShot (countdown, .5f);
 				touchCnt = 2;
 				startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
 				gameStartCountdown = 3.5f;
@@ -253,6 +254,7 @@ public class UIManager : MonoBehaviour
 
 	public void GameStart ()
 	{
+		gun.SetActive (true);
 		audioU.PlayOneShot (click, 1f);
 		waveEndPanel.SetActive (false);
 		deathCnt = 0;
@@ -332,7 +334,12 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
-		
+		foreach (GameObject buttons in controls)
+		{
+			buttons.GetComponent<Button>().interactable = false;
+		}
+		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_Death");
+		gun.SetActive (false);
 		waveEndPanel.SetActive (false);
 		//UnityAdManager.instance.ShowAd2 ();
 		gameOver = true;
@@ -353,13 +360,14 @@ public class UIManager : MonoBehaviour
 
 		ScoreManager.instance.SetPlayerScores ();
 		LeaderBoardManager.instance.AddScoreToLeaderboard();
-		LeaderBoardManager.instance._ShowLeaderboard ();
+		//LeaderBoardManager.instance._ShowLeaderboard ();
 
 
 	}
 
 	public void RestartGame()
 	{
+		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
 		waveEndPanel.SetActive (false);
 		audioU.PlayOneShot (click, 1f);
 		gameOver = false;
@@ -488,25 +496,25 @@ public class UIManager : MonoBehaviour
 	#region Button Click Events
 	public void OpenHowTo()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		howToPanel.SetActive (true);
 	}
 	public void CloseHowTo()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		howToPanel.GetComponent<Animator> ().Play ("HowToPopDown");
 		StartCoroutine (HowToDisable ());
 	}
 	public void Pause()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		pausePanel.SetActive (true);
 		StartCoroutine (PauseTime ());
 	}
 	public void PauseResume()
 	{
 		if (!audioU.isPlaying) {
-			audioU.PlayOneShot (click, 1f);
+			audioU.PlayOneShot (click, .6f);
 		}
 		//audioU.PlayOneShot (click, 1f);
 		Time.timeScale = 1;
@@ -515,43 +523,43 @@ public class UIManager : MonoBehaviour
 	}
 	public void PauseQuit()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		Time.timeScale = 1;
 		SceneManager.LoadScene ("Main");
 	}
 	public void OpenShop()
 	{
 		UnityAdManager.instance.ShowAd ();
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopPop");
 	}
 	public void pauseOpenShop()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		Time.timeScale = 1;
 		shopPanelPause.GetComponent<Animator> ().Play ("ShopPop");
 		StartCoroutine (openPauseShop ());
 	}
 	public void pauseCloseShop()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		Time.timeScale = 1;
 		shopPanelPause.GetComponent<Animator> ().Play ("ShopRight");
 		StartCoroutine (openPauseShop ());
 	}
 	public void CloseShop()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopRight");
 	}
 	public void pCardOpen()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		pCardPanel.GetComponent<Animator> ().Play ("PlayerCardANIM");
 	}
 	public void pCardClose()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		pCardPanel.GetComponent<Animator> ().Play ("PlayerCardAway");
 	}
 	IEnumerator SpawnEnemies()
@@ -602,7 +610,7 @@ public class UIManager : MonoBehaviour
 
 	public void ShowLeaderboard()
 	{
-		audioU.PlayOneShot (click, 1f);
+		audioU.PlayOneShot (click, .6f);
 		LeaderBoardManager.instance._ShowLeaderboard ();
 	}
 

@@ -37,36 +37,42 @@ public class EnemyController : MonoBehaviour
 
 	public void StopEnemyMovement()
 	{
-		rb.velocity = new Vector3 (0,0,speed) * 0;
+		rb.velocity = Vector3.zero;
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "WaffleAmmo" && WaffleProjectile.instance.correct == true)
+		if (col.gameObject.tag == "WaffleAmmo" && this.gameObject.tag == "Enemy_Waffle")
 		{
+			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			audioE.PlayOneShot (yesHit);
 			StopEnemyMovement ();
 		}
-		if (col.gameObject.tag == "WaffleAmmo" && WaffleProjectile.instance.correct == false)
+		if (col.gameObject.tag == "WaffleAmmo" &&  this.gameObject.tag != "Enemy_Waffle")
 		{
+			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			audioE.PlayOneShot (noHit,1);
 		}
-		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == true)
+		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag == "Enemy_Chicken")
 		{
+			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			audioE.PlayOneShot (yesHit);
 			StopEnemyMovement ();
 		}
-		if (col.gameObject.tag == "ChickenAmmo" && ChickenProjectile.instance.correct == false)
+		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag != "Enemy_Chicken")
 		{
+			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			audioE.PlayOneShot (noHit,1);
 		}
-		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == true)
+		if (col.gameObject.tag == "KoolAidAmmo" &&this.gameObject.tag == "Enemy_KoolAid")
 		{
+			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			audioE.PlayOneShot (yesHit);
 			StopEnemyMovement ();
 		}
-		if (col.gameObject.tag == "KoolAidAmmo" && KoolAidProjectile.instance.correct == false)
+		if (col.gameObject.tag == "KoolAidAmmo" && this.gameObject.tag != "Enemy_KoolAid")
 		{
+			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			audioE.PlayOneShot (noHit,1);
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)

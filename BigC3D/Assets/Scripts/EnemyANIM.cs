@@ -2,7 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyANIM : MonoBehaviour {
+public class EnemyANIM : MonoBehaviour 
+{
+	public static EnemyANIM instance;
+
+	void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+		}
+	}
 
 	public GameObject model;
 
@@ -13,6 +23,6 @@ public class EnemyANIM : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		model.GetComponent<Animator> ().Play ("ANIM_Monster_Walk_01");
+		//model.GetComponent<Animator> ().Play ("ANIM_Monster_Walk_01");
 	}
 }

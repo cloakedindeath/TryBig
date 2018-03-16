@@ -235,11 +235,14 @@ public class ScoreManager : MonoBehaviour
 	public void LoseLife()
 	{
 		hp = (hp - 1);
+		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_TakeDamage_01");
 		if(hp <= 0)
 		{
+			
 			PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
 			hp = 10;
 			UIManager.instance.GameOver ();
+			//StartCoroutine (ANIMpause ());
 			//UIManager.instance.waveEndPanel.SetActive (false);
 			//UIManager.instance.touchCnt = 0;
 		}
@@ -282,5 +285,11 @@ public class ScoreManager : MonoBehaviour
 		//PersistentTimer.instance.savedSeconds = 60;
 		waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+	}
+
+	IEnumerator ANIMpause()
+	{
+		yield return new WaitForSeconds (3f);
+		UIManager.instance.GameOver ();
 	}
 }

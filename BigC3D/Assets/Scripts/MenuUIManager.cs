@@ -36,7 +36,7 @@ public class MenuUIManager : MonoBehaviour
 
 	public void StartGame()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		PlayerPrefs.SetFloat("TimeDiff",timer);
 		SceneManager.LoadScene ("Main");
 	}
@@ -51,7 +51,7 @@ public class MenuUIManager : MonoBehaviour
 
 	public void SocialMediaPanelClose()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		socialMediaPanel.GetComponent<Animator> ().Play ("SocialMediaMenuDisappear");
 		Invoke ("DisableSocialMediaPanel", 0.5f);
 	}
@@ -68,7 +68,7 @@ public class MenuUIManager : MonoBehaviour
 
 	public void SocialMediaPopUp()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		UnityAdManager.instance.ShowAd ();
 		socialMediaPanel.SetActive (true);
 		Invoke ("SocialButtonPulse", .5f);
@@ -76,34 +76,34 @@ public class MenuUIManager : MonoBehaviour
 		
 	public void LoadInstagram()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		Application.OpenURL("https://www.instagram.com/bigcwaffles/?hl=en");
 	}
 	public void LoadHomeSite()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		Application.OpenURL("https://www.bigcwaffles.com");
 	}
 	public void LoadFacebook()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		Application.OpenURL("https://www.facebook.com/Big-C-Waffles-743714709005652/");
 	}
 	public void LoadTwitter()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		Application.OpenURL("https://twitter.com/bigcwaffles?lang=en");
 	}
 
 	public void OrderApparel()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		Application.OpenURL("http://www.macflyfresh.com/index.php?option=com_hikashop&ctrl=category&task=listing&cid=19&name=big-c-waffles&Itemid=278");
 	}
 
 	public void OrderFood()
 	{
-		audioSource.PlayOneShot(click, 1F);
+		audioSource.PlayOneShot(click, .6F);
 		Application.OpenURL("https://www.grubhub.com/restaurant/big-c-waffles-2110-allendown-dr-durham/629246");
 	}
 

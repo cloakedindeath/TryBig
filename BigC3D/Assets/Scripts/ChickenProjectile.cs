@@ -72,6 +72,6 @@ public class ChickenProjectile : MonoBehaviour {
 	IEnumerator DestroyEnemy()
 	{
 		yield return new WaitForSeconds (1f);
-		Destroy (gameObject);
+		//Destroy (gameObject);
 	}
 }

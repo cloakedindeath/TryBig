@@ -38,7 +38,7 @@ public class WaffleProjectile : MonoBehaviour {
 
 			//Destroy (col.gameObject);
 			//col.gameObject.transform.position += new Vector3 (0, -0.1f, 0);
-			//StartCoroutine (DestroyEnemy ());
+			StartCoroutine (DestroyEnemy ());
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt++;
@@ -73,6 +73,6 @@ public class WaffleProjectile : MonoBehaviour {
 	IEnumerator DestroyEnemy()
 	{
 		yield return new WaitForSeconds (1f);
-		Destroy (gameObject);
+		//Destroy (gameObject);
 	}
 }
