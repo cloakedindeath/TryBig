@@ -91,17 +91,17 @@ public class EnemySpawner : MonoBehaviour
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 71 && rand <= 80) {
-					//Debug.Log ("fast1");
+					Debug.Log ("fast1");
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 81 && rand <= 90) {
-					//Debug.Log ("fast2");
+					Debug.Log ("fast2");
 					Instantiate (enemies [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
 				if (rand >= 91 && rand <= 100) {
-					//Debug.Log ("fast3");
+					Debug.Log ("fast3");
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}

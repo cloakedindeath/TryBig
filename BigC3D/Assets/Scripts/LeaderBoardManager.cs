@@ -47,6 +47,7 @@ public class LeaderBoardManager : MonoBehaviour
 	void Start ()
 	{
 		//LogIn ();
+		LogInButton.SetActive(false);
 	}
 	#endregion
 	#region BUTTON_CALLBACKS

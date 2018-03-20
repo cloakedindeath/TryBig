@@ -254,6 +254,7 @@ public class UIManager : MonoBehaviour
 
 	public void GameStart ()
 	{
+		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
 		gun.SetActive (true);
 		audioU.PlayOneShot (click, 1f);
 		waveEndPanel.SetActive (false);

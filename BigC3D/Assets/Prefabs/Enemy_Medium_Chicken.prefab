@@ -890,7 +890,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4402552089532532}
-  - component: {fileID: 95752658038024828}
   m_Layer: 0
   m_Name: Big_C_ANIM_05
   m_TagString: Untagged
@@ -1087,7 +1086,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4169582330417364}
-  - component: {fileID: 95008917516138690}
   m_Layer: 0
   m_Name: Big_C_ANIM_04
   m_TagString: Untagged
@@ -2717,7 +2715,6 @@ GameObject:
   - component: {fileID: 114662974245193500}
   - component: {fileID: 54422957047355932}
   - component: {fileID: 82448359190436536}
-  - component: {fileID: 114542011189424462}
   m_Layer: 0
   m_Name: Enemy_Medium_Chicken
   m_TagString: Enemy_Chicken
@@ -4889,8 +4886,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1690237016665636}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.38, z: -3.44}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.15, z: -36.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4169582330417364}
@@ -7675,23 +7672,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95008917516138690
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1279549442581086}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: fcacf1476034baa4da0d7af7be596315, type: 3}
-  m_Controller: {fileID: 9100000, guid: f8891ddcffd2c284997c1134f603eb42, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95743985399894862
 Animator:
   serializedVersion: 3
@@ -7709,35 +7689,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95752658038024828
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1233269773612172}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: be5124b684ca2de4aaaff4a400ceaabe, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1a0634e0884268240ba0f95395cbf891, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114542011189424462
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1690237016665636}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 695ba903d76e8fc4080379ff0627729f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 1266817373742278}
 --- !u!114 &114662974245193500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7754,6 +7705,8 @@ MonoBehaviour:
   yesHit: {fileID: 8300000, guid: 430b2ff9632270545bd7a881caf7786d, type: 3}
   noHit: {fileID: 8300000, guid: ca4a3eed9527623498d262fef04aa6c5, type: 3}
   enHit: {fileID: 8300000, guid: c790764a7e5689c45b69f9031ad71c3c, type: 3}
+  walk: 0
+  model: {fileID: 1266817373742278}
 --- !u!136 &136716477177023448
 CapsuleCollider:
   m_ObjectHideFlags: 1

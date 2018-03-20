@@ -57,6 +57,7 @@ public class RewardButton : MonoBehaviour {
 	{
 		//Debug.Log( DateTime.Now.Ticks.ToString());
 		UnityAdManager.instance.rewardAd();
+		ScoreManager.instance.hp = 10;
 		lastChestOpen = (ulong)DateTime.Now.Ticks;
 		PlayerPrefs.SetString ("RewardGiven", DateTime.Now.Ticks.ToString ());
 		chestButton.interactable = false;

@@ -34,7 +34,7 @@ public class ChickenProjectile : MonoBehaviour {
 			EnemySpawner.instance.count--;
 
 			//Destroy (col.gameObject);
-			col.gameObject.transform.position = new Vector3 (-20, -0.1f, 0);
+			//col.gameObject.transform.position = new Vector3 (-20, -0.1f, 0);
 			StartCoroutine (DestroyEnemy ());
 			Destroy (this.gameObject);
 			ScoreManager.instance.EnemyKill ();
@@ -72,6 +72,7 @@ public class ChickenProjectile : MonoBehaviour {
 	IEnumerator DestroyEnemy()
 	{
 		yield return new WaitForSeconds (1f);
-		//Destroy (gameObject);
+		//col.gameObject.transform.position = new Vector3 (-20, -0.1f, 0);
+		Destroy (gameObject);
 	}
 }

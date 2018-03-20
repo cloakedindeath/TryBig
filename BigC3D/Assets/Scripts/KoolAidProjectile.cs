@@ -32,7 +32,7 @@ public class KoolAidProjectile : MonoBehaviour {
 			correct = true;
 			Debug.Log ("Hit");
 			EnemySpawner.instance.count--;
-			col.gameObject.transform.position = new Vector3 (-20, -0.1f, 0);
+			//col.gameObject.transform.position = new Vector3 (-20, -0.1f, 0);
 			//col.gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 			StartCoroutine (DestroyEnemy ());
 			Destroy (this.gameObject);

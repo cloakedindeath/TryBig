@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
 	public AudioClip yesHit;
 	public AudioClip noHit;
 	public AudioClip enHit;
+	public bool walk;
+	public GameObject model;
 
 	// Use this for initialization
 	void Start () 
@@ -21,22 +23,36 @@ public class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		MoveEnemyToPlayer ();
-
-		/*if(UIManager.instance.gameOver == true)
+		//MoveEnemyToPlayer ();
+		if(walk == true)
 		{
-			StopEnemyMovement ();
-		}*/
+			MoveEnemyToPlayer ();
+		}
+		if(walk == false)
+		{
+			StopEnemyMovement();
+		}
+
 	}
 
 	void MoveEnemyToPlayer()
 	{
-		
+		/*if(walk == true)
+		{
+			speed = 4;
+		}
+		else
+		{
+			speed = 0;
+		}*/
+
 		rb.velocity = new Vector3 (0,0,speed);
 	}
 
 	public void StopEnemyMovement()
 	{
+		rb.isKinematic = true;
+		rb.angularVelocity = Vector3.zero;
 		rb.velocity = Vector3.zero;
 	}
 
@@ -44,36 +60,57 @@ public class EnemyController : MonoBehaviour
 	{
 		if (col.gameObject.tag == "WaffleAmmo" && this.gameObject.tag == "Enemy_Waffle")
 		{
-			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			audioE.PlayOneShot (yesHit);
-			StopEnemyMovement ();
+			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
+			rb.isKinematic = true;
+			rb.angularVelocity = Vector3.zero;
+			rb.velocity = Vector3.zero;
+			this.GetComponent<CapsuleCollider> ().enabled = false;
+			//StopEnemyMovement ();
+			walk = false;
+			StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "WaffleAmmo" &&  this.gameObject.tag != "Enemy_Waffle")
 		{
-			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			audioE.PlayOneShot (noHit,1);
+			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
+			walk = false;
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag == "Enemy_Chicken")
 		{
-			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			audioE.PlayOneShot (yesHit);
-			StopEnemyMovement ();
+			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
+			rb.isKinematic = true;
+			rb.angularVelocity = Vector3.zero;
+			rb.velocity = Vector3.zero;
+			this.GetComponent<CapsuleCollider> ().enabled = false;
+			//StopEnemyMovement ();
+			walk = false;
+			StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag != "Enemy_Chicken")
 		{
-			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			audioE.PlayOneShot (noHit,1);
+			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
+			walk = false;
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" &&this.gameObject.tag == "Enemy_KoolAid")
 		{
-			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			audioE.PlayOneShot (yesHit);
-			StopEnemyMovement ();
+			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
+			rb.isKinematic = true;
+			rb.angularVelocity = Vector3.zero;
+			rb.velocity = Vector3.zero;
+			this.GetComponent<CapsuleCollider> ().enabled = false;
+			//StopEnemyMovement ();
+			walk = false;
+			StartCoroutine (DestroyEnemy ());
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" && this.gameObject.tag != "Enemy_KoolAid")
 		{
-			EnemyANIM.instance.model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			audioE.PlayOneShot (noHit,1);
+			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
+			walk = false;
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
@@ -84,11 +121,16 @@ public class EnemyController : MonoBehaviour
 			ScoreManager.instance.LoseLife ();
 			UIManager.instance.mpCnt = 0;
 		}
+		else
+		{
+			walk = true;
+		}
 	}
 
 	IEnumerator DestroyEnemy()
 	{
-		yield return new WaitForSeconds (.6f);
+		yield return new WaitForSeconds (.8f);
+		model.transform.position = new Vector3 (-20, -0.1f, 0);
 		Destroy (gameObject);
 	}
 }
