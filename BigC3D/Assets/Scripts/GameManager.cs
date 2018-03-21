@@ -36,8 +36,9 @@ public class GameManager : MonoBehaviour
 
 	public void StartGame()
 	{
-		if(PlayerPrefs.GetInt("lives") >= 1)
+		if(ScoreManager.instance.lives >= 1)
 		{
+			ScoreManager.instance.hp = 10;
 			UIManager.instance.GameStart ();
 			ScoreManager.instance.startLives = false;
 

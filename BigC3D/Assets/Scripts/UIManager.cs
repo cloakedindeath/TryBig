@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
 	public Text highScoreText;
 	public Text furthestWaveText;
 	//public Text livesTimer;
-	public GameObject livesTimerOB;
+	//public GameObject livesTimerOB;
 
 	public GameObject gameOverPanel;
 	public Text gameOverScore;
@@ -59,6 +59,8 @@ public class UIManager : MonoBehaviour
 	public bool death;
 	public int deathCnt;
 	public GameObject gun;
+	public GameObject livesLostMessage;
+	public GameObject livesLostTimer;
 
 
 	void Awake()
@@ -70,14 +72,18 @@ public class UIManager : MonoBehaviour
 		}
 		gameOver = true;
 		mpCnt = 0;
-		if (PlayerPrefs.GetInt ("lives") <= 0) {
+		if (ScoreManager.instance.lives <= 0) {
 			//TimerTest.instance.Deathcheck ();
-			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			ScoreManager.instance.waitPanel.SetActive (true);
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+			//ScoreManager.instance.waitPanel.SetActive (true);
+			livesLostMessage.SetActive(true);
+			livesLostTimer.SetActive (true);
 		}
-		if (PlayerPrefs.GetInt ("lives") >= 1) {
-			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-			StartCoroutine (WaitPanelDown ());
+		if (ScoreManager.instance.lives >= 1) {
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+			//StartCoroutine (WaitPanelDown ());
+			livesLostMessage.SetActive(false);
+			livesLostTimer.SetActive (false);
 		}
 	}
 	// Use this for initialization
@@ -104,7 +110,21 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if (ScoreManager.instance.lives <= 0) {
+			//ScoreManager.instance.waitPanel.SetActive (true);
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+			//ScoreManager.instance.waitPanel.SetActive (true);
+			//StartCoroutine (WaitPanelUp ());
+			livesLostMessage.SetActive(true);
+			livesLostTimer.SetActive (true);
+		}
+		if (ScoreManager.instance.lives >= 1) {
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+			//ScoreManager.instance.waitPanel.SetActive (false);
+			//StartCoroutine (WaitPanelDown ());
+			livesLostMessage.SetActive(false);
+			livesLostTimer.SetActive (false);
+		}
 	
 		/////////////////////////////////
 		//Start pre Wave countdown
@@ -214,8 +234,10 @@ public class UIManager : MonoBehaviour
 		/////////////////////////
 		//Update text elements
 		scoreText.text = "Score: " + ScoreManager.instance.score.ToString();
-		livesText.text = "Lives: " + PlayerPrefs.GetInt("lives").ToString();
-		menuLivesText.text = "Lives: " + PlayerPrefs.GetInt("lives").ToString();
+		//livesText.text = "Lives: " + PlayerPrefs.GetInt("lives").ToString();
+		//menuLivesText.text = "Lives: " + PlayerPrefs.GetInt("lives").ToString();
+		livesText.text = "Lives: " + ScoreManager.instance.lives.ToString();
+		menuLivesText.text = "Lives: " + ScoreManager.instance.lives.ToString();
 		//livesTimer.text = ScoreManager.instance.timedLivesReturn.ToString ();
 		waveTimerText.text = "Wave " + waveCount + " Timer: " + timeCountDown.ToString("f0");
 		startCountdownTimerText.text = gameStartCountdown.ToString ("f0");
@@ -230,7 +252,7 @@ public class UIManager : MonoBehaviour
 			gameOver = true;
 			GameOver ();
 		}*/
-		if(PlayerPrefs.GetInt("lives") <= 0 )
+		if(ScoreManager.instance.lives <= 0 )
 		{
 			death = true;
 		}
@@ -259,7 +281,8 @@ public class UIManager : MonoBehaviour
 		audioU.PlayOneShot (click, 1f);
 		waveEndPanel.SetActive (false);
 		deathCnt = 0;
-		PlayerPrefs.SetInt ("Score", 0);
+		//PlayerPrefs.SetInt ("Score", 0);
+		ScoreManager.instance.score = 0;
 		gameOver = false;
 		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
 		startCountdown = true;
@@ -407,7 +430,7 @@ public class UIManager : MonoBehaviour
 		waveCount = 1;
 		//ScoreManager.instance.lives = 3;
 		ScoreManager.instance.score = 0;
-		PlayerPrefs.SetInt ("Score", 0);
+		//PlayerPrefs.SetInt ("Score", 0);
 		//gameOver = false;
 		gameOverPanel.SetActive (false);
 		//waveStartPanel.GetComponent<Animator> ().Play ("ResumeGame");
@@ -419,25 +442,29 @@ public class UIManager : MonoBehaviour
 		gameStartCountdown = -1f;
 		timeCountDown = 0;
 		touchCnt = 0;
-		if (PlayerPrefs.GetInt ("lives") <= 0) {
-			ScoreManager.instance.waitPanel.SetActive (true);
-			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+		if (ScoreManager.instance.lives <= 0) {
+			//ScoreManager.instance.waitPanel.SetActive (true);
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+			livesLostMessage.SetActive(true);
+			livesLostTimer.SetActive (true);
 
 		}
-		 if (PlayerPrefs.GetInt ("lives") >= 1) {
-			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+		if (ScoreManager.instance.lives >= 1) {
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//ScoreManager.instance.waitPanel.SetActive (false);
-			StartCoroutine (WaitPanelDown ());
+			//StartCoroutine (WaitPanelDown ());
+			livesLostMessage.SetActive(false);
+			livesLostTimer.SetActive (false);
 		}
 
 
 	}
 	public void GoBackToMenuSetLives()
 	{
-		if (!audioU.isPlaying) {
+		if (!audioU.isPlaying) 
+		{
 			audioU.PlayOneShot (click, 1f);
 		}
-		//PlayerPrefs.SetInt ("lives", 3);
 		PauseResume ();
 		DestroyAllEnemies ();
 		audioU.Stop ();
@@ -452,7 +479,7 @@ public class UIManager : MonoBehaviour
 		waveCount = 1;
 		//ScoreManager.instance.lives = 3;
 		ScoreManager.instance.score = 0;
-		PlayerPrefs.SetInt ("Score", 0);
+		//PlayerPrefs.SetInt ("Score", 0);
 		//gameOver = false;
 		gameOverPanel.SetActive (false);
 		//waveStartPanel.GetComponent<Animator> ().Play ("ResumeGame");
@@ -464,16 +491,20 @@ public class UIManager : MonoBehaviour
 		gameStartCountdown = -1f;
 		timeCountDown = 0;
 		touchCnt = 0;
-		if (PlayerPrefs.GetInt ("lives") <= 0) {
-			ScoreManager.instance.waitPanel.SetActive (true);
-			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
+		if (ScoreManager.instance.lives <= 0) {
+			//ScoreManager.instance.waitPanel.SetActive (true);
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
 			//ScoreManager.instance.waitPanel.SetActive (true);
 			//StartCoroutine (WaitPanelUp ());
+			livesLostMessage.SetActive(true);
+			livesLostTimer.SetActive (true);
 		}
-		if (PlayerPrefs.GetInt ("lives") >= 1) {
-			ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+		if (ScoreManager.instance.lives >= 1) {
+			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//ScoreManager.instance.waitPanel.SetActive (false);
-			StartCoroutine (WaitPanelDown ());
+			//StartCoroutine (WaitPanelDown ());
+			livesLostMessage.SetActive(false);
+			livesLostTimer.SetActive (false);
 		}
 
 
@@ -588,7 +619,7 @@ public class UIManager : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		Time.timeScale = 0;
 	}
-	IEnumerator WaitPanelDown()
+	/*IEnumerator WaitPanelDown()
 	{
 		yield return new WaitForSeconds(0.5f);
 		ScoreManager.instance.waitPanel.SetActive (false);
@@ -598,11 +629,11 @@ public class UIManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 		ScoreManager.instance.waitPanel.SetActive (true);
-	}
+	}*/
 
 	public void LifeAway()
 	{
-		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
+		ScoreManager.instance.lives = ScoreManager.instance.lives - 1;
 	}
 	public void waveCountIncrease()
 	{
@@ -619,8 +650,9 @@ public class UIManager : MonoBehaviour
 	{
 		UnityAdManager.instance.ShowAd();
 		//PersistentTimer.instance.savedSeconds = 60;
-		ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+		//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+		//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+		ScoreManager.instance.lives = ScoreManager.instance.lives+1;
 	}
 
 	#endregion

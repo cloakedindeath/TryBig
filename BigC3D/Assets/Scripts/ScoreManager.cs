@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour
 	public Slider mpBar;
 	public Slider hpBar;
 	public float timedLivesReturn;
-	public Button resumeButton;
+	public GameObject resumeButton;
 	public bool livesGone = false;
 	public bool startLives = true;
 	public int hp;
@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
 	public bool ding;
 	public int dingCnt = 1;
 	public GameObject waitPanel;
-	public GameObject resumeRewardButton;
+	//public GameObject resumeRewardButton;
 
 
 	void Awake()
@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour
 		{
 			instance = this;
 		}
-		if(PlayerPrefs.GetInt("lives") > 0)
+		if(lives > 0)
 		{
 			hp = 10;
 		}
@@ -49,89 +49,19 @@ public class ScoreManager : MonoBehaviour
 		dingCnt = 1;
 		audioControl = GetComponent<AudioSource>();
 		//PlayerPrefs.SetInt ("lives", lives);
-		PlayerPrefs.GetInt("lives");
+		//PlayerPrefs.GetInt("lives");
 		score = 0;
-		PlayerPrefs.SetInt ("Score", 0);
+		//PlayerPrefs.SetInt ("Score", 0);
 		points = 20;
-		if(PlayerPrefs.GetInt("lives") >= 3)
+		if(lives >= 3)
 		{
 			hp = 10;
 		}
-		//mpAmt = 0;
-		/*if(timedLivesReturn == 0)
-		{
-			lives = 3;
-			PlayerPrefs.SetInt ("lives", lives);
-		}*/
-
-		//PlayerPrefs.DeleteKey ("FirstTime");
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log (PlayerPrefs.GetInt ("FirstTime"));
-
-		if (livesGone == false && PlayerPrefs.GetInt("FirstTime") == 0) 
-		{
-			PlayerPrefs.SetInt ("lives", 3);
-			PlayerPrefs.SetInt ("FirstTime", 1);
-			SetFirstTimeLives();
-			UIManager.instance.livesTimerOB.SetActive (false);
-			UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = false;
-		}
-		if( PlayerPrefs.GetInt("FirstTime") == 1)
-		{
-			if(PlayerPrefs.GetInt("lives") <= 0 )
-			{
-				PlayerPrefs.SetInt ("Score", score);
-				PlayerPrefs.SetInt ("lives", 0);
-				GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
-				GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
-				shootButton.GetComponent<Button> ().interactable = false;
-				resumeButton.GetComponent<Button> ().interactable = false;
-				resumeButton.gameObject.SetActive (false);
-				UIManager.instance.GameOver ();
-				//waitPanel.SetActive (true);
-				//UIManager.instance.livesTimerOB.SetActive (true);
-				//UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
-				//lives = 0;
-
-
-				/*if(livesGone == false)
-			{
-				livesGone = true;
-				//timedLivesReturn = 20000f;
-				UIManager.instance.livesTimerOB.SetActive (true);
-				UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
-			}*/
-
-			}
-			else
-			{
-				resumeButton.GetComponent<Button> ().interactable = true;
-				resumeButton.gameObject.SetActive (true);
-				UIManager.instance.livesTimerOB.SetActive (false);
-				ding = false;
-				//waitPanel.SetActive (false);
-			}
-
-		
-		}
-
-	
-		/*if(livesGone == true)
-		{
-			//timedLivesReturn = 18000.0f;
-			//TimerStart ();
-			if(timedLivesReturn <= 0)
-			{
-				livesGone = false;
-				//lives = 3;
-				PlayerPrefs.SetInt ("lives", 3);
-			}
-		}*/
-
 		SubmitSliderSetting ();
 
 		#region Multiplier UI and Sound Control
@@ -160,10 +90,10 @@ public class ScoreManager : MonoBehaviour
 				//ding = false;
 			}
 		}
-			
+
 		if(UIManager.instance.mpCnt == 0 && UIManager.instance.gameOver == false )
 		{
-			
+
 			if(!audioControl.isPlaying && dingCnt == 0)
 			{
 				audioControl.pitch = 0.1f;
@@ -177,11 +107,11 @@ public class ScoreManager : MonoBehaviour
 		}
 		else if(UIManager.instance.mpCnt >= 10 && UIManager.instance.mpCnt < 30)
 		{
-			
+
 			mp.text = "x2";
 			mpBar.minValue = 10;
 			mpBar.maxValue = 30;
-		
+
 		}
 		else if ( UIManager.instance.mpCnt >= 30 && ding == true)//may need to fix this later
 		{
@@ -193,11 +123,75 @@ public class ScoreManager : MonoBehaviour
 				dingCnt++;
 			}
 			//audioControl.PlayOneShot (mpDing);
-		
+
 		}
-	#endregion
+		#endregion
 
 		UIManager.instance.highScoreText.text ="High Score: " + PlayerPrefs.GetInt ("HighScore").ToString ();
+
+		Debug.Log (PlayerPrefs.GetInt ("FirstTime"));
+
+		if (livesGone == false && PlayerPrefs.GetInt("FirstTime") == 0) 
+		{
+			//PlayerPrefs.SetInt ("lives", 3);
+			lives = 3;
+			PlayerPrefs.SetInt ("FirstTime", 1);
+			SetFirstTimeLives();
+			//UIManager.instance.livesTimerOB.SetActive (false);
+			//UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = false;
+		}
+		if( PlayerPrefs.GetInt("FirstTime") == 1)
+		{
+			if(lives <= 0 )
+			{
+				//PlayerPrefs.SetInt ("Score", score);
+				//PlayerPrefs.SetInt ("lives", 0);
+				lives = 0;
+				GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
+				GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
+				shootButton.GetComponent<Button> ().interactable = false;
+				resumeButton.GetComponent<Button> ().interactable = false;
+				resumeButton.gameObject.SetActive (false);
+				UIManager.instance.GameOver ();
+				//waitPanel.SetActive (true);
+				//UIManager.instance.livesTimerOB.SetActive (true);
+				//UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
+				//lives = 0;
+
+
+				/*if(livesGone == false)
+			{
+				livesGone = true;
+				//timedLivesReturn = 20000f;
+				UIManager.instance.livesTimerOB.SetActive (true);
+				UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
+			}*/
+
+			}
+			else
+			{
+				resumeButton.GetComponent<Button> ().interactable = true;
+				resumeButton.gameObject.SetActive (true);
+				//UIManager.instance.livesTimerOB.SetActive (false);
+				ding = false;
+				//waitPanel.SetActive (false);
+			}
+
+		
+		}
+			
+		/*if(livesGone == true)
+		{
+			//timedLivesReturn = 18000.0f;
+			//TimerStart ();
+			if(timedLivesReturn <= 0)
+			{
+				livesGone = false;
+				//lives = 3;
+				PlayerPrefs.SetInt ("lives", 3);
+			}
+		}*/
+
 	}
 
 	public void SetPlayerScores()
@@ -239,7 +233,8 @@ public class ScoreManager : MonoBehaviour
 		if(hp <= 0)
 		{
 			
-			PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
+			//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
+			lives = lives - 1;
 			hp = 10;
 			UIManager.instance.GameOver ();
 			//StartCoroutine (ANIMpause ());
@@ -281,10 +276,12 @@ public class ScoreManager : MonoBehaviour
 	public void paidAddLife()
 	{
 		UnityAdManager.instance.ShowAd();
-		resumeRewardButton.SetActive (true);
+		RewardButton.instance.freeLife = true;
+		//resumeRewardButton.SetActive (true);
 		//PersistentTimer.instance.savedSeconds = 60;
-		waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-		PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+		//waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+		//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+		lives = lives + 1;
 	}
 
 	IEnumerator ANIMpause()

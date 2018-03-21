@@ -79,16 +79,13 @@ public class TimerTest : MonoBehaviour
 		//audioT.PlayOneShot(click,1f);
 		// Gives lives back or reward the player
 		ScoreManager.instance.hp = 10;
-		PlayerPrefs.SetInt ("lives", 3);
-		ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-		//waitPanel.SetActive(false);
-		UIManager.instance.GoBackToMenu();
-
+		ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
+		//UIManager.instance.GoBackToMenu();
 	}
 
 	public void Deathcheck()
 	{
-		if (PlayerPrefs.GetInt ("lives") <= 0) {
+		if (ScoreManager.instance.lives <= 0 && RewardButton.instance.freeLife == false) {
 			lastChestOpen = (ulong)DateTime.Now.Ticks;
 			PlayerPrefs.SetString ("LastRewardGiven", DateTime.Now.Ticks.ToString ());
 			chestButton.interactable = false;
@@ -106,9 +103,12 @@ public class TimerTest : MonoBehaviour
 		//Debug.Log (secondsLeft);
 		if(secondsLeft < 0 )
 		{
-			ScoreManager.instance.resumeRewardButton.SetActive (false);
-			ScoreManager.instance.resumeButton.gameObject.SetActive (true);
-			timer.text = "Restore Lives";
+			//ScoreManager.instance.resumeRewardButton.SetActive (false);
+			//ScoreManager.instance.resumeButton.SetActive (true);
+			ScoreManager.instance.hp = 10;
+			ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
+			RewardButton.instance.freeLife = false;
+			//timer.text = "Restore Lives";
 			//timer.text = "";
 			//ScoreManager.instance.hp = 10;
 			//ChestClick ();
