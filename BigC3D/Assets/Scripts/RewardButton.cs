@@ -62,7 +62,7 @@ public class RewardButton : MonoBehaviour {
 			//Seconds
 			r += (secondsLeft % 60).ToString("00") + "s";
 			timer2.text = r;
-			message.text = "";
+			message.text = "Wait for timer to a gain free life";
 		}
 	}
 
@@ -100,6 +100,7 @@ public class RewardButton : MonoBehaviour {
 		}
 		else
 		{
+			
 			return false;
 		}
 

@@ -16,6 +16,8 @@ TagManager:
   - ChickenAmmo
   - KoolAidAmmo
   - Controls
+  - Shield
+  - Bomb
   layers:
   - Default
   - TransparentFX

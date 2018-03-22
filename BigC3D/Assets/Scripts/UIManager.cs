@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
 	public GameObject gun;
 	public GameObject livesLostMessage;
 	public GameObject livesLostTimer;
+	public GameObject playButton;
 
 
 	void Awake()
@@ -78,12 +79,14 @@ public class UIManager : MonoBehaviour
 			//ScoreManager.instance.waitPanel.SetActive (true);
 			livesLostMessage.SetActive(true);
 			livesLostTimer.SetActive (true);
+			playButton.SetActive (false);
 		}
 		if (ScoreManager.instance.lives >= 1) {
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//StartCoroutine (WaitPanelDown ());
 			livesLostMessage.SetActive(false);
 			livesLostTimer.SetActive (false);
+			playButton.SetActive (true);
 		}
 	}
 	// Use this for initialization
@@ -117,6 +120,7 @@ public class UIManager : MonoBehaviour
 			//StartCoroutine (WaitPanelUp ());
 			livesLostMessage.SetActive(true);
 			livesLostTimer.SetActive (true);
+			playButton.SetActive (false);
 		}
 		if (ScoreManager.instance.lives >= 1) {
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
@@ -124,6 +128,7 @@ public class UIManager : MonoBehaviour
 			//StartCoroutine (WaitPanelDown ());
 			livesLostMessage.SetActive(false);
 			livesLostTimer.SetActive (false);
+			playButton.SetActive (true);
 		}
 	
 		/////////////////////////////////
@@ -292,7 +297,7 @@ public class UIManager : MonoBehaviour
 
 	}
 
-	void DestroyAllEnemies()
+	public void DestroyAllEnemies()
 	{
 		enemiesW = GameObject.FindGameObjectsWithTag ("Enemy_Waffle");
 

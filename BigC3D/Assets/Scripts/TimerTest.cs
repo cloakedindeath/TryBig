@@ -10,6 +10,7 @@ public class TimerTest : MonoBehaviour
 	public float msToWait = 15000f;
 
 	public Text timer;
+	public Text t2;
 	public Button chestButton;
 	private ulong lastChestOpen;
 	public GameObject waitPanel;
@@ -40,12 +41,35 @@ public class TimerTest : MonoBehaviour
 
 	private void Update()
 	{
+		//Set the Timer
+		/*ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
+		ulong m = diff / TimeSpan.TicksPerMillisecond;
+		float secondsLeft = ((float)msToWait - m) / 1000f;
 
-		/*if (PlayerPrefs.GetInt ("lives") >= 1) {
-			ScoreManager.instance.waitPanel.SetActive (false);
+		string r = "";
+		//Hours
+		r += ((int)secondsLeft / 3600).ToString() + "h ";
+		secondsLeft -= ((int)secondsLeft / 3600) * 3600;
+		//Minutes
+		r += ((int)secondsLeft / 60).ToString("00") + "m ";
+		//Seconds
+		r += (secondsLeft % 60).ToString("00") + "s";
+		timer.text = r;
+		if (secondsLeft < 0)
+		{
+			t2.text = "Click for lives.";
+			timer.text = "Restore Lives";
+			chestButton.interactable = true;
+			//ScoreManager.instance.hp = 10;
+			//ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
+			//RewardButton.instance.freeLife = false;
+		}
+		else{
+			t2.text = "All lives lost!\nWait for the timer or purchase more lives.";
+			chestButton.interactable = false;
 		}*/
 
-		if(chestButton.interactable == false /*&& UIManager.instance.gameOver == true*/)
+		if(chestButton.interactable == false )
 		{
 			if(isChestReady())
 			{
@@ -80,6 +104,7 @@ public class TimerTest : MonoBehaviour
 		// Gives lives back or reward the player
 		ScoreManager.instance.hp = 10;
 		ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
+		RewardButton.instance.freeLife = false;
 		//UIManager.instance.GoBackToMenu();
 	}
 
@@ -107,6 +132,7 @@ public class TimerTest : MonoBehaviour
 			//ScoreManager.instance.resumeButton.SetActive (true);
 			ScoreManager.instance.hp = 10;
 			ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
+			//ScoreManager.instance.lives += 3;
 			RewardButton.instance.freeLife = false;
 			//timer.text = "Restore Lives";
 			//timer.text = "";

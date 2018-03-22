@@ -120,6 +120,8 @@ public class EnemyController : MonoBehaviour
 			EnemySpawner.instance.count--;
 			ScoreManager.instance.LoseLife ();
 			UIManager.instance.mpCnt = 0;
+			EnemySpawner.instance.shieldCnt = 0;
+			EnemySpawner.instance.bombCnt = 0;
 		}
 		else
 		{

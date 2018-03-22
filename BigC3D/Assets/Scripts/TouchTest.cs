@@ -30,6 +30,8 @@ public class TouchTest : MonoBehaviour
 	public bool goleft = false;
 	public bool goright = false;
 	public GameObject model;
+	public GameObject shield;
+	public GameObject bombButton;
 
 
 
@@ -279,10 +281,30 @@ public class TouchTest : MonoBehaviour
 		if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy_Waffle" ||
 			col.gameObject.tag == "Enemy_Chicken" || col.gameObject.tag == "Enemy_KoolAid")
 		{
-			audioC.PlayOneShot (playerHurt);
-			EnemySpawner.instance.count--;
+			if(shield.activeSelf)
+			{
+				shield.SetActive (false);
+				Destroy (col.gameObject);
+				EnemySpawner.instance.shieldCnt = 0;
+			}
+			else
+			{
+				audioC.PlayOneShot (playerHurt);
+				EnemySpawner.instance.count--;
+				Destroy (col.gameObject);
+				ScoreManager.instance.LoseLife ();
+			}
+		}
+		if(col.gameObject.tag == "Shield")
+		{
 			Destroy (col.gameObject);
-			ScoreManager.instance.LoseLife ();
+			shield.SetActive (true);
+		}
+		if(col.gameObject.tag == "Bomb")
+		{
+			Destroy (col.gameObject);
+			bombButton.SetActive (true);
+			//shield.SetActive (true);
 		}
 	}
 
@@ -308,5 +330,12 @@ public class TouchTest : MonoBehaviour
 	{ goright = false;
 		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");}
 
-
+	public void BombBlast()
+	{
+		EnemySpawner.instance.bombCnt = 0;
+		ScoreManager.instance.score += 100;
+		bombButton.SetActive (false);
+		UIManager.instance.DestroyAllEnemies ();
+		//EnemySpawner.instance.bombCnt = 0;
+	}
 }
