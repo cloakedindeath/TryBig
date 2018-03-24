@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour
 	{
 		if (col.gameObject.tag == "WaffleAmmo" && this.gameObject.tag == "Enemy_Waffle")
 		{
-			audioE.PlayOneShot (yesHit);
+			audioE.PlayOneShot (yesHit, .5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			rb.isKinematic = true;
 			rb.angularVelocity = Vector3.zero;
@@ -72,13 +72,13 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "WaffleAmmo" &&  this.gameObject.tag != "Enemy_Waffle")
 		{
-			audioE.PlayOneShot (noHit,1);
+			audioE.PlayOneShot (noHit,.5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			walk = false;
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag == "Enemy_Chicken")
 		{
-			audioE.PlayOneShot (yesHit);
+			audioE.PlayOneShot (yesHit, .5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			rb.isKinematic = true;
 			rb.angularVelocity = Vector3.zero;
@@ -90,13 +90,13 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag != "Enemy_Chicken")
 		{
-			audioE.PlayOneShot (noHit,1);
+			audioE.PlayOneShot (noHit,.5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			walk = false;
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" &&this.gameObject.tag == "Enemy_KoolAid")
 		{
-			audioE.PlayOneShot (yesHit);
+			audioE.PlayOneShot (yesHit, .5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			rb.isKinematic = true;
 			rb.angularVelocity = Vector3.zero;
@@ -108,13 +108,13 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" && this.gameObject.tag != "Enemy_KoolAid")
 		{
-			audioE.PlayOneShot (noHit,1);
+			audioE.PlayOneShot (noHit,.5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			walk = false;
 		}
 		if (col.gameObject.tag == "EnemyDestroyer" && UIManager.instance.gameOver == false)
 		{
-			audioE.PlayOneShot (enHit);
+			audioE.PlayOneShot (enHit, .5f);
 			//Destroy (gameObject);
 			StartCoroutine (DestroyEnemy ());
 			EnemySpawner.instance.count--;
