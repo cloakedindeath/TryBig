@@ -285,7 +285,7 @@ public class TouchTest : MonoBehaviour
 			{
 				shield.SetActive (false);
 				Destroy (col.gameObject);
-				EnemySpawner.instance.shieldCnt = 0;
+				EnemySpawner.instance.shield = false;
 			}
 			else
 			{
@@ -332,7 +332,7 @@ public class TouchTest : MonoBehaviour
 
 	public void BombBlast()
 	{
-		EnemySpawner.instance.bombCnt = 0;
+		EnemySpawner.instance.bomb = false;
 		ScoreManager.instance.score += 100;
 		bombButton.SetActive (false);
 		UIManager.instance.DestroyAllEnemies ();

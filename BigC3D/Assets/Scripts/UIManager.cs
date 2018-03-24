@@ -50,6 +50,8 @@ public class UIManager : MonoBehaviour
 	GameObject[] enemiesC;
 	GameObject[] enemiesK;
 	GameObject[] projectiles;
+	GameObject[] pickUpA;
+	GameObject[] pickUpB;
 	public int touchCnt = 0;
 	public float mpCnt;
 	public AudioSource audioU;
@@ -323,7 +325,18 @@ public class UIManager : MonoBehaviour
 		{
 			Destroy(projectiles[i]);
 		}
+		pickUpA = GameObject.FindGameObjectsWithTag ("Shield");
 
+		for(int i = 0; i < pickUpA.Length; i++) 
+		{
+			Destroy(pickUpA[i]);
+		}
+		pickUpB = GameObject.FindGameObjectsWithTag ("Bomb");
+
+		for(int i = 0; i < pickUpB.Length; i++) 
+		{
+			Destroy(pickUpB[i]);
+		}
 	}
 
 	/*public void StartEnemies()

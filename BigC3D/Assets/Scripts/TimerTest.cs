@@ -16,6 +16,7 @@ public class TimerTest : MonoBehaviour
 	public GameObject waitPanel;
 	AudioSource audioT;
 	public AudioClip click;
+	public bool timerActive;
 
 
 	void Awake()
@@ -78,6 +79,7 @@ public class TimerTest : MonoBehaviour
 				return;
 			}
 			//Set the Timer
+
 			ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
 			ulong m = diff / TimeSpan.TicksPerMillisecond;
 			float secondsLeft = ((float)msToWait - m) / 1000f;
@@ -105,12 +107,14 @@ public class TimerTest : MonoBehaviour
 		ScoreManager.instance.hp = 10;
 		ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
 		RewardButton.instance.freeLife = false;
+		timerActive = false;
 		//UIManager.instance.GoBackToMenu();
 	}
 
 	public void Deathcheck()
 	{
 		if (ScoreManager.instance.lives <= 0 && RewardButton.instance.freeLife == false) {
+			timerActive = true;
 			lastChestOpen = (ulong)DateTime.Now.Ticks;
 			PlayerPrefs.SetString ("LastRewardGiven", DateTime.Now.Ticks.ToString ());
 			chestButton.interactable = false;
@@ -130,11 +134,12 @@ public class TimerTest : MonoBehaviour
 		{
 			//ScoreManager.instance.resumeRewardButton.SetActive (false);
 			//ScoreManager.instance.resumeButton.SetActive (true);
-			ScoreManager.instance.hp = 10;
-			ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
+			//ScoreManager.instance.hp = 10;
+			//ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
 			//ScoreManager.instance.lives += 3;
-			RewardButton.instance.freeLife = false;
-			//timer.text = "Restore Lives";
+			//RewardButton.instance.freeLife = false;
+			timer.text = "Restore Lives";
+			t2.text = "CLick to restore lives.";
 			//timer.text = "";
 			//ScoreManager.instance.hp = 10;
 			//ChestClick ();
@@ -142,10 +147,12 @@ public class TimerTest : MonoBehaviour
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//waitPanel.SetActive(false);
 			//UIManager.instance.GoBackToMenuSetLives();
+
 			return true;
 		}
 		else
 		{
+			t2.text = "All lives lost!\nWait for the timer or purchase more lives.";
 			return false;
 		}
 

@@ -30,9 +30,12 @@ public class EnemyController : MonoBehaviour
 		}
 		if(walk == false)
 		{
-			StopEnemyMovement();
+			//StopEnemyMovement();
 		}
-
+		if(rb.isKinematic == true)
+		{
+			StartCoroutine (DestroyEnemy ());
+		}
 	}
 
 	void MoveEnemyToPlayer()
@@ -70,6 +73,7 @@ public class EnemyController : MonoBehaviour
 			walk = false;
 			StartCoroutine (DestroyEnemy ());
 		}
+	
 		if (col.gameObject.tag == "WaffleAmmo" &&  this.gameObject.tag != "Enemy_Waffle")
 		{
 			audioE.PlayOneShot (noHit,.5f);
@@ -88,6 +92,7 @@ public class EnemyController : MonoBehaviour
 			walk = false;
 			StartCoroutine (DestroyEnemy ());
 		}
+
 		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag != "Enemy_Chicken")
 		{
 			audioE.PlayOneShot (noHit,.5f);
@@ -106,6 +111,7 @@ public class EnemyController : MonoBehaviour
 			walk = false;
 			StartCoroutine (DestroyEnemy ());
 		}
+	
 		if (col.gameObject.tag == "KoolAidAmmo" && this.gameObject.tag != "Enemy_KoolAid")
 		{
 			audioE.PlayOneShot (noHit,.5f);
@@ -120,12 +126,22 @@ public class EnemyController : MonoBehaviour
 			EnemySpawner.instance.count--;
 			ScoreManager.instance.LoseLife ();
 			UIManager.instance.mpCnt = 0;
-			EnemySpawner.instance.shieldCnt = 0;
-			EnemySpawner.instance.bombCnt = 0;
+
+
+		}
+	
+		if(col.gameObject.tag == "EnemyDestroyer" && this.gameObject.tag == "Shield")
+		{
+			EnemySpawner.instance.shield = false;
+		}
+		if(col.gameObject.tag == "EnemyDestroyer" && this.gameObject.tag == "Bomb")
+		{
+			EnemySpawner.instance.bomb = false;
 		}
 		else
 		{
 			walk = true;
+
 		}
 	}
 
@@ -133,6 +149,7 @@ public class EnemyController : MonoBehaviour
 	{
 		yield return new WaitForSeconds (.8f);
 		model.transform.position = new Vector3 (-20, -0.1f, 0);
+		//rb.isKinematic = false;
 		Destroy (gameObject);
 	}
 }
