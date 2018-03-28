@@ -346,6 +346,7 @@ public class UIManager : MonoBehaviour
 
 	public void goToMenu()
 	{
+		PlayerPrefsX.SetBool ("Timer1", TimerTest.instance.timerActive);
 		audioU.PlayOneShot (click, 1f);
 		gameOver = true;
 		//PlayerPrefs.SetFloat ("TimeOnExit", PersistentTimer.instance.savedSeconds);
@@ -579,7 +580,7 @@ public class UIManager : MonoBehaviour
 	}
 	public void OpenShop()
 	{
-		UnityAdManager.instance.ShowAd ();
+		//UnityAdManager.instance.ShowAd ();
 		audioU.PlayOneShot (click, .6f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopPop");
 	}

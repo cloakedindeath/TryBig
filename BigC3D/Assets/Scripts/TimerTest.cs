@@ -25,7 +25,6 @@ public class TimerTest : MonoBehaviour
 		{
 			instance = this;
 		}
-
 	}
 	private void Start()
 	{
@@ -33,15 +32,17 @@ public class TimerTest : MonoBehaviour
 		chestButton = GetComponent<Button> ();
 		lastChestOpen =  ulong.Parse(PlayerPrefs.GetString ("LastRewardGiven"));
 		timer = GetComponentInChildren<Text> ();
-
+		//timerActive = true;
 		if(!isChestReady())
 		{
 			chestButton.interactable = false;
 		}
+		timerActive = PlayerPrefsX.GetBool ("Timer1");
 	}
 
 	private void Update()
 	{
+		Debug.Log (PlayerPrefsX.GetBool ("Timer1"));
 		//Set the Timer
 		/*ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
 		ulong m = diff / TimeSpan.TicksPerMillisecond;
@@ -108,13 +109,19 @@ public class TimerTest : MonoBehaviour
 		ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
 		RewardButton.instance.freeLife = false;
 		timerActive = false;
+		PlayerPrefsX.SetBool("Timer1",false);
+
+
+
 		//UIManager.instance.GoBackToMenu();
 	}
 
 	public void Deathcheck()
 	{
 		if (ScoreManager.instance.lives <= 0 && RewardButton.instance.freeLife == false) {
+			
 			timerActive = true;
+			PlayerPrefsX.SetBool("Timer1",true);
 			lastChestOpen = (ulong)DateTime.Now.Ticks;
 			PlayerPrefs.SetString ("LastRewardGiven", DateTime.Now.Ticks.ToString ());
 			chestButton.interactable = false;
@@ -130,8 +137,9 @@ public class TimerTest : MonoBehaviour
 
 		float secondsLeft = ((float)msToWait - m) / 1000f;
 		//Debug.Log (secondsLeft);
-		if(secondsLeft < 0 )
+		if(secondsLeft < 0 && timerActive == true )
 		{
+			secondsLeft = 0;
 			//ScoreManager.instance.resumeRewardButton.SetActive (false);
 			//ScoreManager.instance.resumeButton.SetActive (true);
 			//ScoreManager.instance.hp = 10;
@@ -147,7 +155,6 @@ public class TimerTest : MonoBehaviour
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//waitPanel.SetActive(false);
 			//UIManager.instance.GoBackToMenuSetLives();
-
 			return true;
 		}
 		else
