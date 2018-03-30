@@ -38,11 +38,22 @@ public class TimerTest : MonoBehaviour
 			chestButton.interactable = false;
 		}
 		timerActive = PlayerPrefsX.GetBool ("Timer1");
+		ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");
+		if(PlayerPrefs.GetInt ("Lives") > 0)
+		{
+			timerActive = false;
+		}
+		else{
+			timerActive = true;
+			//RewardButton.instance.freeLife = false;
+		}
 	}
 
 	private void Update()
 	{
 		Debug.Log (PlayerPrefsX.GetBool ("Timer1"));
+		Debug.Log(PlayerPrefs.GetInt("Lives"));
+		Debug.Log (RewardButton.instance.freeLife);
 		//Set the Timer
 		/*ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
 		ulong m = diff / TimeSpan.TicksPerMillisecond;
@@ -110,6 +121,7 @@ public class TimerTest : MonoBehaviour
 		RewardButton.instance.freeLife = false;
 		timerActive = false;
 		PlayerPrefsX.SetBool("Timer1",false);
+		PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt("Lives") + 3);
 
 
 
@@ -125,6 +137,7 @@ public class TimerTest : MonoBehaviour
 			lastChestOpen = (ulong)DateTime.Now.Ticks;
 			PlayerPrefs.SetString ("LastRewardGiven", DateTime.Now.Ticks.ToString ());
 			chestButton.interactable = false;
+			PlayerPrefs.SetInt ("Lives", 0);
 		}
 
 
@@ -146,6 +159,7 @@ public class TimerTest : MonoBehaviour
 			//ScoreManager.instance.lives = ScoreManager.instance.lives + 3;
 			//ScoreManager.instance.lives += 3;
 			//RewardButton.instance.freeLife = false;
+			RewardButton.instance.freeLife = false;
 			timer.text = "Restore Lives";
 			t2.text = "CLick to restore lives.";
 			//timer.text = "";

@@ -111,13 +111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1531b53218e3346458466aadca82cb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.2
+  speed: 4
   rb: {fileID: 54757348430775192}
   yesHit: {fileID: 0}
   noHit: {fileID: 0}
   enHit: {fileID: 0}
   walk: 0
   model: {fileID: 1550418951133444}
+  particle1: {fileID: 0}
 --- !u!135 &135909899509832698
 SphereCollider:
   m_ObjectHideFlags: 1

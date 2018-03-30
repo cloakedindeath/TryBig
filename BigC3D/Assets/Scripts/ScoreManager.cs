@@ -235,6 +235,7 @@ public class ScoreManager : MonoBehaviour
 			
 			//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
 			lives = lives - 1;
+			PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt ("Lives") - 1);
 			hp = 10;
 			UIManager.instance.GameOver ();
 			//StartCoroutine (ANIMpause ());
@@ -280,7 +281,7 @@ public class ScoreManager : MonoBehaviour
 		//resumeRewardButton.SetActive (true);
 		//PersistentTimer.instance.savedSeconds = 60;
 		//waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-		//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+		PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt ("Lives") + 1);
 		lives = lives + 1;
 	}
 

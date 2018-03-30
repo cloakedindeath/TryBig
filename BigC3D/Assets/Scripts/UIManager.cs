@@ -82,6 +82,7 @@ public class UIManager : MonoBehaviour
 			livesLostMessage.SetActive(true);
 			livesLostTimer.SetActive (true);
 			playButton.SetActive (false);
+			//PlayerPrefs.SetInt ("Lives", 0);
 		}
 		if (ScoreManager.instance.lives >= 1) {
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
@@ -89,11 +90,13 @@ public class UIManager : MonoBehaviour
 			livesLostMessage.SetActive(false);
 			livesLostTimer.SetActive (false);
 			playButton.SetActive (true);
+			//PlayerPrefs.SetInt ("Lives", 3);
 		}
 	}
 	// Use this for initialization
 	void Start () 
 	{
+		ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");
 		//LeaderBoardManager.instance.Login();
 		audioU = GetComponent<AudioSource>();
 		death = false;
@@ -123,6 +126,7 @@ public class UIManager : MonoBehaviour
 			livesLostMessage.SetActive(true);
 			livesLostTimer.SetActive (true);
 			playButton.SetActive (false);
+			//RewardButton.instance.freeLife = false;
 		}
 		if (ScoreManager.instance.lives >= 1) {
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
@@ -466,6 +470,7 @@ public class UIManager : MonoBehaviour
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
 			livesLostMessage.SetActive(true);
 			livesLostTimer.SetActive (true);
+			//PlayerPrefs.SetInt ("Lives", 0);
 
 		}
 		if (ScoreManager.instance.lives >= 1) {
@@ -474,6 +479,7 @@ public class UIManager : MonoBehaviour
 			//StartCoroutine (WaitPanelDown ());
 			livesLostMessage.SetActive(false);
 			livesLostTimer.SetActive (false);
+			//PlayerPrefs.SetInt ("Lives", 3);
 		}
 
 
@@ -517,6 +523,7 @@ public class UIManager : MonoBehaviour
 			//StartCoroutine (WaitPanelUp ());
 			livesLostMessage.SetActive(true);
 			livesLostTimer.SetActive (true);
+			//PlayerPrefs.SetInt ("Lives", 0);
 		}
 		if (ScoreManager.instance.lives >= 1) {
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
@@ -524,6 +531,7 @@ public class UIManager : MonoBehaviour
 			//StartCoroutine (WaitPanelDown ());
 			livesLostMessage.SetActive(false);
 			livesLostTimer.SetActive (false);
+			//PlayerPrefs.SetInt ("Lives", 3);
 		}
 
 
@@ -653,6 +661,7 @@ public class UIManager : MonoBehaviour
 	public void LifeAway()
 	{
 		ScoreManager.instance.lives = ScoreManager.instance.lives - 1;
+		PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt ("Lives") - 1);
 	}
 	public void waveCountIncrease()
 	{

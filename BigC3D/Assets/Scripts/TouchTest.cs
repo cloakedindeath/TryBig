@@ -32,6 +32,7 @@ public class TouchTest : MonoBehaviour
 	public GameObject model;
 	public GameObject shield;
 	public GameObject bombButton;
+	public GameObject shieldText;
 
 
 
@@ -284,6 +285,7 @@ public class TouchTest : MonoBehaviour
 			if(shield.activeSelf)
 			{
 				shield.SetActive (false);
+				shieldText.SetActive (false);
 				Destroy (col.gameObject);
 				EnemySpawner.instance.shield = false;
 			}
@@ -299,6 +301,7 @@ public class TouchTest : MonoBehaviour
 		{
 			Destroy (col.gameObject);
 			shield.SetActive (true);
+			shieldText.SetActive (true);
 		}
 		if(col.gameObject.tag == "Bomb")
 		{

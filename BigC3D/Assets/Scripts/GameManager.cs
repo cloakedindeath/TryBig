@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
 		{
 			//Destroy(this.gameObject);
 		}
+		/*if(PlayerPrefs.HasKey("Lives"))
+		{
+			ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");
+		}*/
 	}
 
 	// Use this for initialization
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour
 			ScoreManager.instance.startLives = false;
 
 		}
+	
 
 	}
 }

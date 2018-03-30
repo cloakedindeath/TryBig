@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
 	public AudioClip enHit;
 	public bool walk;
 	public GameObject model;
+	public GameObject particle1;
 
 	// Use this for initialization
 	void Start () 
@@ -63,6 +64,10 @@ public class EnemyController : MonoBehaviour
 	{
 		if (col.gameObject.tag == "WaffleAmmo" && this.gameObject.tag == "Enemy_Waffle")
 		{
+			//Instantiate (particle1, col.transform.position, Quaternion.identity) as GameObject;
+			//GameObject e = (GameObject)Instantiate(particle1, transform.position,Quaternion.identity);
+			/*Instantiate (particle1, new Vector3 (transform.position.x,
+				transform.position.y, transform.position.z), Quaternion.identity);*/
 			audioE.PlayOneShot (yesHit, .5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			rb.isKinematic = true;
@@ -82,6 +87,10 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag == "Enemy_Chicken")
 		{
+			//Instantiate (particle1, col.transform.position, Quaternion.identity) as GameObject;
+			//GameObject e = (GameObject)Instantiate(particle1, transform.position,Quaternion.identity);
+			/*Instantiate (particle1, new Vector3 (transform.position.x,
+				transform.position.y, transform.position.z), Quaternion.identity);*/
 			audioE.PlayOneShot (yesHit, .5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			rb.isKinematic = true;
@@ -101,6 +110,10 @@ public class EnemyController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "KoolAidAmmo" &&this.gameObject.tag == "Enemy_KoolAid")
 		{
+			//Instantiate (particle1, transform.position, Quaternion.identity) as GameObject;
+			//GameObject e = (GameObject)Instantiate(particle1, transform.position,Quaternion.identity);
+			/*Instantiate (particle1, new Vector3 (transform.position.x,
+				transform.position.y, transform.position.z), Quaternion.identity);*/
 			audioE.PlayOneShot (yesHit, .5f);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
 			rb.isKinematic = true;
@@ -151,5 +164,6 @@ public class EnemyController : MonoBehaviour
 		model.transform.position = new Vector3 (-20, -0.1f, 0);
 		//rb.isKinematic = false;
 		Destroy (gameObject);
+		//Destroy (particle1);
 	}
 }

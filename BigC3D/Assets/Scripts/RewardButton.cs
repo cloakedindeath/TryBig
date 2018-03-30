@@ -80,6 +80,7 @@ public class RewardButton : MonoBehaviour {
 		//ScoreManager.instance.resumeRewardButton.SetActive (true);
 		//ScoreManager.instance.resumeButton.SetActive (false);
 		ScoreManager.instance.lives = ScoreManager.instance.lives + 1;
+		PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt ("Lives") + 1);
 		UIManager.instance.livesLostMessage.SetActive (false);
 		UIManager.instance.livesLostTimer.SetActive (false);
 		//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);

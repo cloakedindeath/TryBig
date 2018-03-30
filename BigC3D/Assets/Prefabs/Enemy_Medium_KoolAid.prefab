@@ -7707,6 +7707,7 @@ MonoBehaviour:
   enHit: {fileID: 8300000, guid: c790764a7e5689c45b69f9031ad71c3c, type: 3}
   walk: 0
   model: {fileID: 1246895499232118}
+  particle1: {fileID: 1817530179596228, guid: ea13078349151a748b66418e6902f59e, type: 2}
 --- !u!136 &136716477177023448
 CapsuleCollider:
   m_ObjectHideFlags: 1
