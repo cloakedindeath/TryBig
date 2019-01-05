@@ -29,7 +29,7 @@ public class TimerTest : MonoBehaviour
 	private void Start()
 	{
 		audioT= GetComponent<AudioSource>();
-		chestButton = GetComponent<Button> ();
+		//chestButton = GetComponent<Button> ();
 		lastChestOpen =  ulong.Parse(PlayerPrefs.GetString ("LastRewardGiven"));
 		timer = GetComponentInChildren<Text> ();
 		//timerActive = true;
@@ -80,7 +80,7 @@ public class TimerTest : MonoBehaviour
 		else{
 			t2.text = "All lives lost!\nWait for the timer or purchase more lives.";
 			chestButton.interactable = false;
-		}*/
+		}
 
 		if(chestButton.interactable == false )
 		{
@@ -105,7 +105,7 @@ public class TimerTest : MonoBehaviour
 			//Seconds
 			r += (secondsLeft % 60).ToString("00") + "s";
 			timer.text = r;
-		}
+		}*/
 	}
 
 	public void ChestClick()

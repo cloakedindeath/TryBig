@@ -38,7 +38,7 @@ public class MenuUIManager : MonoBehaviour
 	{
 		audioSource.PlayOneShot(click, .6F);
 		PlayerPrefs.SetFloat("TimeDiff",timer);
-		SceneManager.LoadScene ("Main");
+		SceneManager.LoadScene ("Main (Rework)");
 	}
 		
 	public void OptionsButtonPulse()

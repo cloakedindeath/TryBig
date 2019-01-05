@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour 
 {
 	public float speed;
+	public float speed2 = 5;
 	public Rigidbody rb;
 	AudioSource audioE;
 	public AudioClip yesHit;
@@ -82,6 +83,7 @@ public class EnemyController : MonoBehaviour
 		if (col.gameObject.tag == "WaffleAmmo" &&  this.gameObject.tag != "Enemy_Waffle")
 		{
 			audioE.PlayOneShot (noHit,.5f);
+			this.rb.velocity = new Vector3 (0,0,speed2);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			walk = false;
 		}
@@ -105,6 +107,7 @@ public class EnemyController : MonoBehaviour
 		if (col.gameObject.tag == "ChickenAmmo" && this.gameObject.tag != "Enemy_Chicken")
 		{
 			audioE.PlayOneShot (noHit,.5f);
+			this.rb.velocity = new Vector3 (0,0,speed2);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			walk = false;
 		}
@@ -128,6 +131,7 @@ public class EnemyController : MonoBehaviour
 		if (col.gameObject.tag == "KoolAidAmmo" && this.gameObject.tag != "Enemy_KoolAid")
 		{
 			audioE.PlayOneShot (noHit,.5f);
+			this.rb.velocity = new Vector3 (0,0,speed2);
 			model.GetComponent<Animator> ().Play ("ANIM_Monster_Yuck");
 			walk = false;
 		}

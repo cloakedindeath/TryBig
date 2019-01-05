@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
 		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
-		gameStartCountdown = -1f;
+		//gameStartCountdown = -1f;
 		timeCountDown = 0;
 		startCountdown = false;
 		startWaveCountdown = false;
@@ -148,10 +148,10 @@ public class UIManager : MonoBehaviour
 
 	
 			//Tap to start round
-			if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+			/*if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 			{
 				touchCnt = touchCnt + 1;
-			}
+			}*/
 			if(touchCnt == 1)
 			{
 				audioU.PlayOneShot (countdown, .5f);
@@ -300,6 +300,7 @@ public class UIManager : MonoBehaviour
 		EnemySpawner.instance.spawnTime = 3.5f;
 		mpCnt = 0;
 		gameOverPanel.SetActive (false);
+		touchCnt = 1;
 
 	}
 
