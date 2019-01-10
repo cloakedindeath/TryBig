@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TouchTest : MonoBehaviour 
 {
-
+	//This is currently not being used but was the original form of moving the character
 	public static TouchTest instance;
 	// Update is called once per frame
 	public float speed = 0.1F;

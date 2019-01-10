@@ -7,6 +7,7 @@ public class ChickenProjectile : MonoBehaviour {
 	public static ChickenProjectile instance;
 	public bool correct;
 
+	//Allows use in other scripts
 	void Awake()
 	{
 		if(instance == null)
@@ -25,8 +26,10 @@ public class ChickenProjectile : MonoBehaviour {
 		
 	}
 
+	//checks for if the projectiles have hit the chicken. 
 	void OnTriggerEnter(Collider col)
 	{
+		//if enemy chicken is hit
 		if (col.gameObject.tag == "Enemy_Chicken")
 		{
 			correct = true;
@@ -69,6 +72,8 @@ public class ChickenProjectile : MonoBehaviour {
 			ScoreManager.instance.dingCnt = 0;
 		}
 	}
+
+	//Destroys Chicken enemy 
 	IEnumerator DestroyEnemy()
 	{
 		yield return new WaitForSeconds (1f);

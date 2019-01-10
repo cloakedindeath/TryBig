@@ -73,8 +73,9 @@ public class UIManager : MonoBehaviour
 		{
 			instance = this;
 		}
-		gameOver = true;
-		mpCnt = 0;
+		gameOver = true;	//starts gameOver as true at game menu
+		mpCnt = 0;			// also resets the multiplier
+		//if lives are <= 0 then the play button disappears and the timer to wait for lives appears
 		if (ScoreManager.instance.lives <= 0) {
 			//TimerTest.instance.Deathcheck ();
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
@@ -84,6 +85,7 @@ public class UIManager : MonoBehaviour
 			playButton.SetActive (false);
 			//PlayerPrefs.SetInt ("Lives", 0);
 		}
+		//if the player has lives they can see the play button and play the game
 		if (ScoreManager.instance.lives >= 1) {
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 			//StartCoroutine (WaitPanelDown ());
@@ -96,28 +98,29 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");
+		ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");	//Get lives from playerprefs
 		//LeaderBoardManager.instance.Login();
-		audioU = GetComponent<AudioSource>();
-		death = false;
+		audioU = GetComponent<AudioSource>();						//Plays music (music not in)
+		death = false;												//Set if player is dead to false
 		//DontDestroyOnLoad (livesTimerOB);
 		//enemyDestroyer = GameObject.Find ("EnemyDestroyer");
 		//enemySpawner.GetComponent<EnemySpawner> ().enabled = false;
-		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0);
+		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (0,0,0); //Makes sure countdown timer for game is not visable
 		//gameStartCountdown = -1f;
-		timeCountDown = 0;
-		startCountdown = false;
-		startWaveCountdown = false;
-		waveCount = 1;
-		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
-		shootButton.GetComponent<Button> ().interactable = false;
-		deathCnt = 5;
+		timeCountDown = 0;											//Resets the timer for the game to 0
+		startCountdown = false;										//
+		startWaveCountdown = false;									//Bool to start the wave timer
+		waveCount = 1;												//Sets the starting wave count back to 1
+		GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;		//Make sure TouchTest script in disabled
+		shootButton.GetComponent<Button> ().interactable = false;	//Make sure the shoot buttons cannot be pressed before the wave starts
+		deathCnt = 5;												//Looks like a variable made to stop something weird from happening
 		//audio.volume = 0.3f;
 
 	}
 	// Update is called once per frame
 	void Update () 
 	{
+		//Same code as above in the Awake function (may be redundant)
 		if (ScoreManager.instance.lives <= 0) {
 			//ScoreManager.instance.waitPanel.SetActive (true);
 			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
@@ -143,7 +146,7 @@ public class UIManager : MonoBehaviour
 		{
 			foreach (GameObject buttons in controls)
 			{
-				buttons.GetComponent<Button>().interactable = false;
+				buttons.GetComponent<Button>().interactable = false; 		//makes the movement and fire buttons unable to be pressed
 			}
 
 	
@@ -272,35 +275,36 @@ public class UIManager : MonoBehaviour
 
 	public void nextWaveStart()
 	{
-		touchCnt = 1;
-		audioU.PlayOneShot (countdown);
-		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);
-		waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");
-		waveEndPanel.GetComponent<Animator> ().Play ("WaveEndAway");
-		waveEndPanel.SetActive (false);
-		startWaveCountdown = false;
-		startCountdown = true;
-		gameStartCountdown = 3.5f;
-		waveCount = waveCount + 1;
-		ScoreManager.instance.SetPlayerScores ();
+		touchCnt = 1;																		//Keeps Touch count at 1 to automatically start next wave 
+		audioU.PlayOneShot (countdown);														//Plays the countdown audio
+		startCountdownTimerText.gameObject.transform.localScale = new Vector3 (1,1,1);		//Makes the wave start timer text visable
+		waveStartPanel.GetComponent<Animator> ().Play ("StartWaveCountPopUp");				//Makes the wave start panel pop up for countdown
+		waveEndPanel.GetComponent<Animator> ().Play ("WaveEndAway");						//Makes the wave end panel animate away
+		waveEndPanel.SetActive (false);														//Makes wave end panel dissappear
+		startWaveCountdown = false;															//Keep in wave timer false
+		startCountdown = true;																//Enables the start game timer
+		gameStartCountdown = 3.5f;															//Resets the start game timer
+		waveCount = waveCount + 1;															//Increments the wave count
+		ScoreManager.instance.SetPlayerScores ();											//Sets player score for leaderboards
 	}
 
+	//Function called to start the game when play button is pressed
 	public void GameStart ()
 	{
-		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
-		gun.SetActive (true);
-		audioU.PlayOneShot (click, 1f);
-		waveEndPanel.SetActive (false);
+		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");	//Plays idle animation on the player character
+		gun.SetActive (true);																//Makes the gun visable
+		audioU.PlayOneShot (click, 1f);														//Plays click audio
+		waveEndPanel.SetActive (false);														//Makes sure the wave end pop up is not visable
 		deathCnt = 0;
 		//PlayerPrefs.SetInt ("Score", 0);
-		ScoreManager.instance.score = 0;
-		gameOver = false;
-		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");
-		startCountdown = true;
-		EnemySpawner.instance.spawnTime = 3.5f;
-		mpCnt = 0;
-		gameOverPanel.SetActive (false);
-		touchCnt = 1;
+		ScoreManager.instance.score = 0;													//Resets the game score to 0
+		gameOver = false;																	//Game is not over
+		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");			//Makes the GameStartPanel animate off the screen
+		startCountdown = true;																//Enables the start game timer
+		EnemySpawner.instance.spawnTime = 3.5f;												//Set time it takes between enemies spawning
+		mpCnt = 0;																			//Set multiplier count to 0
+		gameOverPanel.SetActive (false);													//Makes sure the Game Over Panel is not visable
+		touchCnt = 1;																		//This has been changed to make the countdown start immediately after hitting the play button
 
 	}
 
