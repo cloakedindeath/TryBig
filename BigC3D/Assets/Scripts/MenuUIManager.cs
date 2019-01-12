@@ -34,13 +34,15 @@ public class MenuUIManager : MonoBehaviour
 		//Debug.Log (timer);
 	}
 
+	//Takes user to Game Menu
 	public void StartGame()
 	{
 		audioSource.PlayOneShot(click, .6F);
 		PlayerPrefs.SetFloat("TimeDiff",timer);
 		SceneManager.LoadScene ("Main (Rework)");
 	}
-		
+
+	//Makes buttons animate
 	public void OptionsButtonPulse()
 	{
 		optionsPanel.GetComponent<Animator> ().Play ("MenuBtnPulse");
@@ -49,6 +51,7 @@ public class MenuUIManager : MonoBehaviour
 
 	#region Social Media Functions
 
+	//Opens social media panel
 	public void SocialMediaPanelClose()
 	{
 		audioSource.PlayOneShot(click, .6F);

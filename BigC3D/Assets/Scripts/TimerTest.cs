@@ -7,13 +7,13 @@ using System;
 public class TimerTest : MonoBehaviour 
 {
 	public static TimerTest instance;
-	public float msToWait = 15000f;
+	public float msToWait = 15000f;  //10,800,000 for 3 hours - 600,000 for 10 minutes 
 
 	public Text timer;
 	public Text t2;
 	public Button chestButton;
 	private ulong lastChestOpen;
-	public GameObject waitPanel;
+	//public GameObject waitPanel;
 	AudioSource audioT;
 	public AudioClip click;
 	public bool timerActive;
@@ -30,6 +30,7 @@ public class TimerTest : MonoBehaviour
 	{
 		audioT= GetComponent<AudioSource>();
 		//chestButton = GetComponent<Button> ();
+
 		lastChestOpen =  ulong.Parse(PlayerPrefs.GetString ("LastRewardGiven"));
 		timer = GetComponentInChildren<Text> ();
 		//timerActive = true;
@@ -38,8 +39,13 @@ public class TimerTest : MonoBehaviour
 			chestButton.interactable = false;
 		}
 		timerActive = PlayerPrefsX.GetBool ("Timer1");
-		ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");
-		if(PlayerPrefs.GetInt ("Lives") > 0)
+		//ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");
+	
+	}
+
+	private void Update()
+	{
+		if(ScoreManager.instance.lives > 0)
 		{
 			timerActive = false;
 		}
@@ -47,13 +53,14 @@ public class TimerTest : MonoBehaviour
 			timerActive = true;
 			//RewardButton.instance.freeLife = false;
 		}
-	}
-
-	private void Update()
-	{
 		Debug.Log (PlayerPrefsX.GetBool ("Timer1"));
 		Debug.Log(PlayerPrefs.GetInt("Lives"));
 		Debug.Log (RewardButton.instance.freeLife);
+		if (ScoreManager.instance.lives <= 0) 
+		{
+			UIManager.instance.livesLostMessage.SetActive (true);
+			UIManager.instance.livesLostTimer.SetActive (true);
+		}
 		//Set the Timer
 		/*ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
 		ulong m = diff / TimeSpan.TicksPerMillisecond;
@@ -106,6 +113,25 @@ public class TimerTest : MonoBehaviour
 			r += (secondsLeft % 60).ToString("00") + "s";
 			timer.text = r;
 		}*/
+		ulong diff = ((ulong)DateTime.Now.Ticks - lastChestOpen);
+		ulong m = diff / TimeSpan.TicksPerMillisecond;
+		float secondsLeft = ((float)msToWait - m) / 1000f;
+
+		/*if (secondsLeft <= 0) {
+			secondsLeft = 0;
+			UIManager.instance.livesLostMessage.SetActive (false);					//Removes countdown message
+			UIManager.instance.livesLostTimer.SetActive (false);	
+		}*/
+
+		string r = "";
+		//Hours
+		r += ((int)secondsLeft / 3600).ToString() + "h ";
+		secondsLeft -= ((int)secondsLeft / 3600) * 3600;
+		//Minutes
+		r += ((int)secondsLeft / 60).ToString("00") + "m ";
+		//Seconds
+		r += (secondsLeft % 60).ToString("00") + "s";
+		timer.text = r;
 	}
 
 	public void ChestClick()
@@ -122,8 +148,8 @@ public class TimerTest : MonoBehaviour
 		timerActive = false;
 		PlayerPrefsX.SetBool("Timer1",false);
 		PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt("Lives") + 3);
-
-
+		UIManager.instance.livesLostMessage.SetActive (false);					//Removes countdown message
+		UIManager.instance.livesLostTimer.SetActive (false);					//Removes Lives Restore Button
 
 		//UIManager.instance.GoBackToMenu();
 	}
@@ -150,7 +176,7 @@ public class TimerTest : MonoBehaviour
 
 		float secondsLeft = ((float)msToWait - m) / 1000f;
 		//Debug.Log (secondsLeft);
-		if(secondsLeft < 0 && timerActive == true )
+		if(secondsLeft <= 0 && timerActive == true )
 		{
 			secondsLeft = 0;
 			//ScoreManager.instance.resumeRewardButton.SetActive (false);
@@ -161,7 +187,7 @@ public class TimerTest : MonoBehaviour
 			//RewardButton.instance.freeLife = false;
 			RewardButton.instance.freeLife = false;
 			timer.text = "Restore Lives";
-			t2.text = "CLick to restore lives.";
+			t2.text = "Click to restore lives.";
 			//timer.text = "";
 			//ScoreManager.instance.hp = 10;
 			//ChestClick ();
@@ -173,7 +199,7 @@ public class TimerTest : MonoBehaviour
 		}
 		else
 		{
-			t2.text = "All lives lost!\nWait for the timer or purchase more lives.";
+			t2.text = "Lives restore in 10 minutes.";
 			return false;
 		}
 

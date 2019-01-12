@@ -304,9 +304,9 @@ RectTransform:
   m_Father: {fileID: 1055096138}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000076293945, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.4875425}
+  m_AnchorMax: {x: 0.5, y: 0.4875425}
+  m_AnchoredPosition: {x: -0.000008583069, y: -0.29999924}
   m_SizeDelta: {x: 100, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &31627073
@@ -489,7 +489,6 @@ MonoBehaviour:
   timer: {fileID: 0}
   t2: {fileID: 0}
   chestButton: {fileID: 0}
-  waitPanel: {fileID: 0}
   click: {fileID: 8300000, guid: c629a0874743a804a88719d220689912, type: 3}
   timerActive: 0
 --- !u!1 &50835767
@@ -770,9 +769,9 @@ RectTransform:
   m_Father: {fileID: 1055096138}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.42031378}
-  m_AnchorMax: {x: 0.5, y: 0.42031378}
-  m_AnchoredPosition: {x: -0.00000667572, y: 1.4486465}
+  m_AnchorMin: {x: 0.508, y: 0.26854253}
+  m_AnchorMax: {x: 0.508, y: 0.26854253}
+  m_AnchoredPosition: {x: -1.5563002, y: 0.2000122}
   m_SizeDelta: {x: 75, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73122398
@@ -983,7 +982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15200001, y: 0.9717713}
   m_AnchorMax: {x: 0.15200001, y: 0.9717713}
-  m_AnchoredPosition: {x: 0.7000122, y: -9.799988}
+  m_AnchoredPosition: {x: 0.6999512, y: -9.799988}
   m_SizeDelta: {x: 33.100006, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &86887659
@@ -2850,10 +2849,10 @@ RectTransform:
   m_Father: {fileID: 1055096138}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.20854251}
-  m_AnchorMax: {x: 0.5, y: 0.20854251}
-  m_AnchoredPosition: {x: 0.00002670288, y: -7}
-  m_SizeDelta: {x: 413.9, y: 55.3}
+  m_AnchorMin: {x: 0.5, y: 0.869}
+  m_AnchorMax: {x: 0.5, y: 0.869}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0.22000122}
+  m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &514674997
 MonoBehaviour:
@@ -2887,9 +2886,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'All lives lost!
-
-    Wait for the timer or purchase more lives.'
+  m_Text: Lives will restore after timer!
 --- !u!222 &514674998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2953,10 +2950,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 55
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 0
     m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2964,7 +2961,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CountDown
+  m_Text: 
 --- !u!222 &531852998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5369,10 +5366,10 @@ RectTransform:
   m_Father: {fileID: 1055096138}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.48521855, y: 0.62445754}
-  m_AnchorMax: {x: 0.48521855, y: 0.62445754}
-  m_AnchoredPosition: {x: 8.999998, y: -4.5}
-  m_SizeDelta: {x: 460.4, y: 58.199997}
+  m_AnchorMin: {x: 0.74187416, y: 0.9372288}
+  m_AnchorMax: {x: 0.74187416, y: 0.9372288}
+  m_AnchoredPosition: {x: 1, y: -1.5496826}
+  m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &972235707
 MonoBehaviour:
@@ -5403,7 +5400,6 @@ MonoBehaviour:
   timer: {fileID: 0}
   t2: {fileID: 0}
   chestButton: {fileID: 0}
-  waitPanel: {fileID: 0}
   click: {fileID: 8300000, guid: c629a0874743a804a88719d220689912, type: 3}
   timerActive: 0
 --- !u!1 &974807341
@@ -5502,6 +5498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207ab2936849d24b8608bafed2130c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overallLives: 0
 --- !u!4 &998808456
 Transform:
   m_ObjectHideFlags: 0
@@ -6143,11 +6140,11 @@ RectTransform:
   m_Father: {fileID: 1055096138}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.35622877}
-  m_AnchorMax: {x: 0.5, y: 0.35622877}
-  m_AnchoredPosition: {x: -0.00000667572, y: -23.2}
+  m_AnchorMin: {x: 0.508, y: 0.33622876}
+  m_AnchorMax: {x: 0.508, y: 0.33622876}
+  m_AnchoredPosition: {x: 1.1403999, y: 0.30000317}
   m_SizeDelta: {x: 75, y: 25}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5152054, y: 0.5000001}
 --- !u!114 &1150594012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6600,7 +6597,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1273098775}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -6614,7 +6611,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1273098775}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -6848,7 +6845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf69121c5a8e9274ab71808400300bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msToWait: 43200000
+  msToWait: 300000
   timer2: {fileID: 612752893}
   message: {fileID: 1553554929}
   chestButton: {fileID: 1356118944}
@@ -9295,7 +9292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.7646093, y: 0.9304005}
   m_AnchorMax: {x: 0.7646093, y: 0.9304005}
-  m_AnchoredPosition: {x: -24.800003, y: -21.599976}
+  m_AnchoredPosition: {x: -24.800049, y: -21.599976}
   m_SizeDelta: {x: 34.200012, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1749783141
@@ -9409,16 +9406,16 @@ RectTransform:
   m_GameObject: {fileID: 1750414099}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1273098776}
   m_Father: {fileID: 1055096138}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.82521856, y: 0.9717713}
-  m_AnchorMax: {x: 0.82521856, y: 0.9717713}
-  m_AnchoredPosition: {x: 22.49701, y: -9.773987}
-  m_SizeDelta: {x: 32.600006, y: 30}
+  m_AnchorMin: {x: 0.5, y: 0.40477127}
+  m_AnchorMax: {x: 0.5, y: 0.40477127}
+  m_AnchoredPosition: {x: 76.475, y: 24.900002}
+  m_SizeDelta: {x: 75, y: 25}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1750414101
 MonoBehaviour:
@@ -9478,7 +9475,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1750414099}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -9987,7 +9984,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -10198,11 +10195,11 @@ RectTransform:
   m_Father: {fileID: 1055096138}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.48521855, y: 0.7292288}
-  m_AnchorMax: {x: 0.48521855, y: 0.7292288}
-  m_AnchoredPosition: {x: -0.6999998, y: 44.7}
+  m_AnchorMin: {x: 0.48521855, y: 0.66700006}
+  m_AnchorMax: {x: 0.48521855, y: 0.66700006}
+  m_AnchoredPosition: {x: 2.0887299, y: 0.000091552734}
   m_SizeDelta: {x: 450, y: 100}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5000002}
 --- !u!114 &1856319417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10224,7 +10221,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8b9e14a4ea217964280133a655088450, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -10323,7 +10320,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2074272272}
+      - m_Target: {fileID: 2074272275}
         m_MethodName: Deathcheck
         m_Mode: 1
         m_Arguments:
@@ -11933,7 +11930,9 @@ GameObject:
   - component: {fileID: 2074272271}
   - component: {fileID: 2074272270}
   - component: {fileID: 2074272269}
+  - component: {fileID: 2074272275}
   - component: {fileID: 2074272272}
+  - component: {fileID: 2074272274}
   - component: {fileID: 2074272273}
   m_Layer: 5
   m_Name: LivesRestoreButton
@@ -11956,10 +11955,10 @@ RectTransform:
   m_Father: {fileID: 1055096138}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.13000001}
-  m_AnchorMax: {x: 0.5, y: 0.13000001}
-  m_AnchoredPosition: {x: -0.0000019073486, y: -2.6258545}
-  m_SizeDelta: {x: 360, y: 62}
+  m_AnchorMin: {x: 0.508, y: 0.82645756}
+  m_AnchorMax: {x: 0.508, y: 0.82645756}
+  m_AnchoredPosition: {x: -4.9711747, y: -5.1574097}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074272269
 MonoBehaviour:
@@ -12052,16 +12051,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2074272267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2afffdf817490d4189fd386aaa16a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msToWait: 10800000
+  msToWait: 5000
   timer: {fileID: 531852997}
   t2: {fileID: 514674997}
   chestButton: {fileID: 2074272269}
-  waitPanel: {fileID: 0}
   click: {fileID: 8300000, guid: c629a0874743a804a88719d220689912, type: 3}
   timerActive: 1
 --- !u!82 &2074272273
@@ -12144,6 +12142,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &2074272274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2074272267}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf69121c5a8e9274ab71808400300bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  msToWait: 600000
+  timer2: {fileID: 531852997}
+  message: {fileID: 514674997}
+  chestButton: {fileID: 2074272269}
+  freeLife: 0
+--- !u!114 &2074272275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2074272267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9ed5ff0e0c41846a202c0d2833158e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  msToWait: 100000
+  timer2: {fileID: 531852997}
+  message: {fileID: 514674997}
+  chestButton: {fileID: 2074272269}
+  freeLife: 0
 --- !u!1 &2097247535
 GameObject:
   m_ObjectHideFlags: 0

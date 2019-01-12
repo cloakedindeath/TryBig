@@ -68,37 +68,18 @@ public class UIManager : MonoBehaviour
 
 	void Awake()
 	{
-		
 		if(instance == null)
 		{
 			instance = this;
 		}
 		gameOver = true;	//starts gameOver as true at game menu
 		mpCnt = 0;			// also resets the multiplier
-		//if lives are <= 0 then the play button disappears and the timer to wait for lives appears
-		if (ScoreManager.instance.lives <= 0) {
-			//TimerTest.instance.Deathcheck ();
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			//ScoreManager.instance.waitPanel.SetActive (true);
-			livesLostMessage.SetActive(true);
-			livesLostTimer.SetActive (true);
-			playButton.SetActive (false);
-			//PlayerPrefs.SetInt ("Lives", 0);
-		}
-		//if the player has lives they can see the play button and play the game
-		if (ScoreManager.instance.lives >= 1) {
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-			//StartCoroutine (WaitPanelDown ());
-			livesLostMessage.SetActive(false);
-			livesLostTimer.SetActive (false);
-			playButton.SetActive (true);
-			//PlayerPrefs.SetInt ("Lives", 3);
-		}
 	}
+
 	// Use this for initialization
 	void Start () 
 	{
-		ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");	//Get lives from playerprefs
+		
 		//LeaderBoardManager.instance.Login();
 		audioU = GetComponent<AudioSource>();						//Plays music (music not in)
 		death = false;												//Set if player is dead to false
@@ -120,26 +101,8 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		//Same code as above in the Awake function (may be redundant)
-		if (ScoreManager.instance.lives <= 0) {
-			//ScoreManager.instance.waitPanel.SetActive (true);
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			//ScoreManager.instance.waitPanel.SetActive (true);
-			//StartCoroutine (WaitPanelUp ());
-			livesLostMessage.SetActive(true);
-			livesLostTimer.SetActive (true);
-			playButton.SetActive (false);
-			//RewardButton.instance.freeLife = false;
-		}
-		if (ScoreManager.instance.lives >= 1) {
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-			//ScoreManager.instance.waitPanel.SetActive (false);
-			//StartCoroutine (WaitPanelDown ());
-			livesLostMessage.SetActive(false);
-			livesLostTimer.SetActive (false);
-			playButton.SetActive (true);
-		}
-	
+		ScoreManager.instance.lives = GameManager.instance.overallLives;	//Get lives from playerprefs
+
 		/////////////////////////////////
 		//Start pre Wave countdown
 		if(startCountdown == true && gameOver == false)
@@ -288,14 +251,14 @@ public class UIManager : MonoBehaviour
 		ScoreManager.instance.SetPlayerScores ();											//Sets player score for leaderboards
 	}
 
-	//Function called to start the game when play button is pressed
+	//Function called to start the game when play button is pressed - Called from GameManager Script
 	public void GameStart ()
 	{
 		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");	//Plays idle animation on the player character
 		gun.SetActive (true);																//Makes the gun visable
 		audioU.PlayOneShot (click, 1f);														//Plays click audio
 		waveEndPanel.SetActive (false);														//Makes sure the wave end pop up is not visable
-		deathCnt = 0;
+		deathCnt = 0;																		
 		//PlayerPrefs.SetInt ("Score", 0);
 		ScoreManager.instance.score = 0;													//Resets the game score to 0
 		gameOver = false;																	//Game is not over
@@ -308,6 +271,7 @@ public class UIManager : MonoBehaviour
 
 	}
 
+	//Destroys enemies
 	public void DestroyAllEnemies()
 	{
 		enemiesW = GameObject.FindGameObjectsWithTag ("Enemy_Waffle");
@@ -438,6 +402,7 @@ public class UIManager : MonoBehaviour
 		startWaveCountdown = false;
 		mpCnt = 0;
 	}
+
 	public void GoBackToMenu()
 	{
 		if (!audioU.isPlaying) {
@@ -470,25 +435,8 @@ public class UIManager : MonoBehaviour
 		gameStartCountdown = -1f;
 		timeCountDown = 0;
 		touchCnt = 0;
-		if (ScoreManager.instance.lives <= 0) {
-			//ScoreManager.instance.waitPanel.SetActive (true);
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			livesLostMessage.SetActive(true);
-			livesLostTimer.SetActive (true);
-			//PlayerPrefs.SetInt ("Lives", 0);
-
-		}
-		if (ScoreManager.instance.lives >= 1) {
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-			//ScoreManager.instance.waitPanel.SetActive (false);
-			//StartCoroutine (WaitPanelDown ());
-			livesLostMessage.SetActive(false);
-			livesLostTimer.SetActive (false);
-			//PlayerPrefs.SetInt ("Lives", 3);
-		}
-
-
 	}
+
 	public void GoBackToMenuSetLives()
 	{
 		if (!audioU.isPlaying) 
@@ -521,25 +469,6 @@ public class UIManager : MonoBehaviour
 		gameStartCountdown = -1f;
 		timeCountDown = 0;
 		touchCnt = 0;
-		if (ScoreManager.instance.lives <= 0) {
-			//ScoreManager.instance.waitPanel.SetActive (true);
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAnim");
-			//ScoreManager.instance.waitPanel.SetActive (true);
-			//StartCoroutine (WaitPanelUp ());
-			livesLostMessage.SetActive(true);
-			livesLostTimer.SetActive (true);
-			//PlayerPrefs.SetInt ("Lives", 0);
-		}
-		if (ScoreManager.instance.lives >= 1) {
-			//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-			//ScoreManager.instance.waitPanel.SetActive (false);
-			//StartCoroutine (WaitPanelDown ());
-			livesLostMessage.SetActive(false);
-			livesLostTimer.SetActive (false);
-			//PlayerPrefs.SetInt ("Lives", 3);
-		}
-
-
 	}
 
 	public void SetHighestWave()
@@ -616,6 +545,7 @@ public class UIManager : MonoBehaviour
 		audioU.PlayOneShot (click, .6f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopRight");
 	}
+	/*Commenting out-Currently on the chopping block
 	public void pCardOpen()
 	{
 		audioU.PlayOneShot (click, .6f);
@@ -626,6 +556,7 @@ public class UIManager : MonoBehaviour
 		audioU.PlayOneShot (click, .6f);
 		pCardPanel.GetComponent<Animator> ().Play ("PlayerCardAway");
 	}
+	*/
 	IEnumerator SpawnEnemies()
 	{
 		yield return new WaitForSeconds(1f);
@@ -663,10 +594,24 @@ public class UIManager : MonoBehaviour
 		ScoreManager.instance.waitPanel.SetActive (true);
 	}*/
 
+	//Removes lives if HP hits 0
 	public void LifeAway()
 	{
-		ScoreManager.instance.lives = ScoreManager.instance.lives - 1;
-		PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt ("Lives") - 1);
+		//ScoreManager.instance.lives = ScoreManager.instance.lives - 1;
+
+		if (PlayerPrefs.GetInt ("Lives") <= 0) 
+		{
+			PlayerPrefs.SetInt ("Lives_Paid", PlayerPrefs.GetInt ("Lives_Paid") - 1);		//Removes paid lives if there are no stock lives left
+			if(PlayerPrefs.GetInt("Lives_Paid") <= 0)
+				{
+					PlayerPrefs.SetInt ("Lives_Reward", PlayerPrefs.GetInt ("Lives_Reward") - 1);
+				}
+
+		}
+		else 
+		{
+			PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt ("Lives") - 1);					//Removes stock lives
+		}
 	}
 	public void waveCountIncrease()
 	{
@@ -679,14 +624,14 @@ public class UIManager : MonoBehaviour
 		LeaderBoardManager.instance._ShowLeaderboard ();
 	}
 
-	public void paidAddLife()
+	/*public void paidAddLife()
 	{
 		UnityAdManager.instance.ShowAd();
 		//PersistentTimer.instance.savedSeconds = 60;
 		//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
 		//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
-		ScoreManager.instance.lives = ScoreManager.instance.lives+1;
-	}
+		//ScoreManager.instance.lives = ScoreManager.instance.lives+1;
+	}*/
 
 	#endregion
 }

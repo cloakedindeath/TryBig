@@ -129,7 +129,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.37
+  bundleVersion: 1.4
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -163,7 +163,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.cloakedgames.BigCGame
   buildNumber: {}
-  AndroidBundleVersionCode: 29
+  AndroidBundleVersionCode: 30
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -247,7 +247,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: 76747bfd0d4e64a4abd6f5f6850b881d, type: 3}
-  AndroidKeystoreName: C:/Users/Daniel/Desktop/BIGCapp/App2018/BIGCAPPrepository/BigC3D/NewBigC.keystore
+  AndroidKeystoreName: C:/Users/death/Desktop/BIGCapp/App2018/BIGCAPPrepository/BigC3D/NewBigC.keystore
   AndroidKeyaliasName: bigcnew
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
