@@ -2175,7 +2175,7 @@ RectTransform:
   - {fileID: 1785927212}
   - {fileID: 580478165}
   - {fileID: 823660844}
-  - {fileID: 1436149333}
+  - {fileID: 924210520}
   - {fileID: 1869388889}
   - {fileID: 1593843344}
   m_Father: {fileID: 2020190890}
@@ -4707,10 +4707,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 713886826}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5129,6 +5129,74 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!1 &924210519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 924210520}
+  - component: {fileID: 924210522}
+  - component: {fileID: 924210521}
+  m_Layer: 5
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &924210520
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924210519}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999981, y: 0.9999981, z: 0.9999981}
+  m_Children: []
+  m_Father: {fileID: 356607828}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.07700001}
+  m_AnchorMax: {x: 0.5, y: 0.07700001}
+  m_AnchoredPosition: {x: 1.0999985, y: 3}
+  m_SizeDelta: {x: 545.9, y: 227.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &924210521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924210519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &924210522
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924210519}
 --- !u!1 &952259583
 GameObject:
   m_ObjectHideFlags: 0
@@ -7180,74 +7248,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430113532}
---- !u!1 &1436149332
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1436149333}
-  - component: {fileID: 1436149335}
-  - component: {fileID: 1436149334}
-  m_Layer: 5
-  m_Name: Image (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1436149333
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1436149332}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 0.9999998}
-  m_Children: []
-  m_Father: {fileID: 356607828}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.10568662}
-  m_AnchorMax: {x: 0.5, y: 0.10568662}
-  m_AnchoredPosition: {x: 1.1000977, y: 4}
-  m_SizeDelta: {x: 545.9, y: 176.8}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1436149334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1436149332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1436149335
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1436149332}
 --- !u!1 &1439188825
 GameObject:
   m_ObjectHideFlags: 0
@@ -9570,7 +9570,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2074272272}
+      - m_Target: {fileID: 0}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -10221,7 +10221,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8b9e14a4ea217964280133a655088450, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -11932,7 +11932,6 @@ GameObject:
   - component: {fileID: 2074272269}
   - component: {fileID: 2074272275}
   - component: {fileID: 2074272272}
-  - component: {fileID: 2074272274}
   - component: {fileID: 2074272273}
   m_Layer: 5
   m_Name: LivesRestoreButton
@@ -11999,7 +11998,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2074272272}
+      - m_Target: {fileID: 2074272275}
         m_MethodName: ChestClick
         m_Mode: 1
         m_Arguments:
@@ -12056,11 +12055,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2afffdf817490d4189fd386aaa16a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msToWait: 5000
+  msToWait: 15000
   timer: {fileID: 531852997}
-  t2: {fileID: 514674997}
-  chestButton: {fileID: 2074272269}
-  click: {fileID: 8300000, guid: c629a0874743a804a88719d220689912, type: 3}
+  t2: {fileID: 0}
+  chestButton: {fileID: 0}
+  click: {fileID: 0}
   timerActive: 1
 --- !u!82 &2074272273
 AudioSource:
@@ -12142,22 +12141,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &2074272274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2074272267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf69121c5a8e9274ab71808400300bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  msToWait: 600000
-  timer2: {fileID: 531852997}
-  message: {fileID: 514674997}
-  chestButton: {fileID: 2074272269}
-  freeLife: 0
 --- !u!114 &2074272275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12169,7 +12152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9ed5ff0e0c41846a202c0d2833158e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msToWait: 100000
+  msToWait: 25000
   timer2: {fileID: 531852997}
   message: {fileID: 514674997}
   chestButton: {fileID: 2074272269}

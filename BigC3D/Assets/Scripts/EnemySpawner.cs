@@ -83,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			if (UIManager.instance.waveCount >= 0 && UIManager.instance.waveCount <= 10) 
 			{
-				spawnTime = 1.3f;
+				spawnTime = 1f;
 
 				if (rand >= 0 && rand <= 23) {
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -127,7 +127,7 @@ public class EnemySpawner : MonoBehaviour
 			} 
 			else if (UIManager.instance.waveCount >= 11 && UIManager.instance.waveCount <= 20) 
 			{
-				spawnTime = 1.2f;
+				spawnTime = 0.9f;
 
 				if (rand >= 0 && rand <= 21) {
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -171,7 +171,7 @@ public class EnemySpawner : MonoBehaviour
 			} 
 			else if (UIManager.instance.waveCount >= 21 && UIManager.instance.waveCount <= 30) 
 			{
-				spawnTime = 1.1f;
+				spawnTime = 0.8f;
 
 				if (rand >= 0 && rand <= 19) {
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -215,7 +215,7 @@ public class EnemySpawner : MonoBehaviour
 			}
 			else if (UIManager.instance.waveCount >= 31 && UIManager.instance.waveCount <= 40) 
 			{
-				spawnTime = 1.0f;
+				spawnTime = 0.7f;
 
 				if (rand >= 0 && rand <= 17) {
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -259,7 +259,7 @@ public class EnemySpawner : MonoBehaviour
 			} 
 			else if (UIManager.instance.waveCount >= 41 && UIManager.instance.waveCount <= 50) 
 			{
-				spawnTime = 0.9f;
+				spawnTime = 0.6f;
 
 				if (rand >= 0 && rand <= 15) {
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -303,7 +303,7 @@ public class EnemySpawner : MonoBehaviour
 			} 
 			else if (UIManager.instance.waveCount >= 51) 
 			{
-				spawnTime = 0.8f;
+				spawnTime = 0.5f;
 
 				if (rand >= 0 && rand <= 13) {
 					Instantiate (enemies [0], new Vector3 (Random.Range (-maxXpos, maxXpos),

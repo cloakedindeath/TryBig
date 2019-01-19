@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 	{
 		overallLives = (PlayerPrefs.GetInt("Lives") + PlayerPrefs.GetInt("Lives_Paid") + PlayerPrefs.GetInt("Lives_Reward"));  //Adds stock lives to paid lives for the game menu
 
+
 		if (ScoreManager.instance.lives <= 0) 
 		{
 			UIManager.instance.livesLostMessage.SetActive (true);

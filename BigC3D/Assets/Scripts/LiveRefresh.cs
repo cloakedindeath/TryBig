@@ -33,10 +33,9 @@ public class LiveRefresh : MonoBehaviour {
 		lastChestOpen =  ulong.Parse(PlayerPrefs.GetString ("LivesRefresh"));
 		timer2 = GetComponentInChildren<Text> ();
 
-		if(!isChestReady())
-		{
+		if (!isChestReady ()) {
 			chestButton.interactable = false;
-		}
+		} 
 	}
 
 	private void Update()
@@ -50,8 +49,9 @@ public class LiveRefresh : MonoBehaviour {
 		{
 			if(isChestReady())
 			{
-				chestButton.interactable = true;
-
+				//chestButton.interactable = true;
+				//message.text = "Lives will automatically restore in:";
+				ChestClick (); 														// automatically restore lives after countdown
 				return;
 			}
 			//Set the Timer
@@ -70,27 +70,22 @@ public class LiveRefresh : MonoBehaviour {
 			timer2.text = r;
 			message.text = "Wait for timer to refresh lives";
 		}
+			
 	}
 
 	public void ChestClick()
 	{
-		//Debug.Log( DateTime.Now.Ticks.ToString());
 		freeLife = true;
-		UnityAdManager.instance.rewardAd();
-		ScoreManager.instance.hp = 10;
+		//UnityAdManager.instance.rewardAd();
+		ScoreManager.instance.hp = 10; 
 		lastChestOpen = (ulong)DateTime.Now.Ticks;
 		PlayerPrefs.SetString ("LivesRefresh", DateTime.Now.Ticks.ToString ());
 		chestButton.interactable = false;
 		UIManager.instance.gameOver = true;
-		// Gives lives back or reward the player
-		//ScoreManager.instance.resumeRewardButton.SetActive (true);
-		//ScoreManager.instance.resumeButton.SetActive (false);
-		//ScoreManager.instance.lives = ScoreManager.instance.lives + 1;
-		PlayerPrefs.SetInt ("Lives_Reward", PlayerPrefs.GetInt ("Lives_Reward") + 1);
-		//UIManager.instance.livesLostMessage.SetActive (false);
-		//UIManager.instance.livesLostTimer.SetActive (false);
-		//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
-		//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+		PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt("Lives") + 3);
+		UIManager.instance.livesLostMessage.SetActive (false);					//Removes countdown message
+		UIManager.instance.livesLostTimer.SetActive (false);					//Removes Lives Restore Button
+
 	}
 
 	public void Deathcheck()
@@ -102,7 +97,10 @@ public class LiveRefresh : MonoBehaviour {
 			lastChestOpen = (ulong)DateTime.Now.Ticks;
 			PlayerPrefs.SetString ("LivesRefresh", DateTime.Now.Ticks.ToString ());
 			chestButton.interactable = false;
-			PlayerPrefs.SetInt ("Lives", 0);
+			//PlayerPrefs.SetInt ("Lives", 0);
+			if (GameManager.instance.overallLives < 0) {
+			GameManager.instance.overallLives = 0;
+		}
 		}
 
 
@@ -119,6 +117,7 @@ public class LiveRefresh : MonoBehaviour {
 		{
 			message.text = "Click to restore lives.";
 			timer2.text = "Restore Lives";
+
 			return true;
 		}
 		else

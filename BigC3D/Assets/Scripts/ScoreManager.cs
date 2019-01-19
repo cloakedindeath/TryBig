@@ -64,6 +64,12 @@ public class ScoreManager : MonoBehaviour
 	{
 		SubmitSliderSetting ();
 
+		if (mpBar.value == 0) {								// Makes multiplier bar disappear when no multiplier
+			mpBar.gameObject.SetActive (false);
+		} else {
+			mpBar.gameObject.SetActive (true);
+		}
+
 		#region Multiplier UI and Sound Control
 		//Play sound when multiplier reached
 		if(UIManager.instance.mpCnt == 10 && !audioControl.isPlaying)
@@ -234,8 +240,7 @@ public class ScoreManager : MonoBehaviour
 		{
 			
 			//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
-			lives = lives - 1;
-			PlayerPrefs.SetInt ("Lives_Overall", PlayerPrefs.GetInt ("Lives_Overall") - 1);
+			UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
 			hp = 10;
 			UIManager.instance.GameOver ();
 			//StartCoroutine (ANIMpause ());
@@ -250,6 +255,7 @@ public class ScoreManager : MonoBehaviour
 	{
 		//Debug.Log (mpBar.value);
 		mpBar.value = UIManager.instance.mpCnt;
+
 		hpBar.value = hp;
 	}
 

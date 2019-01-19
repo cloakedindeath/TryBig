@@ -295,6 +295,7 @@ public class TouchTest : MonoBehaviour
 				EnemySpawner.instance.count--;
 				Destroy (col.gameObject);
 				ScoreManager.instance.LoseLife ();
+				//UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
 			}
 		}
 		if(col.gameObject.tag == "Shield")

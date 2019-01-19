@@ -141,7 +141,8 @@ public class EnemyController : MonoBehaviour
 			//Destroy (gameObject);
 			StartCoroutine (DestroyEnemy ());
 			EnemySpawner.instance.count--;
-			ScoreManager.instance.LoseLife ();
+			ScoreManager.instance.LoseLife ();  
+			//UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
 			UIManager.instance.mpCnt = 0;
 
 

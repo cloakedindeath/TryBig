@@ -103,6 +103,7 @@ public class UIManager : MonoBehaviour
 	{
 		ScoreManager.instance.lives = GameManager.instance.overallLives;	//Get lives from playerprefs
 
+
 		/////////////////////////////////
 		//Start pre Wave countdown
 		if(startCountdown == true && gameOver == false)
@@ -598,6 +599,7 @@ public class UIManager : MonoBehaviour
 	public void LifeAway()
 	{
 		//ScoreManager.instance.lives = ScoreManager.instance.lives - 1;
+
 
 		if (PlayerPrefs.GetInt ("Lives") <= 0) 
 		{
