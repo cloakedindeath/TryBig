@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour
 		}
 		if(lives > 0)
 		{
-			hp = 10;
+			hp = 3;
 		}
 	}
 
@@ -55,7 +55,7 @@ public class ScoreManager : MonoBehaviour
 		points = 20;
 		if(lives >= 3)
 		{
-			hp = 10;
+			hp = 3;
 		}
 	}
 	
@@ -241,7 +241,7 @@ public class ScoreManager : MonoBehaviour
 			
 			//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
 			UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
-			hp = 10;
+			hp = 3;
 			UIManager.instance.GameOver ();
 			//StartCoroutine (ANIMpause ());
 			//UIManager.instance.waveEndPanel.SetActive (false);

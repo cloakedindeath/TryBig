@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 		//lives check
 		if(ScoreManager.instance.lives >= 1)
 		{
-			ScoreManager.instance.hp = 10;				//Make healthbar full
+			ScoreManager.instance.hp = 3;				//Make healthbar full
 			UIManager.instance.GameStart ();			//Trigger GameStart function in UIManager
 			ScoreManager.instance.startLives = false;	//NOT SURE WHAT THIS IS DOING ATM
 
