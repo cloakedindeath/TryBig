@@ -33,6 +33,7 @@ public class TouchTest : MonoBehaviour
 	public GameObject shield;
 	public GameObject bombButton;
 	public GameObject shieldText;
+	public Slider movement;
 
 
 
@@ -56,6 +57,7 @@ public class TouchTest : MonoBehaviour
 
 	void Update() 
 	{
+		//SubmitSliderSetting ();
 		/*if(Application.platform == RuntimePlatform.Android)
 		{
 			
@@ -277,6 +279,7 @@ public class TouchTest : MonoBehaviour
 		}
 	}
 
+	//Handles the shield logic
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy_Waffle" ||
@@ -284,10 +287,9 @@ public class TouchTest : MonoBehaviour
 		{
 			if(shield.activeSelf)
 			{
-				shield.SetActive (false);
-				shieldText.SetActive (false);
 				Destroy (col.gameObject);
-				EnemySpawner.instance.shield = false;
+				UIManager.instance.shieldCnt = 0;
+				//EnemySpawner.instance.shield = false;
 			}
 			else
 			{
@@ -297,18 +299,6 @@ public class TouchTest : MonoBehaviour
 				ScoreManager.instance.LoseLife ();
 				//UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
 			}
-		}
-		if(col.gameObject.tag == "Shield")
-		{
-			Destroy (col.gameObject);
-			shield.SetActive (true);
-			shieldText.SetActive (true);
-		}
-		if(col.gameObject.tag == "Bomb")
-		{
-			Destroy (col.gameObject);
-			bombButton.SetActive (true);
-			//shield.SetActive (true);
 		}
 	}
 
@@ -336,10 +326,23 @@ public class TouchTest : MonoBehaviour
 
 	public void BombBlast()
 	{
-		EnemySpawner.instance.bomb = false;
+		//EnemySpawner.instance.bomb = false;
 		ScoreManager.instance.score += 100;
 		bombButton.SetActive (false);
+		//EnemyController.instance.BombEvent ();
 		UIManager.instance.DestroyAllEnemies ();
 		//EnemySpawner.instance.bombCnt = 0;
 	}
+
+	/*public void SubmitSliderSetting()
+	{
+		if (movement.GetComponent<Slider> ().value < 0) 
+		{
+			goleft = true;
+		}
+		if (movement.GetComponent<Slider> ().value > 0) 
+		{
+			goright = true;
+		}
+	}*/
 }

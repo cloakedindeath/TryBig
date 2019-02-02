@@ -42,6 +42,8 @@ public class WaffleProjectile : MonoBehaviour {
 			ScoreManager.instance.EnemyKill ();
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt++;
+			UIManager.instance.shieldCnt++;
+			UIManager.instance.bombCnt++;
 		}
 		else if (col.gameObject.tag == "Enemy_KoolAid")
 		{
@@ -49,6 +51,7 @@ public class WaffleProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
+			UIManager.instance.shieldCnt = 0;
 			ScoreManager.instance.dingCnt = 0;
 
 		}
@@ -58,6 +61,7 @@ public class WaffleProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
+			UIManager.instance.shieldCnt = 0;
 			ScoreManager.instance.dingCnt = 0;
 
 		}
@@ -67,6 +71,7 @@ public class WaffleProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
+			UIManager.instance.shieldCnt = 0;
 			ScoreManager.instance.dingCnt = 0;
 		}
 	}

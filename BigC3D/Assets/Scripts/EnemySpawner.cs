@@ -112,7 +112,7 @@ public class EnemySpawner : MonoBehaviour
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
-				if(rand2 >= 80 && rand2 <= 100 && shield == false)
+				/*if(rand2 >= 80 && rand2 <= 100 && shield == false)
 				{
 					shield = true;
 					Instantiate (pickups [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -123,7 +123,7 @@ public class EnemySpawner : MonoBehaviour
 					bomb = true;
 					Instantiate (pickups [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
-				}
+				}*/
 			} 
 			else if (UIManager.instance.waveCount >= 11 && UIManager.instance.waveCount <= 20) 
 			{
@@ -156,7 +156,7 @@ public class EnemySpawner : MonoBehaviour
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
-				if(rand2 >= 75 && rand2 <= 100 && shield == false)
+				/*if(rand2 >= 75 && rand2 <= 100 && shield == false)
 				{
 					shield = true;
 					Instantiate (pickups [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -167,7 +167,7 @@ public class EnemySpawner : MonoBehaviour
 					bomb = true;
 					Instantiate (pickups [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
-				}
+				}*/
 			} 
 			else if (UIManager.instance.waveCount >= 21 && UIManager.instance.waveCount <= 30) 
 			{
@@ -200,7 +200,7 @@ public class EnemySpawner : MonoBehaviour
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
-				if(rand2 >=80 && rand2 <= 100 && shield == false)
+				/*if(rand2 >=80 && rand2 <= 100 && shield == false)
 				{
 					shield = true;
 					Instantiate (pickups [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -211,7 +211,7 @@ public class EnemySpawner : MonoBehaviour
 					bomb = true;
 					Instantiate (pickups [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
-				}
+				}*/
 			}
 			else if (UIManager.instance.waveCount >= 31 && UIManager.instance.waveCount <= 40) 
 			{
@@ -244,7 +244,7 @@ public class EnemySpawner : MonoBehaviour
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
-				if(rand2 >= 85 && rand2 <= 100 && shield == false)
+				/*if(rand2 >= 85 && rand2 <= 100 && shield == false)
 				{
 					shield = true;
 					Instantiate (pickups [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -255,7 +255,7 @@ public class EnemySpawner : MonoBehaviour
 					bomb = true;
 					Instantiate (pickups [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
-				}
+				}*/
 			} 
 			else if (UIManager.instance.waveCount >= 41 && UIManager.instance.waveCount <= 50) 
 			{
@@ -288,7 +288,7 @@ public class EnemySpawner : MonoBehaviour
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
-				if(rand2 >=90 && rand2 <= 100 && shield == false)
+				/*if(rand2 >=90 && rand2 <= 100 && shield == false)
 				{
 					shield = true;
 					Instantiate (pickups [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -299,7 +299,7 @@ public class EnemySpawner : MonoBehaviour
 					bomb = true;
 					Instantiate (pickups [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
-				}
+				}*/
 			} 
 			else if (UIManager.instance.waveCount >= 51) 
 			{
@@ -332,7 +332,7 @@ public class EnemySpawner : MonoBehaviour
 					Instantiate (enemies [2], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
 				}
-				if(rand2 >= 90 && rand2 <= 100 && shield == false)
+				/*if(rand2 >= 90 && rand2 <= 100 && shield == false)
 				{
 					shield = true;
 					Instantiate (pickups [0], new Vector3 (Random.Range (-maxXpos, maxXpos),
@@ -343,7 +343,7 @@ public class EnemySpawner : MonoBehaviour
 					bomb = true;
 					Instantiate (pickups [1], new Vector3 (Random.Range (-maxXpos, maxXpos),
 						transform.position.y, transform.position.z), Quaternion.identity);
-				}
+				}*/
 			}
 		}
 	}

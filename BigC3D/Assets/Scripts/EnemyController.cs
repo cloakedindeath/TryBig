@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour 
 {
+	public static EnemyController instance;
 	public float speed;
 	public float speed2 = 5;
 	public Rigidbody rb;
@@ -14,6 +15,14 @@ public class EnemyController : MonoBehaviour
 	public bool walk;
 	public GameObject model;
 	public GameObject particle1;
+
+	void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+		}
+	}
 
 	// Use this for initialization
 	void Start () 
@@ -161,6 +170,8 @@ public class EnemyController : MonoBehaviour
 			walk = true;
 
 		}
+
+
 	}
 
 	IEnumerator DestroyEnemy()
@@ -171,4 +182,14 @@ public class EnemyController : MonoBehaviour
 		Destroy (gameObject);
 		//Destroy (particle1);
 	}
+
+	public void BombEvent()
+	{
+		if (this.gameObject.tag == "Enemy_KoolAid" || this.gameObject.tag == "Enemy_Chicken" || this.gameObject.tag == "Enemy_Waffle") {
+			
+			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
+			StartCoroutine (DestroyEnemy ());
+		}
+	}
+
 }

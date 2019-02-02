@@ -54,6 +54,8 @@ public class UIManager : MonoBehaviour
 	GameObject[] pickUpB;
 	public int touchCnt = 0;
 	public float mpCnt;
+	public float shieldCnt;
+	public float bombCnt;
 	public AudioSource audioU;
 	public AudioClip deathSound;
 	public AudioClip countdown;
@@ -266,7 +268,7 @@ public class UIManager : MonoBehaviour
 		startGamePanel.GetComponent<Animator> ().Play ("GameStartPanelDropDown");			//Makes the GameStartPanel animate off the screen
 		startCountdown = true;																//Enables the start game timer
 		EnemySpawner.instance.spawnTime = 3.5f;												//Set time it takes between enemies spawning
-		mpCnt = 0;																			//Set multiplier count to 0
+		//mpCnt = 0;																			//Set multiplier count to 0  now set when life is lost
 		gameOverPanel.SetActive (false);													//Makes sure the Game Over Panel is not visable
 		touchCnt = 1;																		//This has been changed to make the countdown start immediately after hitting the play button
 
@@ -600,7 +602,7 @@ public class UIManager : MonoBehaviour
 	{
 		//ScoreManager.instance.lives = ScoreManager.instance.lives - 1;
 
-
+		mpCnt = 0;
 		if (PlayerPrefs.GetInt ("Lives") <= 0) 
 		{
 			PlayerPrefs.SetInt ("Lives_Paid", PlayerPrefs.GetInt ("Lives_Paid") - 1);		//Removes paid lives if there are no stock lives left
