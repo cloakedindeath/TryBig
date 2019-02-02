@@ -77,8 +77,8 @@ public class EnemySpawner : MonoBehaviour
 		//Control Waves of enemies here****************************************************///////////////
 		/////////************************************************************/////////////////////////
 		float rand = Random.Range (1f, 100);
-		float rand2 = Random.Range (1f, 100);
-		float rand3 = Random.Range (1f, 100);
+		//float rand2 = Random.Range (1f, 100);
+		//float rand3 = Random.Range (1f, 100);
 		if (spawnTime <= 0)
 		{
 			if (UIManager.instance.waveCount >= 0 && UIManager.instance.waveCount <= 10) 

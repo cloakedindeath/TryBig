@@ -134,22 +134,22 @@ public class ScoreManager : MonoBehaviour
 		#endregion
 
 		//SHield logic
-		if (UIManager.instance.shieldCnt == 0 && UIManager.instance.gameOver == false) {
+		if (UIManager.instance.shieldCnt  < 5 && UIManager.instance.gameOver == false) {
 			TouchTest.instance.shield.SetActive (false);
 			TouchTest.instance.shieldText.SetActive (false);
 		}
-		else if (UIManager.instance.shieldCnt >= 5) 
+		else 
 		{
 			TouchTest.instance.shield.SetActive (true);
 			TouchTest.instance.shieldText.SetActive (true);
 		}
 
 		//Bomb logic
-		if (UIManager.instance.bombCnt == 0 && UIManager.instance.gameOver == false) 
+		if (UIManager.instance.bombCnt < 15 && UIManager.instance.gameOver == false) 
 		{
 			//TouchTest.instance.bombButton.SetActive (false);
 		}
-		else if (UIManager.instance.bombCnt >= 15) 
+		else
 		{
 			TouchTest.instance.bombButton.SetActive (true);
 		}	
