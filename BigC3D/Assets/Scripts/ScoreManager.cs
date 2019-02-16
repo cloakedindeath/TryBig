@@ -147,7 +147,7 @@ public class ScoreManager : MonoBehaviour
 		//Bomb logic
 		if (UIManager.instance.bombCnt < 15 && UIManager.instance.gameOver == false) 
 		{
-			//TouchTest.instance.bombButton.SetActive (false);
+			TouchTest.instance.bombButton.SetActive (false);
 		}
 		else
 		{

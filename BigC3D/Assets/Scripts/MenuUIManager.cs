@@ -110,6 +110,14 @@ public class MenuUIManager : MonoBehaviour
 		Application.OpenURL("https://www.grubhub.com/restaurant/big-c-waffles-2110-allendown-dr-durham/629246");
 	}
 
+	public void PrivacyPolicy()
+	{
+		audioSource.PlayOneShot(click, .6F);
+		Application.OpenURL("https://app.termly.io/document/privacy-policy/e1d78c43-5c95-44f2-bafa-31e455871ee5");
+	}
+
+
+
 	IEnumerator ButtonClick()
 	{
 		yield return new WaitForSeconds(.5f);

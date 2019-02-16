@@ -489,6 +489,11 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	public void GrantBomb()
+	{
+		bombCnt = bombCnt + 30;
+	}
+
 	#region Button Click Events
 	public void OpenHowTo()
 	{
