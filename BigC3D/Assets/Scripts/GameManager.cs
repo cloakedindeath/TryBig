@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
 		{
 			UIManager.instance.livesLostMessage.SetActive (true);
 			UIManager.instance.livesLostTimer.SetActive (true);
+			TouchTest.instance.bombButton.SetActive (false);    // this ensures that the bomb button dissappears after losing a life
+			TouchTest.instance.shield.SetActive (false);		// make sure no shield when losing a life
+			TouchTest.instance.shieldText.SetActive (false);
 		}
 	}
 

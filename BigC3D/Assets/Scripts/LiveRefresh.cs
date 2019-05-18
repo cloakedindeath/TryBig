@@ -51,7 +51,17 @@ public class LiveRefresh : MonoBehaviour {
 			{
 				//chestButton.interactable = true;
 				//message.text = "Lives will automatically restore in:";
-				ChestClick (); 														// automatically restore lives after countdown
+				//ChestClick (); 	
+				freeLife = true;
+				//UnityAdManager.instance.rewardAd();
+				ScoreManager.instance.hp = 10; 
+				lastChestOpen = (ulong)DateTime.Now.Ticks;
+				PlayerPrefs.SetString ("LivesRefresh", DateTime.Now.Ticks.ToString ());
+				chestButton.interactable = false;
+				UIManager.instance.gameOver = true;
+				PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt("Lives") + 3);
+				UIManager.instance.livesLostMessage.SetActive (false);					//Removes countdown message
+				UIManager.instance.livesLostTimer.SetActive (false);					//Removes Lives Restore Button// automatically restore lives after countdown
 				return;
 			}
 			//Set the Timer
@@ -116,7 +126,7 @@ public class LiveRefresh : MonoBehaviour {
 		if(secondsLeft < 0)
 		{
 			message.text = "Click to restore lives.";
-			timer2.text = "Restore Lives";
+			//timer2.text = "Restore Lives";
 
 			return true;
 		}

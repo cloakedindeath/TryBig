@@ -187,7 +187,7 @@ public class TimerTest : MonoBehaviour
 			//RewardButton.instance.freeLife = false;
 			RewardButton.instance.freeLife = false;
 			timer.text = "Restore Lives";
-			t2.text = "Click to restore lives.";
+			//t2.text = "Click to restore lives.";
 			//timer.text = "";
 			//ScoreManager.instance.hp = 10;
 			//ChestClick ();
@@ -199,7 +199,7 @@ public class TimerTest : MonoBehaviour
 		}
 		else
 		{
-			t2.text = "Lives restore in 10 minutes.";
+			//t2.text = "Lives restore in 10 minutes.";
 			return false;
 		}
 

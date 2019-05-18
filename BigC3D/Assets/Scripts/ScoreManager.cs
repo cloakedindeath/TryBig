@@ -134,7 +134,7 @@ public class ScoreManager : MonoBehaviour
 		#endregion
 
 		//SHield logic
-		if (UIManager.instance.shieldCnt  < 5 && UIManager.instance.gameOver == false) {
+		if (UIManager.instance.shieldCnt  < 5 /*&& UIManager.instance.gameOver == false*/) {
 			TouchTest.instance.shield.SetActive (false);
 			TouchTest.instance.shieldText.SetActive (false);
 		}
@@ -145,7 +145,7 @@ public class ScoreManager : MonoBehaviour
 		}
 
 		//Bomb logic
-		if (UIManager.instance.bombCnt < 15 && UIManager.instance.gameOver == false) 
+		if (UIManager.instance.bombCnt < 15 /*&& UIManager.instance.gameOver == false*/) 
 		{
 			TouchTest.instance.bombButton.SetActive (false);
 		}
@@ -264,6 +264,9 @@ public class ScoreManager : MonoBehaviour
 			UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
 			hp = 3;
 			UIManager.instance.GameOver ();
+			//TouchTest.instance.bombButton.SetActive (false);  //this makes sure the bomb button doesn't persist after loosing life
+			//TouchTest.instance.shield.SetActive (false);		// make sure no shield when losing life
+			//TouchTest.instance.shieldText.SetActive (false);
 			//StartCoroutine (ANIMpause ());
 			//UIManager.instance.waveEndPanel.SetActive (false);
 			//UIManager.instance.touchCnt = 0;

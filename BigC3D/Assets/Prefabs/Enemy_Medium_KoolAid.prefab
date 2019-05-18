@@ -7708,7 +7708,13 @@ MonoBehaviour:
   enHit: {fileID: 8300000, guid: c790764a7e5689c45b69f9031ad71c3c, type: 3}
   walk: 0
   model: {fileID: 1246895499232118}
-  particle1: {fileID: 1817530179596228, guid: ea13078349151a748b66418e6902f59e, type: 2}
+  particleChick: {fileID: 1646888466634796, guid: 798235ef4a3e64d4a913b6952bf504da,
+    type: 2}
+  particleKool: {fileID: 1900375613936182, guid: 90c5bc73ab5bfee48a1f39ac96434ce9,
+    type: 2}
+  particleWaffle: {fileID: 1943425789883772, guid: f31c386af9848c049a6865a59eb10aad,
+    type: 2}
+  impactLoc1: {x: 0, y: 0, z: 0}
 --- !u!136 &136716477177023448
 CapsuleCollider:
   m_ObjectHideFlags: 1
