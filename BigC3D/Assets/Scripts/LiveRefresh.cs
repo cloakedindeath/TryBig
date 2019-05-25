@@ -60,8 +60,8 @@ public class LiveRefresh : MonoBehaviour {
 				chestButton.interactable = false;
 				UIManager.instance.gameOver = true;
 				PlayerPrefs.SetInt ("Lives", PlayerPrefs.GetInt("Lives") + 3);
-				UIManager.instance.livesLostMessage.SetActive (false);					//Removes countdown message
-				UIManager.instance.livesLostTimer.SetActive (false);					//Removes Lives Restore Button// automatically restore lives after countdown
+				//UIManager.instance.livesLostMessage.SetActive (false);					//Removes countdown message
+				//UIManager.instance.livesLostTimer.SetActive (false);					//Removes Lives Restore Button// automatically restore lives after countdown
 				return;
 			}
 			//Set the Timer

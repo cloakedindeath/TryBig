@@ -7700,7 +7700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1531b53218e3346458466aadca82cb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.2
+  speed: 4.8
   speed2: 5
   rb: {fileID: 54422957047355932}
   yesHit: {fileID: 8300000, guid: 430b2ff9632270545bd7a881caf7786d, type: 3}

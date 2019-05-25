@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
 			TouchTest.instance.shield.SetActive (false);		// make sure no shield when losing a life
 			TouchTest.instance.shieldText.SetActive (false);
 		}
+        if (ScoreManager.instance.hp <= 0)
+        {
+            TouchTest.instance.bombButton.SetActive(false);    // this ensures that the bomb button dissappears after losing a life
+            TouchTest.instance.shield.SetActive(false);     // make sure no shield when losing a life
+            TouchTest.instance.shieldText.SetActive(false);
+        }
 	}
 
 
@@ -60,7 +66,7 @@ public class GameManager : MonoBehaviour
 		{
 			ScoreManager.instance.hp = 3;				//Make healthbar full
 			UIManager.instance.GameStart ();			//Trigger GameStart function in UIManager
-			ScoreManager.instance.startLives = false;	//NOT SURE WHAT THIS IS DOING ATM
+			ScoreManager.instance.startLives = false;	//ensures the player never gets the initial starting 3 lives again
 
 		}
 	

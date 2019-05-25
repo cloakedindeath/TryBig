@@ -169,24 +169,24 @@ public class ScoreManager : MonoBehaviour
 		}
 		if( PlayerPrefs.GetInt("FirstTime") == 1)
 		{
-			if(lives <= 0 )
-			{
-				//PlayerPrefs.SetInt ("Score", score);
-				//PlayerPrefs.SetInt ("lives", 0);
-				lives = 0;
-				GameObject.Find ("EnemySpawner").GetComponent<EnemySpawner> ().StopSpawning ();
-				GameObject.Find ("Player").GetComponent<TouchTest> ().enabled = false;
-				shootButton.GetComponent<Button> ().interactable = false;
-				resumeButton.GetComponent<Button> ().interactable = false;
-				resumeButton.gameObject.SetActive (false);
-				UIManager.instance.GameOver ();
-				//waitPanel.SetActive (true);
-				//UIManager.instance.livesTimerOB.SetActive (true);
-				//UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
-				//lives = 0;
+            if (lives <= 0)
+            {
+                //PlayerPrefs.SetInt ("Score", score);
+                //PlayerPrefs.SetInt ("lives", 0);
+                lives = 0;
+                GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().StopSpawning();
+                GameObject.Find("Player").GetComponent<TouchTest>().enabled = false;
+                shootButton.GetComponent<Button>().interactable = false;
+                resumeButton.GetComponent<Button>().interactable = false;
+                resumeButton.gameObject.SetActive(false);
+                UIManager.instance.GameOver();
+                //waitPanel.SetActive (true);
+                //UIManager.instance.livesTimerOB.SetActive (true);
+                //UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
+                //lives = 0;
 
 
-				/*if(livesGone == false)
+                /*if(livesGone == false)
 			{
 				livesGone = true;
 				//timedLivesReturn = 20000f;
@@ -194,31 +194,16 @@ public class ScoreManager : MonoBehaviour
 				UIManager.instance.livesTimerOB.GetComponent<PersistentTimer> ().enabled = true;
 			}*/
 
-			}
-			else
-			{
-				resumeButton.GetComponent<Button> ().interactable = true;
-				resumeButton.gameObject.SetActive (true);
-				//UIManager.instance.livesTimerOB.SetActive (false);
-				ding = false;
-				//waitPanel.SetActive (false);
-			}
-
-		
+            }
+            else
+            {
+                resumeButton.GetComponent<Button>().interactable = true;
+                resumeButton.gameObject.SetActive(true);
+                //UIManager.instance.livesTimerOB.SetActive (false);
+                ding = false;
+                //waitPanel.SetActive (false);
+            }
 		}
-			
-		/*if(livesGone == true)
-		{
-			//timedLivesReturn = 18000.0f;
-			//TimerStart ();
-			if(timedLivesReturn <= 0)
-			{
-				livesGone = false;
-				//lives = 3;
-				PlayerPrefs.SetInt ("lives", 3);
-			}
-		}*/
-
 	}
 
 	public void SetPlayerScores()
@@ -259,17 +244,11 @@ public class ScoreManager : MonoBehaviour
 		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_TakeDamage_01");
 		if(hp <= 0)
 		{
-			
-			//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") - 1);
-			UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
-			hp = 3;
+            UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
 			UIManager.instance.GameOver ();
-			//TouchTest.instance.bombButton.SetActive (false);  //this makes sure the bomb button doesn't persist after loosing life
-			//TouchTest.instance.shield.SetActive (false);		// make sure no shield when losing life
-			//TouchTest.instance.shieldText.SetActive (false);
-			//StartCoroutine (ANIMpause ());
-			//UIManager.instance.waveEndPanel.SetActive (false);
-			//UIManager.instance.touchCnt = 0;
+            hp = 3;
+            TouchTest.instance.bombButton.SetActive (false);  //this makes sure the bomb button doesn't persist after loosing life
+			TouchTest.instance.shield.SetActive (false);		// make sure no shield when losing life
 		}
 	
 
