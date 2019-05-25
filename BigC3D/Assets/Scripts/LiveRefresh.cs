@@ -126,7 +126,7 @@ public class LiveRefresh : MonoBehaviour {
 		if(secondsLeft < 0)
 		{
 			message.text = "Click to restore lives.";
-			//timer2.text = "Restore Lives";
+			timer2.text = "Restore Lives";
 
 			return true;
 		}
