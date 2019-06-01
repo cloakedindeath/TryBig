@@ -301,7 +301,7 @@ public class UIManager : MonoBehaviour
 		{
 			Destroy(projectiles[i]);
 		}
-		pickUpA = GameObject.FindGameObjectsWithTag ("Shield");
+		/*pickUpA = GameObject.FindGameObjectsWithTag ("Shield");
 
 		for(int i = 0; i < pickUpA.Length; i++) 
 		{
@@ -312,7 +312,7 @@ public class UIManager : MonoBehaviour
 		for(int i = 0; i < pickUpB.Length; i++) 
 		{
 			Destroy(pickUpB[i]);
-		}
+		}*/
 	}
 
 	/*public void StartEnemies()
@@ -353,7 +353,10 @@ public class UIManager : MonoBehaviour
 
 	public void GameOver()
 	{
-		foreach (GameObject buttons in controls)
+        UIManager.instance.shieldCnt = 0;
+        UIManager.instance.bombCnt = 0;
+
+        foreach (GameObject buttons in controls)
 		{
 			buttons.GetComponent<Button>().interactable = false;
 		}
@@ -491,7 +494,7 @@ public class UIManager : MonoBehaviour
 
 	public void GrantBomb()
 	{
-		bombCnt = bombCnt + 30;
+		bombCnt = 30;
 	}
 
 	#region Button Click Events

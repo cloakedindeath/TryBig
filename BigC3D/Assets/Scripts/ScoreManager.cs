@@ -131,10 +131,11 @@ public class ScoreManager : MonoBehaviour
 			//audioControl.PlayOneShot (mpDing);
 
 		}
-		#endregion
+        #endregion
 
-		//SHield logic
-		if (UIManager.instance.shieldCnt  < 5 /*&& UIManager.instance.gameOver == false*/) {
+        #region Shield and Bomb ACTIVATION LOGIC
+        //Shield logic
+        if (UIManager.instance.shieldCnt  < 5 /*|| UIManager.instance.gameOver == false*/) {
 			TouchTest.instance.shield.SetActive (false);
 			TouchTest.instance.shieldText.SetActive (false);
 		}
@@ -145,16 +146,17 @@ public class ScoreManager : MonoBehaviour
 		}
 
 		//Bomb logic
-		if (UIManager.instance.bombCnt < 15 /*&& UIManager.instance.gameOver == false*/) 
+		if (UIManager.instance.bombCnt < 15 /*|| UIManager.instance.gameOver == false*/) 
 		{
 			TouchTest.instance.bombButton.SetActive (false);
 		}
-		else
+		else if (UIManager.instance.bombCnt > 15)
 		{
 			TouchTest.instance.bombButton.SetActive (true);
-		}	
+		}
+        #endregion
 
-		UIManager.instance.highScoreText.text ="High Score: " + PlayerPrefs.GetInt ("HighScore").ToString ();
+        UIManager.instance.highScoreText.text ="High Score: " + PlayerPrefs.GetInt ("HighScore").ToString ();
 
 		Debug.Log (PlayerPrefs.GetInt ("FirstTime"));
 

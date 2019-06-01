@@ -195,33 +195,9 @@ public class TouchTest : MonoBehaviour
 			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
 		}
 	}
-	//Ammo Switch
-	/*public void PickAmmoType()
-	{
-		if(ammoType == 0)
-		{
-			audioC.PlayOneShot (ammoSwap);
-			projectile = projectiles [0];
-			ammoSwitchButton.image.sprite = ammoColor [1];
-			ammoType++;
-		}
-		else if(ammoType == 1)
-		{
-			audioC.PlayOneShot (ammoSwap);
-			projectile = projectiles [1];
-			ammoSwitchButton.image.sprite = ammoColor [2];
-			ammoType++;
-		}
-		else if(ammoType == 2)
-		{
-			audioC.PlayOneShot (ammoSwap);
-			projectile = projectiles [2];
-			ammoSwitchButton.image.sprite = ammoColor [0];
-			ammoType = 0;
-		}
-	}*/
 
-	public void Shoot2()
+    #region SHOOTING MECHANICS
+    public void Shoot2()
 	{
 		if(ammoOnScreen <=2 && UIManager.instance.startWaveCountdown == true)
 		{
@@ -240,47 +216,48 @@ public class TouchTest : MonoBehaviour
 
 		}
 	}
-	public void Shoot3()
-	{
-		if(ammoOnScreen <=2 && UIManager.instance.startWaveCountdown == true)
-		{
-			model.GetComponent<Animator> ().Play ("ANIM_Player_Fire_01");
-			Debug.Log ("Shooting");
-			audioC.PlayOneShot (shoot);
-			Rigidbody instantiatedProjectile = Instantiate (projectile2,
-				player.transform.position, 
-				Quaternion.identity)
-				as Rigidbody;
-			instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
-			ammoOnScreen++;
-		}
-		else
-		{
+    public void Shoot3()
+    {
+        if (ammoOnScreen <= 2 && UIManager.instance.startWaveCountdown == true)
+        {
+            model.GetComponent<Animator>().Play("ANIM_Player_Fire_01");
+            Debug.Log("Shooting");
+            audioC.PlayOneShot(shoot);
+            Rigidbody instantiatedProjectile = Instantiate(projectile2,
+                player.transform.position,
+                Quaternion.identity)
+                as Rigidbody;
+            instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, -bulletSpeed));
+            ammoOnScreen++;
+        }
+        else
+        {
 
-		}
-	}
-	public void ShootKool()
-	{
-		if(ammoOnScreen <= 2 && UIManager.instance.startWaveCountdown == true)
-		{
-			model.GetComponent<Animator> ().Play ("ANIM_Player_Fire_01");
-			Debug.Log ("Shooting kool");
-			audioC.PlayOneShot (shoot);
-			Rigidbody instantiatedProjectile = Instantiate (projectile3,
-				player.transform.position, 
-				Quaternion.identity)
-				as Rigidbody;
-			instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, -bulletSpeed));
-			ammoOnScreen++;
-		}
-		else
-		{
+        }
+    }
+    public void ShootKool()
+    {
+        if (ammoOnScreen <= 2 && UIManager.instance.startWaveCountdown == true)
+        {
+            model.GetComponent<Animator>().Play("ANIM_Player_Fire_01");
+            Debug.Log("Shooting kool");
+            audioC.PlayOneShot(shoot);
+            Rigidbody instantiatedProjectile = Instantiate(projectile3,
+                player.transform.position,
+                Quaternion.identity)
+                as Rigidbody;
+            instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, -bulletSpeed));
+            ammoOnScreen++;
+        }
+        else
+        {
 
-		}
-	}
+        }
+    }
+    #endregion
 
-	//Handles the shield logic
-	void OnTriggerEnter(Collider col)
+    //Handles the shield logic
+    void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy_Waffle" ||
 			col.gameObject.tag == "Enemy_Chicken" || col.gameObject.tag == "Enemy_KoolAid")
@@ -330,7 +307,8 @@ public class TouchTest : MonoBehaviour
 		ScoreManager.instance.score += 100;
 		UIManager.instance.bombCnt = 0;
 		bombButton.SetActive (false);
-		//EnemyController.instance.BombEvent ();
+        //EnemyController.instance.BombEvent ();
+        //EnemyController.instance.BombEvent();  work on this later
 		UIManager.instance.DestroyAllEnemies ();
 		//EnemySpawner.instance.bombCnt = 0;
 	}
