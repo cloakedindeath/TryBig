@@ -6,9 +6,14 @@ using UnityEngine.UI;
 
 public class TouchTest : MonoBehaviour 
 {
-	//This is currently not being used but was the original form of moving the character
+    /* This script handles player movement with animations,
+     * projectile shooting,
+     * Shield logic, and
+     * the bomb blast
+     * 
+     */
+	
 	public static TouchTest instance;
-	// Update is called once per frame
 	public float speed = 0.1F;
 	public GameObject player; 
 
@@ -17,6 +22,7 @@ public class TouchTest : MonoBehaviour
 	public Rigidbody projectile2;
 	public Rigidbody projectile3;
 	public Rigidbody[] projectiles;
+
 	public Sprite[] ammoColor;
 	public float bulletSpeed = 20;
 	public int ammoType;
@@ -74,10 +80,10 @@ public class TouchTest : MonoBehaviour
 			//////////////////////////////////////////////////
 
 		}
-		if(goleft == false && goright == false)
+		/*if(goleft == false && goright == false)
 		{
 			//model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
-		}
+		}*/
 		if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
 		{
 			if(goright == true)
@@ -95,109 +101,66 @@ public class TouchTest : MonoBehaviour
 			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
 		}
 
-	}
+        #region PC controls for testing purposes
 
-	public void Idle()
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            ondownMoveLeft();
+        }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            onupMoveLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            ondownMoveRight();
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            onupMoveRight();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Shoot2();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Shoot3();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            ShootKool();
+        }
+        #endregion
+    }
+
+    public void Idle()
 	{
 		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");
 	}
+    
+ 
+    #region Movement for player (attached to buttons)
 
-	public void moveLeft()
-	{
-		if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
-		{
-			//////////////////////////////////////////
-			//Touch movement with Y-axis restricted//
-			////////////////////////////////////////
-			/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) 
-			{
-				Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
-				//shouldDiscardSwipe (touchDeltaPosition);
-				transform.Translate (-touchDeltaPosition.x * speed, 0 * speed, 0);
-			}*/
+    public void ondownMoveLeft()
+    { goleft = true; }
+    public void ondownMoveRight()
+    { goright = true; }
+    public void onupMoveLeft()
+    {
+        goleft = false;
+        model.GetComponent<Animator>().Play("ANIM_Player_Idle_01");
+    }
+    public void onupMoveRight()
+    {
+        goright = false;
+        model.GetComponent<Animator>().Play("ANIM_Player_Idle_01");
+    }
 
-			player.transform.Translate(Vector3.right * speed * Time.deltaTime) ;
-			//player.transform.position += Vector3.Lerp(speed * Time.deltaTime, destination, transform.position);
-			//player.transform.position -= new Vector3 (transform.position.x * speed,0,0);
-			//////////////////////////////////////////////////
-			//Guarantees that the player wont go off screen//
-			////////////////////////////////////////////////
-			Vector2 p = player.transform.position;
-			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
-		}
-
-	}
-	public void stopLeft()
-	{
-		if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
-		{
-			//////////////////////////////////////////
-			//Touch movement with Y-axis restricted//
-			////////////////////////////////////////
-			/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) 
-			{
-				Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
-				//shouldDiscardSwipe (touchDeltaPosition);
-				transform.Translate (-touchDeltaPosition.x * speed, 0 * speed, 0);
-			}*/
-
-			player.transform.Translate(Vector3.right * 0) ;
-			//player.transform.position = Vector3.Lerp(speed * Time.deltaTime, destination, transform.position);
-			//////////////////////////////////////////////////
-			//Guarantees that the player wont go off screen//
-			////////////////////////////////////////////////
-			Vector2 p = player.transform.position;
-			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
-		}
-
-	}
-	public void moveRight()
-	{
-		if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
-		{
-			//////////////////////////////////////////
-			//Touch movement with Y-axis restricted//
-			////////////////////////////////////////
-			/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) 
-			{
-				Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
-				//shouldDiscardSwipe (touchDeltaPosition);
-				transform.Translate (-touchDeltaPosition.x * speed, 0 * speed, 0);
-			}*/
-
-			player.transform.Translate(-Vector3.right * speed * Time.deltaTime);
-			//////////////////////////////////////////////////
-			//Guarantees that the player wont go off screen//
-			////////////////////////////////////////////////
-			Vector2 p = player.transform.position;
-			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
-		}
-	}
-	public void stopRight()
-	{
-		if (player.transform.position.x >= -4f && player.transform.position.x <= 3.70f) 
-		{
-			//////////////////////////////////////////
-			//Touch movement with Y-axis restricted//
-			////////////////////////////////////////
-			/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) 
-			{
-				Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
-				//shouldDiscardSwipe (touchDeltaPosition);
-				transform.Translate (-touchDeltaPosition.x * speed, 0 * speed, 0);
-			}*/
-
-			player.transform.Translate(-Vector3.right * 0);
-			//////////////////////////////////////////////////
-			//Guarantees that the player wont go off screen//
-			////////////////////////////////////////////////
-			Vector2 p = player.transform.position;
-			player.transform.position = new Vector2( Mathf.Clamp( p.x, -4f, 3.7f ), p.y);
-		}
-	}
+    #endregion
 
     #region SHOOTING MECHANICS
-    public void Shoot2()
+    public void Shoot2()  // shoots waffle projectile
 	{
 		if(ammoOnScreen <=2 && UIManager.instance.startWaveCountdown == true)
 		{
@@ -216,7 +179,7 @@ public class TouchTest : MonoBehaviour
 
 		}
 	}
-    public void Shoot3()
+    public void Shoot3()  //shoots chicken projectile
     {
         if (ammoOnScreen <= 2 && UIManager.instance.startWaveCountdown == true)
         {
@@ -235,7 +198,7 @@ public class TouchTest : MonoBehaviour
 
         }
     }
-    public void ShootKool()
+    public void ShootKool()  // shoots kool aid projectile
     {
         if (ammoOnScreen <= 2 && UIManager.instance.startWaveCountdown == true)
         {
@@ -255,6 +218,8 @@ public class TouchTest : MonoBehaviour
         }
     }
     #endregion
+
+    #region Shield logic and Bomb usage logic
 
     //Handles the shield logic
     void OnTriggerEnter(Collider col)
@@ -279,29 +244,7 @@ public class TouchTest : MonoBehaviour
 		}
 	}
 
-	private bool shouldDiscardSwipe(Vector2 touchPos)
-	{
-		PointerEventData touch = new    PointerEventData(EventSystem.current);
-		touch.position = touchPos;
-		List<RaycastResult> hits = new List<RaycastResult>();
-		EventSystem.current.RaycastAll(touch, hits);
-		//Debug.Log (hits.Count);
-		return (hits.Count > 0); // discard swipe if an UI element is beneath
-
-	}
-
-	public void ondownMoveLeft()
-	{ goleft = true; }
-	public void ondownMoveRight()
-	{ goright = true; }
-	public void onupMoveLeft()
-	{ goleft = false;
-		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");}
-	public void onupMoveRight()
-	{ goright = false;
-		model.GetComponent<Animator> ().Play ("ANIM_Player_Idle_01");}
-
-	public void BombBlast()
+    public void BombBlast()
 	{
 		//EnemySpawner.instance.bomb = false;
 		ScoreManager.instance.score += 100;
@@ -313,7 +256,11 @@ public class TouchTest : MonoBehaviour
 		//EnemySpawner.instance.bombCnt = 0;
 	}
 
-	/*public void SubmitSliderSetting()
+    #endregion
+
+    #region Additional code not used atm
+
+    /*public void SubmitSliderSetting()
 	{
 		if (movement.GetComponent<Slider> ().value < 0) 
 		{
@@ -324,4 +271,17 @@ public class TouchTest : MonoBehaviour
 			goright = true;
 		}
 	}*/
+
+    /*private bool shouldDiscardSwipe(Vector2 touchPos)
+	{
+		PointerEventData touch = new    PointerEventData(EventSystem.current);
+		touch.position = touchPos;
+		List<RaycastResult> hits = new List<RaycastResult>();
+		EventSystem.current.RaycastAll(touch, hits);
+		//Debug.Log (hits.Count);
+		return (hits.Count > 0); // discard swipe if an UI element is beneath
+
+	}*/
+
+    #endregion
 }

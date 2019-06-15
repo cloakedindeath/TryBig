@@ -34,10 +34,14 @@ public class TimerTest : MonoBehaviour
 		lastChestOpen =  ulong.Parse(PlayerPrefs.GetString ("LastRewardGiven"));
 		timer = GetComponentInChildren<Text> ();
 		//timerActive = true;
-		if(!isChestReady())
+		/*if(!isChestReady())  might need to uncomment this later IMPORTANT
 		{
 			chestButton.interactable = false;
 		}
+        else
+        {
+            chestButton.interactable = true;
+        }*/
 		timerActive = PlayerPrefsX.GetBool ("Timer1");
 		//ScoreManager.instance.lives = PlayerPrefs.GetInt ("Lives");
 	

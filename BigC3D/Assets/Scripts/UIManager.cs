@@ -103,12 +103,13 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		ScoreManager.instance.lives = GameManager.instance.overallLives;	//Get lives from playerprefs
+		ScoreManager.instance.lives = GameManager.instance.overallLives;    //Get lives from playerprefs
 
+        #region GAME LOOP CODE
 
-		/////////////////////////////////
-		//Start pre Wave countdown
-		if(startCountdown == true && gameOver == false)
+        /////////////////////////////////
+        //Start pre Wave countdown
+        if (startCountdown == true && gameOver == false)
 		{
 			foreach (GameObject buttons in controls)
 			{
@@ -209,7 +210,9 @@ public class UIManager : MonoBehaviour
 
 		}
 
-		SetHighestWave ();
+        #endregion
+
+        SetHighestWave();
 
 		/////////////////////////
 		//Update text elements
@@ -239,6 +242,7 @@ public class UIManager : MonoBehaviour
 
 	}
 
+    //Starts the next wave
 	public void nextWaveStart()
 	{
 		touchCnt = 1;																		//Keeps Touch count at 1 to automatically start next wave 
