@@ -250,8 +250,7 @@ public class TouchTest : MonoBehaviour
 		ScoreManager.instance.score += 100;
 		UIManager.instance.bombCnt = 0;
 		bombButton.SetActive (false);
-        //EnemyController.instance.BombEvent ();
-        //EnemyController.instance.BombEvent();  work on this later
+        //EnemyController.instance.BombEvent();  //work on this later
 		UIManager.instance.DestroyAllEnemies ();
 		//EnemySpawner.instance.bombCnt = 0;
 	}

@@ -51,8 +51,9 @@ public class WaffleProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
-			UIManager.instance.shieldCnt = 0;
-			ScoreManager.instance.dingCnt = 0;
+            UIManager.instance.shieldCnt = 0;
+            UIManager.instance.bombCnt = 0;
+            ScoreManager.instance.dingCnt = 0;
 
 		}
 		else if (col.gameObject.tag == "Enemy_Chicken")
@@ -61,8 +62,9 @@ public class WaffleProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
-			UIManager.instance.shieldCnt = 0;
-			ScoreManager.instance.dingCnt = 0;
+            UIManager.instance.shieldCnt = 0;
+            UIManager.instance.bombCnt = 0;
+            ScoreManager.instance.dingCnt = 0;
 
 		}
 		else if (col.gameObject.tag == "ProjectileRemover")
@@ -71,8 +73,9 @@ public class WaffleProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
-			UIManager.instance.shieldCnt = 0;
-			ScoreManager.instance.dingCnt = 0;
+            UIManager.instance.shieldCnt = 0;
+            UIManager.instance.bombCnt = 0;
+            ScoreManager.instance.dingCnt = 0;
 		}
 	}
 	IEnumerator DestroyEnemy()

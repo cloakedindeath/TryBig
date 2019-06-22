@@ -240,11 +240,14 @@ public class ScoreManager : MonoBehaviour
 
 
 	}
-	public void LoseLife()
+	public void LoseLife() // when damage is taken
 	{
 		hp = (hp - 1);
-		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_TakeDamage_01");
-		if(hp <= 0)
+		TouchTest.instance.model.GetComponent<Animator> ().Play ("ANIM_Player_TakeDamage_01"); // play anim
+        UIManager.instance.mpCnt = 0;   //reset multiplier 
+        UIManager.instance.shieldCnt = 0;  // reset shield counter
+        UIManager.instance.bombCnt = 0;  // reset bomb counter
+        if (hp <= 0)
 		{
             UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
 			UIManager.instance.GameOver ();

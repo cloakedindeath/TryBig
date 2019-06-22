@@ -53,8 +53,9 @@ public class ChickenProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
-			UIManager.instance.shieldCnt = 0;
-			ScoreManager.instance.dingCnt = 0;
+            UIManager.instance.shieldCnt = 0;
+            UIManager.instance.bombCnt = 0;
+            ScoreManager.instance.dingCnt = 0;
 
 		}
 		else if (col.gameObject.tag == "Enemy_Waffle")
@@ -63,8 +64,9 @@ public class ChickenProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
-			UIManager.instance.shieldCnt = 0;
-			ScoreManager.instance.dingCnt = 0;
+            UIManager.instance.shieldCnt = 0;
+            UIManager.instance.bombCnt = 0;
+            ScoreManager.instance.dingCnt = 0;
 
 		}
 		else if (col.gameObject.tag == "ProjectileRemover")
@@ -73,8 +75,9 @@ public class ChickenProjectile : MonoBehaviour {
 			Destroy (this.gameObject);
 			TouchTest.instance.ammoOnScreen--;
 			UIManager.instance.mpCnt = 0;
-			UIManager.instance.shieldCnt = 0;
-			ScoreManager.instance.dingCnt = 0;
+            UIManager.instance.shieldCnt = 0;
+            UIManager.instance.bombCnt = 0;
+            ScoreManager.instance.dingCnt = 0;
 		}
 	}
 

@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour 
+public class EnemySpawner : MonoBehaviour
 {
-	public static EnemySpawner instance;
+    public static EnemySpawner instance;
 
-	public float maxXpos, spawnTime;
-	public GameObject enemy;
-	public GameObject[] enemies;
-	public GameObject[] pickups;
-	public float timeCnt;
+    public float maxXpos, spawnTime;
+    public GameObject enemy;
+    public GameObject[] enemies;
+    public GameObject[] pickups;
+    public GameObject[] activeWEnemies;
+    public GameObject[] activeCEnemies;
+    public GameObject[] activeKEnemies;
+    public float timeCnt;
 	//public int shieldCnt;
 	//public int bombCnt;
 	public bool shield;
@@ -40,20 +43,23 @@ public class EnemySpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		//Debug.Log (count);
-		//timeCnt = timeCnt +1;
-		//PickSpawnRate ();
-		/*if(count > 10)
+        activeWEnemies = GameObject.FindGameObjectsWithTag("Enemy_Waffle");
+        activeCEnemies = GameObject.FindGameObjectsWithTag("Enemy_Chicken");
+        activeKEnemies = GameObject.FindGameObjectsWithTag("Enemy_KoolAid");
+        //Debug.Log (count);
+        //timeCnt = timeCnt +1;
+        //PickSpawnRate ();
+        /*if(count > 10)
 		{
 			CancelInvoke ();
 		}*/
 
-		/*if(UIManager.instance.startWaveCountdown == true && UIManager.instance.gameOver == false)
+        /*if(UIManager.instance.startWaveCountdown == true && UIManager.instance.gameOver == false)
 		{
 			spawnTime = 0.8f;
 		}*/
 
-		spawnTime -= Time.deltaTime;
+        spawnTime -= Time.deltaTime;
 
 
 

@@ -19,10 +19,10 @@ public class EnemyController : MonoBehaviour
 	public GameObject particleWaffle;
 	public Vector3 impactLoc1;
 
-    GameObject[] enemiesW;
-    GameObject[] enemiesC;
-    GameObject[] enemiesK;
-    GameObject[] projectiles;
+    public GameObject[] enemiesW;
+    public GameObject[] enemiesC;
+    public GameObject[] enemiesK;
+    public GameObject[] projectiles;
 
     void Awake()
 	{
@@ -59,15 +59,6 @@ public class EnemyController : MonoBehaviour
 
 	void MoveEnemyToPlayer()
 	{
-		/*if(walk == true)
-		{
-			speed = 4;
-		}
-		else
-		{
-			speed = 0;
-		}*/
-
 		rb.velocity = new Vector3 (0,0,speed);
 	}
 
@@ -173,46 +164,72 @@ public class EnemyController : MonoBehaviour
 
 	}
 
-	
 
-	public void BombEvent()
-	{
-        if (this.gameObject.tag == "Enemy_KoolAid" || this.gameObject.tag == "Enemy_Chicken" || this.gameObject.tag == "Enemy_Waffle") {
-			
-			model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
-			StartCoroutine (DestroyEnemy ());
-		}
-       /* enemiesW = GameObject.FindGameObjectsWithTag("Enemy_Waffle");
+    /* Shitty fuck
+     public void BombEvent()
+     {
+          if (this.gameObject.tag == "Enemy_KoolAid" || this.gameObject.tag == "Enemy_Chicken" || this.gameObject.tag == "Enemy_Waffle") {
 
-        for (int i = 0; i < enemiesW.Length; i++)
-        {
-            //Destroy(enemiesW[i]);
-            model.GetComponent<Animator>().Play("ANIM_Monster_Eating_01");
-            StartCoroutine(DestroyEnemy());
-        }
-        enemiesC = GameObject.FindGameObjectsWithTag("Enemy_Chicken");
+              model.GetComponent<Animator> ().Play ("ANIM_Monster_Eating_01");
+              StartCoroutine (DestroyEnemy ());
+          }
+         StartCoroutine(DestroyWEnemy());
+         StartCoroutine(DestroyCEnemy());
+         StartCoroutine(DestroyKEnemy());
 
-        for (int i = 0; i < enemiesC.Length; i++)
-        {
-            // Destroy(enemiesC[i]);
-            model.GetComponent<Animator>().Play("ANIM_Monster_Eating_01");
-            StartCoroutine(DestroyEnemy());
-        }
-        enemiesK = GameObject.FindGameObjectsWithTag("Enemy_KoolAid");
+         projectiles = GameObject.FindGameObjectsWithTag("Projectile");
 
-        for (int i = 0; i < enemiesK.Length; i++)
-        {
-            // Destroy(enemiesK[i]);
-            model.GetComponent<Animator>().Play("ANIM_Monster_Eating_01");
-            StartCoroutine(DestroyEnemy());
-        }
-        projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+         for (int i = 0; i < projectiles.Length; i++)
+         {
+            Destroy(projectiles[i]);
+         }
+     }
 
-        for (int i = 0; i < projectiles.Length; i++)
-        {
-           Destroy(projectiles[i]);
-        }*/
-    }
+
+     IEnumerator DestroyWEnemy()
+     {
+         yield return new WaitForSeconds(.8f);
+         model.transform.position = new Vector3(-20, -0.1f, 0);
+         for (int i = 0; i < EnemySpawner.instance.activeWEnemies.Length; i++)
+         {
+             //Destroy(enemiesW[i]);
+             model.GetComponent<Animator>().Play("ANIM_Monster_Eating_01");
+
+             // Destroy(EnemySpawner.instance.activeWEnemies[i]);
+         }
+         //rb.isKinematic = false;
+         //Destroy(gameObject);
+     }
+     IEnumerator DestroyCEnemy()
+     {
+         yield return new WaitForSeconds(.8f);
+         model.transform.position = new Vector3(-20, -0.1f, 0);
+         for (int i = 0; i < EnemySpawner.instance.activeCEnemies.Length; i++)
+         {
+             //Destroy(enemiesW[i]);
+             model.GetComponent<Animator>().Play("ANIM_Monster_Eating_01");
+
+             Destroy(EnemySpawner.instance.activeCEnemies[i]);
+         }
+         //rb.isKinematic = false;
+         //Destroy(gameObject);
+     }
+     IEnumerator DestroyKEnemy()
+     {
+         yield return new WaitForSeconds(.8f);
+         model.transform.position = new Vector3(-20, -0.1f, 0);
+         for (int i = 0; i < EnemySpawner.instance.activeKEnemies.Length; i++)
+         {
+             //Destroy(enemiesW[i]);
+             model.GetComponent<Animator>().Play("ANIM_Monster_Eating_01");
+
+             Destroy(EnemySpawner.instance.activeKEnemies[i]);
+
+         }
+         //rb.isKinematic = false;
+         //Destroy(gameObject);
+     }
+     */
 
     IEnumerator DestroyEnemy()
     {
@@ -220,7 +237,5 @@ public class EnemyController : MonoBehaviour
         model.transform.position = new Vector3(-20, -0.1f, 0);
         //rb.isKinematic = false;
         Destroy(gameObject);
-        //Destroy (particle1);
     }
-
 }
