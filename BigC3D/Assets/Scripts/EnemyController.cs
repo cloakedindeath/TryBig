@@ -142,7 +142,9 @@ public class EnemyController : MonoBehaviour
 			EnemySpawner.instance.count--;
 			ScoreManager.instance.LoseLife ();  
 			//UIManager.instance.LifeAway();   // this is where the player loses HP on being hit by the enemy
-			UIManager.instance.mpCnt = 0;
+			UIManager.instance.mpCnt = 0;  //reset mp
+            UIManager.instance.shieldCnt = 0;  //reset shield count
+            UIManager.instance.bombCnt = 0;  // reset bomb count
 
 
 		}

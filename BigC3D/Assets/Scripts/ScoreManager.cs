@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
 	public bool ding;
 	public int dingCnt = 1;
 	public GameObject waitPanel;
+    public bool bombActive = false;
+    public bool shieldActive = false;
 	//public GameObject resumeRewardButton;
 
 
@@ -135,24 +137,27 @@ public class ScoreManager : MonoBehaviour
 
         #region Shield and Bomb ACTIVATION LOGIC
         //Shield logic
-        if (UIManager.instance.shieldCnt  < 5 /*|| UIManager.instance.gameOver == false*/) {
+        if (UIManager.instance.shieldCnt  < 5 && shieldActive == false) {
 			TouchTest.instance.shield.SetActive (false);
 			TouchTest.instance.shieldText.SetActive (false);
 		}
-		else 
+		else if(UIManager.instance.shieldCnt > 5) 
 		{
+            shieldActive = true;
 			TouchTest.instance.shield.SetActive (true);
 			TouchTest.instance.shieldText.SetActive (true);
 		}
 
 		//Bomb logic
-		if (UIManager.instance.bombCnt < 15 /*|| UIManager.instance.gameOver == false*/) 
+		if (UIManager.instance.bombCnt < 15 && bombActive == false) 
 		{
-			TouchTest.instance.bombButton.SetActive (false);
+			TouchTest.instance.bombButton.SetActive (false);  //bomb button disabled
 		}
 		else if (UIManager.instance.bombCnt > 15)
 		{
-			TouchTest.instance.bombButton.SetActive (true);
+			TouchTest.instance.bombButton.SetActive (true);  //show bomb button
+            bombActive = true;
+            UIManager.instance.bombCnt = 0;
 		}
         #endregion
 

@@ -231,8 +231,8 @@ public class TouchTest : MonoBehaviour
 			{
 				Destroy (col.gameObject);
 				UIManager.instance.shieldCnt = 0;
-				//EnemySpawner.instance.shield = false;
-			}
+                ScoreManager.instance.shieldActive = false;
+            }
 			else
 			{
 				audioC.PlayOneShot (playerHurt);
@@ -250,6 +250,7 @@ public class TouchTest : MonoBehaviour
 		ScoreManager.instance.score += 100;
 		UIManager.instance.bombCnt = 0;
 		bombButton.SetActive (false);
+        ScoreManager.instance.bombActive = false;
         //EnemyController.instance.BombEvent();  //work on this later
 		UIManager.instance.DestroyAllEnemies ();
 		//EnemySpawner.instance.bombCnt = 0;
