@@ -104,7 +104,12 @@ public class UIManager : MonoBehaviour
 	void Update () 
 	{
 		ScoreManager.instance.lives = GameManager.instance.overallLives;    //Get lives from playerprefs
-
+        Debug.Log(ScoreManager.instance.lives);
+        if (ScoreManager.instance.lives == 0)
+        {
+            livesLostTimer.SetActive(true);
+        }
+   
         #region GAME LOOP CODE
 
         /////////////////////////////////
@@ -418,8 +423,7 @@ public class UIManager : MonoBehaviour
 		if (!audioU.isPlaying) {
 			audioU.PlayOneShot (click, 1f);
 		}
-
-		PauseResume ();
+        PauseResume ();
 		DestroyAllEnemies ();
 		audioU.Stop ();
 		gameOver = false;
@@ -535,7 +539,11 @@ public class UIManager : MonoBehaviour
 		Time.timeScale = 1;
 		SceneManager.LoadScene ("Main");
 	}
-	public void OpenShop()
+
+    #region Shop buttons // currently unused
+
+    
+    public void OpenShop()
 	{
 		//UnityAdManager.instance.ShowAd ();
 		audioU.PlayOneShot (click, .6f);
@@ -560,7 +568,7 @@ public class UIManager : MonoBehaviour
 		audioU.PlayOneShot (click, .6f);
 		shopPanel.GetComponent<Animator> ().Play ("ShopRight");
 	}
-	/*Commenting out-Currently on the chopping block
+    /*Commenting out-Currently on the chopping block
 	public void pCardOpen()
 	{
 		audioU.PlayOneShot (click, .6f);
@@ -572,7 +580,9 @@ public class UIManager : MonoBehaviour
 		pCardPanel.GetComponent<Animator> ().Play ("PlayerCardAway");
 	}
 	*/
-	IEnumerator SpawnEnemies()
+    #endregion
+
+    IEnumerator SpawnEnemies()
 	{
 		yield return new WaitForSeconds(1f);
 		EnemySpawner.instance.PickEnemyType ();

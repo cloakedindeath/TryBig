@@ -11,9 +11,8 @@ public class GameManager : MonoBehaviour
 
 	void Awake()
 	{
-		//DontDestroyOnLoad(this.gameObject);
-
-		if(instance == null)
+        //DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
 		{
 			instance = this;
 		}
@@ -33,7 +32,8 @@ public class GameManager : MonoBehaviour
 	{
 		AudioSource audio = GetComponent<AudioSource>();
 		audio.Play();
-	}
+        
+    }
 
 	// Update is called once per frame
 	void Update () 
@@ -69,7 +69,5 @@ public class GameManager : MonoBehaviour
 			ScoreManager.instance.startLives = false;	//ensures the player never gets the initial starting 3 lives again
 
 		}
-	
-
 	}
 }

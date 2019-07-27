@@ -24,7 +24,13 @@ public class RewardButton : MonoBehaviour {
 		{
 			instance = this;
 		}
-	}
+        if (ScoreManager.instance.lives > 0)
+        {
+            message.GetComponent<GameObject>().SetActive(false);
+            chestButton.GetComponent<GameObject>().SetActive(false);
+        }
+
+    }
 
 	private void Start()
 	{
@@ -66,7 +72,29 @@ public class RewardButton : MonoBehaviour {
 		}
 	}
 
-	public void ChestClick()
+    public void Deathcheck()
+    {
+        if (ScoreManager.instance.lives <= 0 /*&& RewardButton.instance.freeLife == false*/)
+        {
+
+            //timerActive = true;
+            //PlayerPrefsX.SetBool("Timer1", true);
+            //lastChestOpen = (ulong)DateTime.Now.Ticks;
+            //PlayerPrefs.SetString("LivesRefresh", DateTime.Now.Ticks.ToString());
+            //chestButton.interactable = false;
+            //PlayerPrefs.SetInt ("Lives", 0);
+            message.GetComponent<GameObject>().SetActive(true);
+            chestButton.GetComponent<GameObject>().SetActive(true);
+            if (GameManager.instance.overallLives < 0)
+            {
+                GameManager.instance.overallLives = 0;
+            }
+        }
+
+
+    }
+
+    public void ChestClick()
 	{
 		//Debug.Log( DateTime.Now.Ticks.ToString());
 		freeLife = true;
@@ -80,12 +108,13 @@ public class RewardButton : MonoBehaviour {
 		//ScoreManager.instance.resumeRewardButton.SetActive (true);
 		//ScoreManager.instance.resumeButton.SetActive (false);
 		//ScoreManager.instance.lives = ScoreManager.instance.lives + 1;
-		PlayerPrefs.SetInt ("Lives_Reward", PlayerPrefs.GetInt ("Lives_Reward") + 1);
-		//UIManager.instance.livesLostMessage.SetActive (false);
-		//UIManager.instance.livesLostTimer.SetActive (false);
-		//PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
-		//ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
-	}
+		//PlayerPrefs.SetInt ("Lives_Reward", PlayerPrefs.GetInt ("Lives_Reward") + 1); // used to give one free life.
+        PlayerPrefs.SetInt("Lives", PlayerPrefs.GetInt("Lives") + 3);
+        //UIManager.instance.livesLostMessage.SetActive (false);
+        //UIManager.instance.livesLostTimer.SetActive (false);
+        //PlayerPrefs.SetInt ("lives", PlayerPrefs.GetInt ("lives") + 1);
+        //ScoreManager.instance.waitPanel.GetComponent<Animator> ().Play ("waitPanelAway");
+    }
 
 	private bool isChestReady()
 	{
