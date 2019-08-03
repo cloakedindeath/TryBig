@@ -7,6 +7,8 @@ public class UnityAdManager : MonoBehaviour
 {
 	public static UnityAdManager instance;
 
+    public string placementId = "bannerPlacement";
+
 	void Awake()
 	{
 		DontDestroyOnLoad (this.gameObject);
@@ -97,5 +99,14 @@ public class UnityAdManager : MonoBehaviour
 			PlayerPrefs.SetInt ("Adcount", 0);
 		}
 	}
+
+    IEnumerator ShowBannerWhenReady()
+    {
+        while(!Advertisement.IsReady(placementId))
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        //Advertisement.banner.Show(placementId);
+    }
 
 }
