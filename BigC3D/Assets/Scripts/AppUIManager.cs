@@ -12,10 +12,13 @@ public class AppUIManager : MonoBehaviour
     public GameObject accountPanel;
     public GameObject bigCLogo;
 
+    public AudioClip click;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,51 @@ public class AppUIManager : MonoBehaviour
         menuPanel.SetActive(false);
         accountPanel.SetActive(false);
         bigCLogo.SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        //PlayerPrefs.SetFloat("TimeDiff", timer);
+        SceneManager.LoadScene("Main (Rework)");
+    }
+    public void LoadInstagram()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        Application.OpenURL("https://www.instagram.com/bigcwaffles/?hl=en");
+    }
+    public void LoadHomeSite()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        Application.OpenURL("https://www.bigcwaffles.com");
+    }
+    public void LoadFacebook()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        Application.OpenURL("https://www.facebook.com/Big-C-Waffles-743714709005652/");
+    }
+    public void LoadTwitter()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        Application.OpenURL("https://twitter.com/bigcwaffles?lang=en");
+    }
+
+    public void OrderApparel()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        Application.OpenURL("http://www.macflyfresh.com/index.php?option=com_hikashop&ctrl=category&task=listing&cid=19&name=big-c-waffles&Itemid=278");
+    }
+
+    public void OrderFood()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        Application.OpenURL("https://www.grubhub.com/restaurant/big-c-waffles-2110-allendown-dr-durham/629246");
+    }
+
+    public void PrivacyPolicy()
+    {
+        audioSource.PlayOneShot(click, .6F);
+        Application.OpenURL("https://app.termly.io/document/privacy-policy/e1d78c43-5c95-44f2-bafa-31e455871ee5");
     }
 
 }
