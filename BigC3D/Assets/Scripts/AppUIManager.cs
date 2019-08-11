@@ -12,6 +12,10 @@ public class AppUIManager : MonoBehaviour
     public GameObject accountPanel;
     public GameObject bigCLogo;
 
+    //Account panel
+    public Text email;
+    public Text pNum;
+
     public AudioClip click;
     AudioSource audioSource;
 
@@ -24,10 +28,13 @@ public class AppUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Uncomment this later to update the account page with the users info.
+        //email.text = PlayerPrefs.GetString("tempMail");
+        //pNum.text = PlayerPrefs.GetString("tempNum");
     }
 
     //Button actions
+    #region Button actions
     public void Offers()
     {
         bigCLogo.SetActive(false);
@@ -56,13 +63,15 @@ public class AppUIManager : MonoBehaviour
         accountPanel.SetActive(false);
         bigCLogo.SetActive(true);
     }
+    #endregion
 
     public void StartGame()
     {
         audioSource.PlayOneShot(click, .6F);
-        //PlayerPrefs.SetFloat("TimeDiff", timer);
         SceneManager.LoadScene("Main (Rework)");
     }
+
+    #region URL Links
     public void LoadInstagram()
     {
         audioSource.PlayOneShot(click, .6F);
@@ -101,5 +110,6 @@ public class AppUIManager : MonoBehaviour
         audioSource.PlayOneShot(click, .6F);
         Application.OpenURL("https://app.termly.io/document/privacy-policy/e1d78c43-5c95-44f2-bafa-31e455871ee5");
     }
+    #endregion
 
 }
