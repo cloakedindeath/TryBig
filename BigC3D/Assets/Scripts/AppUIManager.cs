@@ -9,12 +9,17 @@ public class AppUIManager : MonoBehaviour
     public GameObject signInSplash;
     public GameObject offersPanel;
     public GameObject menuPanel;
+    public GameObject menuScroll;
+    public GameObject cateringScroll;
     public GameObject accountPanel;
     public GameObject bigCLogo;
 
     //Account panel
     public Text email;
     public Text pNum;
+    public Text sch;
+
+    public Text offerHeader;
 
     public AudioClip click;
     AudioSource audioSource;
@@ -31,6 +36,10 @@ public class AppUIManager : MonoBehaviour
         //Uncomment this later to update the account page with the users info.
         //email.text = PlayerPrefs.GetString("tempMail");
         //pNum.text = PlayerPrefs.GetString("tempNum");
+        //sch.text = PlayerPrefs.GetString("tempSchool");
+
+        //eventually add the playerpref of name or email ( if we decide to ask for first name)
+        offerHeader.text = "Welcome, {insert name/email}...";
     }
 
     //Button actions
@@ -47,7 +56,19 @@ public class AppUIManager : MonoBehaviour
         bigCLogo.SetActive(false);
         offersPanel.SetActive(false);
         menuPanel.SetActive(true);
+        menuScroll.SetActive(true);
+        cateringScroll.SetActive(false);
         accountPanel.SetActive(false);
+    }
+    public void openMenu()
+    {
+        menuScroll.SetActive(true);
+        cateringScroll.SetActive(false);
+    }
+    public void openCatering()
+    {
+        menuScroll.SetActive(false);
+        cateringScroll.SetActive(true);
     }
     public void Account()
     {

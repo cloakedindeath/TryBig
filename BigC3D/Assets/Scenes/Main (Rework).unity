@@ -6041,8 +6041,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "PlayerControls:\nUse Left and Right buttons to move the player.\n\nMatch
     the color of the ammo to the enemy to satisfy their food needs. \n\nYou earn 20
-    points per kill. See how many waves you can complete!\n\nTo quit tap the power
-    button next to the wave timer at the top of the screen.\n\nENJOY!!"
+    points per customer satisfied. See how many waves you can complete!\n\nTo quit
+    tap the power button next to the wave timer at the top of the screen.\n\nENJOY!!"
 --- !u!222 &952259586
 CanvasRenderer:
   m_ObjectHideFlags: 0
