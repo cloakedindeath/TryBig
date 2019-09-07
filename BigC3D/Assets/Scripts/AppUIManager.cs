@@ -33,8 +33,10 @@ public class AppUIManager : MonoBehaviour
     //Toggle switches
     public Toggle m_Toggle;
     public Text m_Text;
+    public Slider v_Slider;
 
     float vol;
+    float currentVol;
 
     #endregion
 
@@ -43,24 +45,31 @@ public class AppUIManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         //Checks if music should be on or not
-        if(PlayerPrefs.HasKey("vol"))
+        if(PlayerPrefs.HasKey("currentVol"))
         {
-            vol = PlayerPrefs.GetFloat("vol");
+            vol = PlayerPrefs.GetFloat("currentVol");
             MusicManager.GetComponent<AudioSource>().volume = vol;
             if(vol == 0.00f)
             {
                 m_Toggle.isOn = false;
             }
+            else
+            {
+                PlayerPrefs.SetFloat("prevVol", vol);
+            }
         }
-        
-        
-        
+
+       v_Slider.value = vol;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerPrefs.GetFloat("vol"));
+        Debug.Log(PlayerPrefs.GetFloat("currentVol"));
+        vol = PlayerPrefs.GetFloat("prevVol");
+        
+        
         //Uncomment this later to update the account page with the users info.
         //email.text = PlayerPrefs.GetString("tempMail");
         //pNum.text = PlayerPrefs.GetString("tempNum");
@@ -73,18 +82,22 @@ public class AppUIManager : MonoBehaviour
         if(m_Toggle.isOn)
         {
             m_Text.text = "On";
-            vol = 0.75f;
+            //v_Slider.value = PlayerPrefs.GetFloat("prevVol");
+            vol = v_Slider.value;
             MusicManager.GetComponent<AudioSource>().volume = vol;
-            PlayerPrefs.SetFloat("vol", vol);
+            PlayerPrefs.SetFloat("currentVol", vol);
+            
+
         }
         if (!m_Toggle.isOn)
         {
+            //PlayerPrefs.SetFloat("prevVol", vol);
             m_Text.text = "Off"; 
             vol = 0.00f;
-            MusicManager.GetComponent<AudioSource>().volume = vol;
-            PlayerPrefs.SetFloat("vol", vol);
+            MusicManager.GetComponent<AudioSource>().volume = 0.0f;
+            v_Slider.value = 0.0f;
         }
-
+        SubmitSliderSetting(); //submit volume for slider
     }
 
     //Button actions
@@ -148,6 +161,13 @@ public class AppUIManager : MonoBehaviour
     {
         audioSource.PlayOneShot(click, .6F);
         SceneManager.LoadScene("Main (Rework)");
+    }
+
+    public void SubmitSliderSetting()
+    {
+        MusicManager.GetComponent<AudioSource>().volume = v_Slider.value;
+        PlayerPrefs.SetFloat("currentVol", v_Slider.value);
+       
     }
 
     #region URL Links
