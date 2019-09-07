@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class AppUIManager : MonoBehaviour
 {
+
+    #region Variables
+
     public GameObject signInSplash;
     public GameObject offersPanel;
     public GameObject menuPanel;
     public GameObject menuScroll;
     public GameObject cateringScroll;
     public GameObject accountPanel;
+    public GameObject settingsPanel;
     public GameObject bigCLogo;
+    public GameObject MusicManager;
 
     //Account panel
     public Text email;
@@ -21,25 +26,65 @@ public class AppUIManager : MonoBehaviour
 
     public Text offerHeader;
 
+    //Audio Clip
     public AudioClip click;
     AudioSource audioSource;
+
+    //Toggle switches
+    public Toggle m_Toggle;
+    public Text m_Text;
+
+    float vol;
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        //Checks if music should be on or not
+        if(PlayerPrefs.HasKey("vol"))
+        {
+            vol = PlayerPrefs.GetFloat("vol");
+            MusicManager.GetComponent<AudioSource>().volume = vol;
+            if(vol == 0.00f)
+            {
+                m_Toggle.isOn = false;
+            }
+        }
+        
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(PlayerPrefs.GetFloat("vol"));
         //Uncomment this later to update the account page with the users info.
         //email.text = PlayerPrefs.GetString("tempMail");
         //pNum.text = PlayerPrefs.GetString("tempNum");
         //sch.text = PlayerPrefs.GetString("tempSchool");
 
         //eventually add the playerpref of name or email ( if we decide to ask for first name)
-        offerHeader.text = "Welcome, {insert name/email}...";
+        offerHeader.text = "Welcome, thisemail@gmail.com";
+
+        //Toggle Music for settings
+        if(m_Toggle.isOn)
+        {
+            m_Text.text = "On";
+            vol = 0.75f;
+            MusicManager.GetComponent<AudioSource>().volume = vol;
+            PlayerPrefs.SetFloat("vol", vol);
+        }
+        if (!m_Toggle.isOn)
+        {
+            m_Text.text = "Off"; 
+            vol = 0.00f;
+            MusicManager.GetComponent<AudioSource>().volume = vol;
+            PlayerPrefs.SetFloat("vol", vol);
+        }
+
     }
 
     //Button actions
@@ -50,6 +95,7 @@ public class AppUIManager : MonoBehaviour
         offersPanel.SetActive(true);
         menuPanel.SetActive(false);
         accountPanel.SetActive(false);
+        settingsPanel.SetActive(false);
     }
     public void Menu_food()
     {
@@ -59,6 +105,7 @@ public class AppUIManager : MonoBehaviour
         menuScroll.SetActive(true);
         cateringScroll.SetActive(false);
         accountPanel.SetActive(false);
+        settingsPanel.SetActive(false);
     }
     public void openMenu()
     {
@@ -76,17 +123,28 @@ public class AppUIManager : MonoBehaviour
         offersPanel.SetActive(false);
         menuPanel.SetActive(false);
         accountPanel.SetActive(true);
+        settingsPanel.SetActive(false);
     }
     public void Home()
     {
         offersPanel.SetActive(false);
         menuPanel.SetActive(false);
         accountPanel.SetActive(false);
+        settingsPanel.SetActive(false);
         bigCLogo.SetActive(true);
+    }
+
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
+        offersPanel.SetActive(false);
+        menuPanel.SetActive(false);
+        accountPanel.SetActive(false);
+        bigCLogo.SetActive(false);
     }
     #endregion
 
-    public void StartGame()
+    public void StartGame() // loads the waffle walkers game
     {
         audioSource.PlayOneShot(click, .6F);
         SceneManager.LoadScene("Main (Rework)");
@@ -133,4 +191,8 @@ public class AppUIManager : MonoBehaviour
     }
     #endregion
 
+    #region Settings Functionality
+    //reserved
+
+    #endregion
 }

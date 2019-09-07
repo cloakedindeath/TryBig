@@ -37,7 +37,7 @@ public class AccountManager : MonoBehaviour
     void Update()
     {
         school = schDrop.captionText.text;
-        Debug.Log(school);
+        //Debug.Log(school);
     }
 
     public void SubmitInfo()
