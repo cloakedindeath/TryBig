@@ -19,6 +19,16 @@ public class AppUIManager : MonoBehaviour
     public GameObject bigCLogo;
     public GameObject MusicManager;
 
+    //Dock objects
+    public GameObject homeBlueImage;
+    public GameObject homeBlueText;
+    public GameObject offersBlueImage;
+    public GameObject offersBlueText;
+    public GameObject menuBlueImage;
+    public GameObject menuBlueText;
+    public GameObject accBlueImage;
+    public GameObject accBlueText;
+    
     //Account panel
     public Text email;
     public Text pNum;
@@ -110,6 +120,15 @@ public class AppUIManager : MonoBehaviour
         menuPanel.SetActive(false);
         accountPanel.SetActive(false);
         settingsPanel.SetActive(false);
+
+        homeBlueImage.SetActive(false);
+        homeBlueText.SetActive(false);
+        offersBlueImage.SetActive(true);
+        offersBlueText.SetActive(true);
+        menuBlueImage.SetActive(false);
+        menuBlueText.SetActive(false);
+        accBlueImage.SetActive(false);
+        accBlueText.SetActive(false);
     }
     public void Menu_food()
     {
@@ -120,6 +139,15 @@ public class AppUIManager : MonoBehaviour
         cateringScroll.SetActive(false);
         accountPanel.SetActive(false);
         settingsPanel.SetActive(false);
+
+        homeBlueImage.SetActive(false);
+        homeBlueText.SetActive(false);
+        offersBlueImage.SetActive(false);
+        offersBlueText.SetActive(false);
+        menuBlueImage.SetActive(true);
+        menuBlueText.SetActive(true);
+        accBlueImage.SetActive(false);
+        accBlueText.SetActive(false);
     }
     public void openMenu()
     {
@@ -138,6 +166,15 @@ public class AppUIManager : MonoBehaviour
         menuPanel.SetActive(false);
         accountPanel.SetActive(true);
         settingsPanel.SetActive(false);
+
+        homeBlueImage.SetActive(false);
+        homeBlueText.SetActive(false);
+        offersBlueImage.SetActive(false);
+        offersBlueText.SetActive(false);
+        menuBlueImage.SetActive(false);
+        menuBlueText.SetActive(false);
+        accBlueImage.SetActive(true);
+        accBlueText.SetActive(true);
     }
     public void Home()
     {
@@ -146,6 +183,15 @@ public class AppUIManager : MonoBehaviour
         accountPanel.SetActive(false);
         settingsPanel.SetActive(false);
         bigCLogo.SetActive(true);
+
+        homeBlueImage.SetActive(true);
+        homeBlueText.SetActive(true);
+        offersBlueImage.SetActive(false);
+        offersBlueText.SetActive(false);
+        menuBlueImage.SetActive(false);
+        menuBlueText.SetActive(false);
+        accBlueImage.SetActive(false);
+        accBlueText.SetActive(false);
     }
 
     public void OpenSettings()
@@ -155,6 +201,15 @@ public class AppUIManager : MonoBehaviour
         menuPanel.SetActive(false);
         accountPanel.SetActive(false);
         bigCLogo.SetActive(false);
+
+        homeBlueImage.SetActive(false);
+        homeBlueText.SetActive(false);
+        offersBlueImage.SetActive(false);
+        offersBlueText.SetActive(false);
+        menuBlueImage.SetActive(false);
+        menuBlueText.SetActive(false);
+        accBlueImage.SetActive(false);
+        accBlueText.SetActive(false);
     }
     #endregion
 
