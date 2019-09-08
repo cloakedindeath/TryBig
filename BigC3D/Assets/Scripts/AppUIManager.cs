@@ -36,7 +36,9 @@ public class AppUIManager : MonoBehaviour
     public Slider v_Slider;
 
     float vol;
-    float currentVol;
+    //float currentVol;
+    //float prevVol;
+    bool value;
 
     #endregion
 
@@ -44,6 +46,13 @@ public class AppUIManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        //Toggle listener for music. // maybe make one to toggle dock blue and white
+        m_Toggle.onValueChanged.AddListener((value) =>
+        {
+            MyListener(value);
+        });
+
         //Checks if music should be on or not
         if(PlayerPrefs.HasKey("currentVol"))
         {
@@ -66,10 +75,21 @@ public class AppUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerPrefs.GetFloat("currentVol"));
-        vol = PlayerPrefs.GetFloat("prevVol");
-        
-        
+        Debug.Log(PlayerPrefs.GetFloat("prevVol"));
+
+        //Extra functionality for the toggle to also change 
+        //states based on the slider position
+        if(v_Slider.value == 0)
+        {
+            m_Text.text = "Off";
+            m_Toggle.isOn = false;
+        }
+        else
+        {
+            m_Text.text = "On";
+            m_Toggle.isOn = true;
+        }
+
         //Uncomment this later to update the account page with the users info.
         //email.text = PlayerPrefs.GetString("tempMail");
         //pNum.text = PlayerPrefs.GetString("tempNum");
@@ -78,25 +98,6 @@ public class AppUIManager : MonoBehaviour
         //eventually add the playerpref of name or email ( if we decide to ask for first name)
         offerHeader.text = "Welcome, thisemail@gmail.com";
 
-        //Toggle Music for settings
-        if(m_Toggle.isOn)
-        {
-            m_Text.text = "On";
-            //v_Slider.value = PlayerPrefs.GetFloat("prevVol");
-            vol = v_Slider.value;
-            MusicManager.GetComponent<AudioSource>().volume = vol;
-            PlayerPrefs.SetFloat("currentVol", vol);
-            
-
-        }
-        if (!m_Toggle.isOn)
-        {
-            //PlayerPrefs.SetFloat("prevVol", vol);
-            m_Text.text = "Off"; 
-            vol = 0.00f;
-            MusicManager.GetComponent<AudioSource>().volume = 0.0f;
-            v_Slider.value = 0.0f;
-        }
         SubmitSliderSetting(); //submit volume for slider
     }
 
@@ -163,13 +164,6 @@ public class AppUIManager : MonoBehaviour
         SceneManager.LoadScene("Main (Rework)");
     }
 
-    public void SubmitSliderSetting()
-    {
-        MusicManager.GetComponent<AudioSource>().volume = v_Slider.value;
-        PlayerPrefs.SetFloat("currentVol", v_Slider.value);
-       
-    }
-
     #region URL Links
     public void LoadInstagram()
     {
@@ -212,7 +206,31 @@ public class AppUIManager : MonoBehaviour
     #endregion
 
     #region Settings Functionality
+
     //reserved
+    public void SubmitSliderSetting() //submits volume value from slider
+    {
+        MusicManager.GetComponent<AudioSource>().volume = v_Slider.value;
+        PlayerPrefs.SetFloat("currentVol", v_Slider.value);
+    }
+
+    //Handles the toggle logic for music 
+    public void MyListener(bool value)
+    {
+        if(value)
+        {
+            //toggle music on
+            m_Text.text = "On";
+            v_Slider.value = PlayerPrefs.GetFloat("prevVol");
+        }
+        else
+        {
+            //toggle music off
+            PlayerPrefs.SetFloat("prevVol", v_Slider.value);
+            m_Text.text = "Off";
+            v_Slider.value = 0.0f;
+        }
+    }
 
     #endregion
 }
